@@ -1,0 +1,13 @@
+name: Boilerplate Testing
+on:
+  push:
+    branches-ignore:
+      - main
+      - dev
+
+jobs:
+  test: 
+    name: ⚙️ Testing
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "TODO"
