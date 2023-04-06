@@ -9,7 +9,11 @@ jobs:
     name: Testing
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Install Dependencies
         run: npm i --save-dev
+
       - name: Testing Code
         run: npm run build
