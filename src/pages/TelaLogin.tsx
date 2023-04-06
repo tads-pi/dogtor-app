@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import barlowLight from "../assets/fonts/Barlow-Light.ttf"
 import { 
   Text,
   SafeAreaView,
@@ -17,7 +16,7 @@ const TelaLogin = () => {
   const [email, onChangeText] = useState('');
   const [password, onChangePassword] = useState('');
   let [fontsLoaded] = useFonts({
-    'Barlow-Light': barlowLight,
+    'Barlow-Light': require("../assets/fonts/Barlow-Light.ttf"),
   });
   if (!fontsLoaded) {
     return <AppLoading />
