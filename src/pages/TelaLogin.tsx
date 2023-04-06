@@ -1,33 +1,39 @@
-import React from 'react';
-import { Text, SafeAreaView, StyleSheet, TextInput, View, TouchableHighlight, Alert } from 'react-native';
+import React, {useState} from 'react';
+import barlowLight from "../assets/fonts/Barlow-Light.ttf"
+import { 
+  Text,
+  SafeAreaView,
+  StyleSheet, 
+  TextInput,
+  View,
+  TouchableHighlight,
+  Alert,
+  Linking
+} from 'react-native';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
-import { Linking } from 'react-native';
 
- export const TelaLogin = () => {
-  const [email, onChangeText] = React.useState('');
-  const [password, onChangePassword] = React.useState('');
+const TelaLogin = () => {
+  const [email, onChangeText] = useState('');
+  const [password, onChangePassword] = useState('');
   let [fontsLoaded] = useFonts({
-    'Barlow-Light': require('./assets/fonts/Barlow-Light.ttf'),
+    'Barlow-Light': barlowLight,
   });
   if (!fontsLoaded) {
     return <AppLoading />
   }
   let Users = [{ email: "guilherme@thomazin.com", password: "1234" }]
+
   function validador() {
     for (const emailValidador of Users) {
       if (emailValidador.email === email) {
         for (const senha of Users) {
           if (senha.password === password) {
             Alert.alert('Bem Vindo')
-
           }
           else {
             Alert.alert('senha incoreta')
-
           }
-
-
         }
       } else {
         Alert.alert('e-mail incorreto')
@@ -142,3 +148,5 @@ const styles = StyleSheet.create({
   },
 
 });
+
+export default TelaLogin;
