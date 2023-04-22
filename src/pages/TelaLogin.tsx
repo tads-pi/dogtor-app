@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import { 
+import React, { useState } from 'react';
+import {
   Text,
   SafeAreaView,
-  StyleSheet, 
+  StyleSheet,
   TextInput,
   View,
   TouchableHighlight,
@@ -11,8 +11,15 @@ import {
 } from 'react-native';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
+import { useDispatch } from 'react-redux'
+import { useNavigation } from '@react-navigation/native'
+import routes from "../routes"
+import { setName } from '../store/slices/userDataSlice';
 
 const TelaLogin = () => {
+  const navigate = useNavigation().navigate
+  const dispatch = useDispatch()
+
   const [email, onChangeText] = useState('');
   const [password, onChangePassword] = useState('');
   let [fontsLoaded] = useFonts({
@@ -21,26 +28,37 @@ const TelaLogin = () => {
   if (!fontsLoaded) {
     return <AppLoading />
   }
-  let Users = [{ email: "guilherme@thomazin.com", password: "1234" }]
+  let Users = [
+    {
+      email: "1",
+      data: {
+        password: "1",
+        name: "Debug"
+      }
+    },
+    {
+      email: "guilherme@thomazin.com",
+      data: {
+        password: "1234",
+        name: "Guilherme"
+      }
+    }]
 
   function validador() {
-    for (const emailValidador of Users) {
-      if (emailValidador.email === email) {
-        for (const senha of Users) {
-          if (senha.password === password) {
-            Alert.alert('Bem Vindo')
-          }
-          else {
-            Alert.alert('senha incoreta')
-          }
-        }
-      } else {
-        Alert.alert('e-mail incorreto')
+    let userFound = false;
+    Users.map(({ email: _email, data }) => {
+      if (email === _email) {
+        userFound = true;
+
+        dispatch(setName(data.name))
+        navigate(routes.TELA_MENU)
       }
+    })
+
+    if (!userFound) {
+      Alert.alert('e-mail ou senha incoretos.')
     }
-
   }
-
 
   return (
     <SafeAreaView>

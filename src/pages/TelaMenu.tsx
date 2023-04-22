@@ -5,65 +5,92 @@ import {
   StyleSheet,
   SafeAreaView,
   Image,
-  Button,
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import Constants from 'expo-constants';
+import { useNavigation } from '@react-navigation/native'
+import { useSelector } from 'react-redux'
+import { selectUserData, UserData } from '../store/slices/userDataSlice'
+import PetWrapper from '../components/PetWrapper';
 
-export default function App() {
+export default function TelaMenu() {
+  const user = useSelector(selectUserData) as UserData
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView>
         <View>
           <Text style={styles.text}>Olá, {user.name}</Text>
-          <Text style={styles.text}>Bom dia!</Text>
+          <Text style={styles.subtext}>Bom dia!</Text>
         </View>
         <View style={styles.containerImage}>
-          <Image source={require('../assets/images/Hero.png')} />
+          <Image style={styles.image} source={require('../assets/images/Hero.png')} />
         </View>
-        <Text style={styles.subtitle}>Atendimentos</Text>
+        <Text style={styles.subtitle_atendimentos}>Atendimentos</Text>
         <View style={styles.containerButton}>
           <TouchableOpacity style={styles.button}>
-            <View style={styles.btn}>
+            <View style={[styles.btn, styles.btnBlue]}>
               <Image source={require('../assets/images/Banheira.png')} />
             </View>
-            <Text>Banho</Text>
+            <Text style={styles.text_atendimento}>Banho</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}>
-            <View style={styles.btnOrange}>
+            <View style={[styles.btn, styles.btnOrange]}>
               <Image source={require('../assets/images/Dentista.png')} />
             </View>
-            <Text>Dentista</Text>
+            <Text style={styles.text_atendimento}>Dentista</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}>
-            <View style={styles.btnPink}>
+            <View style={[styles.btn, styles.btnPink]}>
               <Image source={require('../assets/images/Cirurgia.png')} />
             </View>
-            <Text>Cirurgia</Text>
+            <Text style={styles.text_atendimento}>Cirurgia</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}>
-            <View style={styles.btnDarkBlue}>
-              <Image source={require('../assets/images/Cirurgia.png')} />
+            <View style={[styles.btn, styles.btnDarkBlue]}>
+              <Image source={require('../assets/images/Vacina.png')} />
             </View>
-            <Text>Vacina</Text>
+            <Text style={styles.text_atendimento}>Vacina</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.containerAdd}>
-          <Text style={styles.subtitle}>Seus cachorros</Text>
+          <Text style={styles.subtitle}>Seus Pets</Text>
           <TouchableOpacity>
             <Text style={styles.btnAdd}>Adicionar</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.dogNoExiste}>
-          <Image source={require('../assets/images/DogNoExiste.png')} />
-          <Text style={[styles.subtitle, { marginTop: 20 }]}>
-            Você não adicionou nenhum cachorro
-          </Text>
-          <Text>
-            Aperte o botão "Adicionar" para que possamos exibi-lo aqui
-          </Text>
-        </View>
+
+        {
+          user.pets.length > 0
+            ?
+            <View style={styles.petExists}>
+              <ScrollView
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+              >
+                {
+                  user.pets.map((pet) => (
+                    <PetWrapper pet={pet} key={pet.id}></PetWrapper>
+                  ))
+                }
+              </ScrollView>
+            </View>
+
+            : (() => {
+              return (
+                <View style={styles.petDoesNotExists}>
+                  <Image source={require('../assets/images/DogNoExiste.png')} style={styles.petDoesNotExistsImage} />
+                  <Text style={styles.petDoesNotExistsTitle}>
+                    Você não adicionou nenhum pet
+                  </Text>
+                  <Text style={styles.petDoesNotExistsSubtitle}>
+                    Aperte o botão "Adicionar" para que possamos exibi-lo aqui
+                  </Text>
+                </View>
+              )
+            })()
+        }
+
         <TouchableOpacity style={styles.btnProcurarAtendimento}>
           <Image source={require('../assets/images/Search.png')} />
           <Image source={require('../assets/images/Line.png')} />
@@ -76,65 +103,81 @@ export default function App() {
 
 const styles = StyleSheet.create({
   containerImage: {
-    margin: 32,
+    flex: 1,
+  },
+  image: {
+    flex: 1,
+    marginTop: 32,
+    marginBottom: 32,
+    marginLeft: 8,
+    width: 375,
+    height: 140,
+    resizeMode: "contain",
+    borderRadius: 12,
   },
   text: {
-    color: '#000000',
+    color: '#282C26',
     fontSize: 24,
+    fontWeight: 600,
     marginTop: 5,
     marginLeft: 17,
   },
-  subtitle: {
-    color: '#000000',
+  subtext: {
+    color: '#45565F',
+    fontSize: 20,
+    marginTop: 5,
+    marginLeft: 17,
+  },
+  text_atendimento: {
+    color: '#869298',
+    fontSize: 12,
+  },
+  subtitle_atendimentos: {
+    color: '#282C26',
     fontSize: 16,
-    fontWeight: '700',
+    fontWeight: 700,
+    marginLeft: 17,
+  },
+  subtitle: {
+    color: '#282C26',
+    fontSize: 16,
+    fontWeight: 600,
     marginLeft: 17,
   },
   containerButton: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginBottom: 32,
-    marginTop: 16,
   },
   button: {
-    flex: 1,
     alignItems: 'center',
-    marginBottom: 32,
-    marginTop: 16,
+    justifyContent: "center",
+    marginTop: 8,
+    marginBottom: 48,
+    // backgroundColor: "red"
   },
   btn: {
-    width: 60,
-    height: 55,
-    backgroundColor: '#3D9CF3',
-    padding: 17,
+    width: 45,
+    height: 45,
+    alignItems: "center",
+    justifyContent: "center",
     borderRadius: 8,
+    marginTop: 8,
     marginBottom: 8,
+    marginLeft: 16,
+    marginRight: 10,
+    // padding: 16,
+  },
+  btnBlue: {
+    backgroundColor: '#3D9CF3',
   },
   btnOrange: {
-    width: 60,
-    height: 55,
     backgroundColor: '#F47800',
-    paddingLeft: 19,
-    paddingTop: 15,
-    borderRadius: 8,
-    marginBottom: 8,
   },
   btnPink: {
-    width: 60,
-    height: 55,
     backgroundColor: '#F5C5D3',
-    padding: 17,
-    borderRadius: 8,
-    marginBottom: 8,
   },
   btnDarkBlue: {
-    width: 60,
-    height: 55,
     backgroundColor: '#2A435F',
-    padding: 17,
-    borderRadius: 8,
-    marginBottom: 8,
   },
   btnAdd: {
     color: '#41C4E5',
@@ -146,10 +189,36 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  dogNoExiste: {
+  petExists: {
+    flex: 1,
+    alignItems: 'flex-start',
+    marginBottom: 32,
+    marginTop: 8,
+    marginLeft: 20,
+    flexDirection: "row",
+  },
+  petDoesNotExists: {
     flex: 1,
     alignItems: 'center',
+    textAlign: 'center',
     margin: 40,
+  },
+  petDoesNotExistsImage: {
+    height: 275,
+    width: 285,
+  },
+  petDoesNotExistsTitle: {
+    marginTop: 20,
+    fontSize: 14,
+    fontWeight: "bold",
+    color: "000000",
+  },
+  petDoesNotExistsSubtitle: {
+    fontSize: 12,
+    color: "#ACBBC3",
+    maxWidth: "75%",
+    textAlign: "center",
+    margin: 5,
   },
   btnProcurarAtendimento: {
     flex: 1,
