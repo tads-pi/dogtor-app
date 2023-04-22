@@ -69,23 +69,30 @@ const TelaLogin = () => {
               <Text style={{ color: '#ACBBC3' }} onPress={() => Linking.openURL('https://google.com')
               } >Esqueci minha Senha</Text>
             </View>
-            
-              <TouchableHighlight style={styles.button} onPress={validador}>
-                <View style={styles.button}>
-                  <Text style={{ color: "white" }} >Entrar</Text>
-                </View>
-              </TouchableHighlight>
-            
+
+            <TouchableHighlight style={styles.button} onPress={validador}>
+              <View style={styles.button}>
+                <Text style={{ color: "white" }} >Entrar</Text>
+              </View>
+            </TouchableHighlight>
+
           </View>
         </View>
 
         <View style={{ alignItems: 'center', marginTop: 40 }}>
 
           <Text>
-            <Text style={{ color: '#ACBBC3' }}  >Não possui uma conta? </Text>
+            <Text style={{ color: '#ACBBC3' }}>
+
+              Não possui uma conta?
+
+            </Text>
             <Text style={{ fontWeight: "bold", color: "#41C4E5" }}
               onPress={() => Linking.openURL('https://google.com')}>
-               Registrar-se</Text>
+
+              Registrar-se
+
+            </Text>
           </Text>
         </View>
       </View>

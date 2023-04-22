@@ -16,48 +16,48 @@ export default function App() {
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView>
         <View>
-          <Text style={styles.text}>Texto Generico</Text>
+          <Text style={styles.text}>Olá, {user.name}</Text>
           <Text style={styles.text}>Bom dia!</Text>
         </View>
         <View style={styles.containerImage}>
-          <Image source={require('./assets/Hero.png')} />
+          <Image source={require('../assets/images/Hero.png')} />
         </View>
         <Text style={styles.subtitle}>Atendimentos</Text>
         <View style={styles.containerButton}>
           <TouchableOpacity style={styles.button}>
             <View style={styles.btn}>
-              <Image source={require('./assets/Banheira.png')} />
+              <Image source={require('../assets/images/Banheira.png')} />
             </View>
             <Text>Banho</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}>
             <View style={styles.btnOrange}>
-              <Image source={require('./assets/Dentista.png')} />
+              <Image source={require('../assets/images/Dentista.png')} />
             </View>
             <Text>Dentista</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}>
             <View style={styles.btnPink}>
-              <Image source={require('./assets/Cirurgia.png')} />
+              <Image source={require('../assets/images/Cirurgia.png')} />
             </View>
             <Text>Cirurgia</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}>
             <View style={styles.btnDarkBlue}>
-              <Image source={require('./assets/Cirurgia.png')} />
+              <Image source={require('../assets/images/Cirurgia.png')} />
             </View>
             <Text>Vacina</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.containerAdd}>
           <Text style={styles.subtitle}>Seus cachorros</Text>
-          <TouchableOpacity style={styles.btnAdd}>
+          <TouchableOpacity>
             <Text style={styles.btnAdd}>Adicionar</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.dogNoExiste}>
-          <Image source={require('./assets/DogNoExiste.png')} />
-          <Text style={[styles.subtitle, {marginTop: 20}]}>
+          <Image source={require('../assets/images/DogNoExiste.png')} />
+          <Text style={[styles.subtitle, { marginTop: 20 }]}>
             Você não adicionou nenhum cachorro
           </Text>
           <Text>
@@ -65,8 +65,8 @@ export default function App() {
           </Text>
         </View>
         <TouchableOpacity style={styles.btnProcurarAtendimento}>
-          <Image source={require('./assets/Search.png')} />
-          <Image source={require('./assets/Line.png')} />
+          <Image source={require('../assets/images/Search.png')} />
+          <Image source={require('../assets/images/Line.png')} />
           <Text style={styles.btnProcurarAtendimentoText}>Procurar Atendimento</Text>
         </TouchableOpacity>
       </ScrollView>
@@ -149,7 +149,6 @@ const styles = StyleSheet.create({
   dogNoExiste: {
     flex: 1,
     alignItems: 'center',
-   
     margin: 40,
   },
   btnProcurarAtendimento: {
