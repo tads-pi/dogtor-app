@@ -14,6 +14,7 @@ import { selectUserData, UserData } from '../store/slices/userDataSlice'
 import PetWrapper from '../components/PetWrapper';
 
 export default function TelaMenu() {
+  const navigate = useNavigation().navigate;
   const user = useSelector(selectUserData) as UserData
 
   return (
@@ -118,7 +119,7 @@ const styles = StyleSheet.create({
   text: {
     color: '#282C26',
     fontSize: 24,
-    fontWeight: 600,
+    fontWeight: "600",
     marginTop: 5,
     marginLeft: 17,
   },
@@ -135,13 +136,13 @@ const styles = StyleSheet.create({
   subtitle_atendimentos: {
     color: '#282C26',
     fontSize: 16,
-    fontWeight: 700,
+    fontWeight: "700",
     marginLeft: 17,
   },
   subtitle: {
     color: '#282C26',
     fontSize: 16,
-    fontWeight: 600,
+    fontWeight: "600",
     marginLeft: 17,
   },
   containerButton: {
