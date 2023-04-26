@@ -106,7 +106,7 @@ const TelaLogin = () => {
 
             </Text>
             <Text style={{ fontWeight: "bold", color: "#41C4E5" }}
-              onPress={() => Linking.openURL('https://google.com')}>
+              onPress={() => {navigate(routes.TELA_CADASTRO_INFO_PESSOAIS)}}>
 
               Registrar-se
 
