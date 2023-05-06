@@ -1,4 +1,4 @@
-name: 🐶 Dogtor-App
+name: 🧪 Testing
 on:
   push:
     branches-ignore:
