@@ -86,7 +86,7 @@ export default function TelaCadastroDadosAcesso() {
                     />}
                     {<Controller
                         control={control}
-                        name="Senha"
+                        name="senha"
                         rules={{ required: true }}
                         render={({ field: { value, onChange } }) => (
                             <TextInput
