@@ -38,7 +38,7 @@ export default function TelaCadastroInfoPessoais() {
       <View style={styles.div}>
         <View style={styles.header}>
           <Text style={styles.dogtorText}>DOGTOR</Text>
-          <Text style={{ fontWeight: 'bold', fontSize: 24 }}>Iformações pessoais</Text>
+          <Text style={{ fontWeight: 'bold', fontSize: 24 }}>Informações pessoais</Text>
           <Text style={{ fontSize: 16 }}>Primeiro de tudo, vamos nos conhecer. Nos diga, quem é você?</Text>
         </View>
 
