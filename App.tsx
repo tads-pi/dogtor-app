@@ -8,6 +8,10 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 import routes from "./src/routes"
 import TelaLogin from "./src/pages/TelaLogin"
 import TelaMenu from "./src/pages/TelaMenu";
+import TelaCadastroInfoPessoais from "./src/pages/TelaCadastroInfoPeossoais";
+import TelaCadastroEndereco from "./src/pages/TelaEndereco";
+import TelaCadastroDadosAcesso from "./src/pages/telaCadstro";
+
 
 export default function App() {
   const Stack = createStackNavigator()
@@ -30,6 +34,24 @@ export default function App() {
               />
               <Stack.Screen
                 name={routes.TELA_MENU} component={TelaMenu}
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name={routes.TELA_CADASTRO_INFO_PESSOAIS} component={TelaCadastroInfoPessoais}
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name={routes.TELA_CADASTRO_ENDERECO} component={TelaCadastroEndereco}
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name={routes.TELA_CADASTRO_DADOS_ACESSO} component={TelaCadastroDadosAcesso}
                 options={{
                   headerShown: false,
                 }}
