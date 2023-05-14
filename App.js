@@ -1,21 +1,19 @@
-import "react-native-gesture-handler"
+import AuthProvider from './context/auth';
 import { createStackNavigator } from "@react-navigation/stack";
-import { KeyboardAvoidingView, Platform } from "react-native";
-import { store } from './src/store/store';
-import { Provider } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
-import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { KeyboardAvoidingView, Platform } from "react-native";
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import routes from "./src/routes"
 import TelaLogin from "./src/pages/TelaLogin"
 import TelaMenu from "./src/pages/TelaMenu";
 
 export default function App() {
-  const Stack = createStackNavigator()
+  const Stack = createStackNavigator();
 
   return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <SafeAreaProvider>
+    <NavigationContainer>
+      <SafeAreaProvider>
+        <AuthProvider>
           <KeyboardAvoidingView
             style={{ flex: 1 }}
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -36,8 +34,8 @@ export default function App() {
               />
             </Stack.Navigator>
           </KeyboardAvoidingView>
-        </SafeAreaProvider>
-      </NavigationContainer>
-    </Provider>
+        </AuthProvider>
+      </SafeAreaProvider>
+    </NavigationContainer>
   );
 }
