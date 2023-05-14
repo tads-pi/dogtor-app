@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import { AuthContext } from '../components/Context'
+import { AuthContext } from '../../context/auth'
 import PetWrapper from '../components/PetWrapper'
 
 export default function TelaEscolherPet() {
@@ -37,7 +37,7 @@ export default function TelaEscolherPet() {
           >
             {
               // todo think about a case where user do not have pets
-              user.pets.map((pet) => (
+              user?.pets?.map((pet) => (
                 <PetWrapper pet={pet} key={pet.id}></PetWrapper>
               ))
             }
