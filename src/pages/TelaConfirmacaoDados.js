@@ -16,10 +16,10 @@ export default function TelaConfirmacaoDados() {
         <View style={styles.menuSuperior}></View>
         <View style={styles.navBar}>
           <TouchableOpacity>
-            <Image source={require("./assets/back.png")} />
+            <Image source={require("../assets/images/back.png")} />
           </TouchableOpacity>
           <TouchableOpacity>
-            <Image source={require("./assets/cancel.png")} />
+            <Image source={require("../assets/images/cancel.png")} />
           </TouchableOpacity>
         </View>
         <View style={styles.dogNoExiste}>
@@ -116,6 +116,7 @@ const styles = StyleSheet.create({
   descriptionColor: {
     marginTop: 8,
     color: "#ACBBC3",
+    textAlign: "center"
   },
   subtitle: {
     color: "#000000",
