@@ -40,7 +40,7 @@ export default function TelaCadastroDadosAcesso() {
                 <View style={styles.header}>
                     <Text style={styles.dogtorText}>DOGTOR</Text>
                     <Text style={{ fontWeight: 'bold', fontSize: 24 }}>Dados de Acesso</Text>
-                    <Text style={{ fontSize: 16 }}>Muito bom conhecer o dono desse pet. Precisamos das suas informações de acesso</Text>
+                    <Text style={{ fontSize: 16 }}>Esses dados serão necessários para entrar no aplicativo mais tarde!</Text>
                 </View>
                 <View>
                     {<Controller
