@@ -1,13 +1,8 @@
-import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native'
+import { StyleSheet, Text, View, ImageBackground } from 'react-native'
 import React from 'react'
-import { Pet } from "../store/slices/userDataSlice"
 import moment from "moment"
 
-type Props = {
-    pet: Pet
-}
-
-const PetWrapper = (props: Props) => {
+const PetWrapper = (props) => {
     const birthYear = moment(props.pet.ano_de_nascimento, "YYYY")
     const age = moment().diff(birthYear, "years")
 

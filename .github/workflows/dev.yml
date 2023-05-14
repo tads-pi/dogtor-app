@@ -1,8 +1,8 @@
-name: 🐶 Dogtor-App
+name: 🐶 Dogtor-App-DSV
 on:
   push:
     branches:
-      - main
+      - dev
 
 jobs:
   update:
