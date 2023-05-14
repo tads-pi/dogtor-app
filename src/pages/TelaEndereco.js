@@ -5,20 +5,16 @@ import {
     TextInput,
     View,
     TouchableHighlight,
-    Alert,
 } from 'react-native';
 import { useFonts } from 'expo-font';
-import AppLoading from 'expo-app-loading';
-import { useDispatch } from 'react-redux';
+import AppLoading from './AppLoading';
 import { useNavigation } from '@react-navigation/native';
 import routes from '../routes';
 import { useForm, Controller } from 'react-hook-form';
 
-export default function TelaCadastroDadosAcesso() {
-
-
+// Step 02
+export default function TelaCadastroEndereco() {
     const navigate = useNavigation().navigate
-    const dispatch = useDispatch()
     const { control, handleSubmit, formState: { errors } } = useForm();
     let [fontsLoaded] = useFonts({
         'Barlow-Light': require("../assets/fonts/Barlow-Light.ttf"),
@@ -26,14 +22,15 @@ export default function TelaCadastroDadosAcesso() {
     if (!fontsLoaded) {
         return <AppLoading />
     }
-    function buttonEntrar(data:any) {
-        if (data.senha === data.confirmarSenha) {
-            navigate(routes.TELA_MENU)
-        }else{
-            Alert.alert('senhas divirgentes')
+    function buttonContinuar() {
+        // todo update user data
+        navigate(routes.TELA_CADASTRO_DADOS_ACESSO)
+    }
+
+    function handleKeyDown(e) {
+        if (e.nativeEvent.key == "Enter") {
+            Keyboard.dismiss();
         }
-
-
     }
 
     return (
@@ -41,65 +38,95 @@ export default function TelaCadastroDadosAcesso() {
             <View style={styles.div}>
                 <View style={styles.header}>
                     <Text style={styles.dogtorText}>DOGTOR</Text>
-                    <Text style={{ fontWeight: 'bold', fontSize: 24 }}>Dados de Acesso</Text>
-                    <Text style={{ fontSize: 16 }}>Muito bom conhecer o dono desse pet. Precisamos das suas informações de acesso</Text>
+                    <Text style={{ fontWeight: 'bold', fontSize: 24 }}>Seu endereço</Text>
+                    <Text style={{ fontSize: 16 }}>Para encontrarmos estabelecimentos próximos de você</Text>
                 </View>
+
                 <View>
                     {<Controller
                         control={control}
-                        name="email"
+                        name="cep"
                         rules={{ required: true }}
                         render={({ field: { value, onChange } }) => (
                             <TextInput
-                                style={errors.email ? styles.inputErrors : styles.input}
+                                style={errors.cep ? styles.inputErrors : styles.input}
                                 value={value}
                                 onChangeText={onChange}
-                                placeholder="E-mail"
-                            />
-                        )}
-                    />}
-
-                    {<Controller
-                        control={control}
-                        name="telefone"
-                        rules={{ required: true }}
-                        render={({ field: { value, onChange } }) => (
-                            <TextInput
-                                style={errors.telefone ? styles.inputErrors : styles.input}
-                                value={value}
-                                onChangeText={onChange}
-                                placeholder="Telefone"
+                                placeholder="CEP"
                                 keyboardType="numeric"
+                            />
+                        )}
+                    />}
+                    <View style={{ display: 'flex', flexDirection: "row" }}>
+                        {<Controller
+                            control={control}
+                            name="rua"
+                            rules={{ required: true }}
+                            render={({ field: { value, onChange } }) => (
+                                <TextInput
+                                    style={errors.rua ? styles.inputErrorsRua : styles.inputRua}
+                                    value={value}
+                                    onChangeText={onChange}
+                                    placeholder="Rua"
+                                />
+                            )}
+                        />}
 
+                        {<Controller
+                            control={control}
+                            name="num"
+                            rules={{ required: true }}
+                            render={({ field: { value, onChange } }) => (
+                                <TextInput
+                                    style={errors.num ? styles.inputErrorsNum : styles.inputNum}
+                                    value={value}
+                                    onChangeText={onChange}
+                                    placeholder="N"
+                                    keyboardType="numeric"
+                                    returnKeyType="done"
+                                    onKeyPress={handleKeyDown}
+                                />
+                            )}
+                        />}
+                    </View>
+                    {<Controller
+                        control={control}
+                        name="complemento"
+                        rules={{ required: true }}
+                        render={({ field: { value, onChange } }) => (
+                            <TextInput
+                                style={errors.complemento ? styles.inputErrors : styles.input}
+
+                                value={value}
+                                onChangeText={onChange}
+                                placeholder="Complemento"
+                            />
+                        )}
+                    />}
+
+                    {<Controller
+                        control={control}
+                        name="cidade"
+                        rules={{ required: true }}
+                        render={({ field: { value, onChange } }) => (
+                            <TextInput
+                                style={errors.cidade ? styles.inputErrors : styles.input}
+                                value={value}
+                                onChangeText={onChange}
+                                placeholder="Cidade"
                             />
                         )}
                     />}
                     {<Controller
                         control={control}
-                        name="senha"
+                        name="estado"
                         rules={{ required: true }}
                         render={({ field: { value, onChange } }) => (
                             <TextInput
-                                style={errors.senha ? styles.inputErrors : styles.input}
-                                secureTextEntry={true}
+                                style={errors.estado ? styles.inputErrors : styles.input}
                                 value={value}
                                 onChangeText={onChange}
-                                placeholder="Senha"
-                            />
-                        )}
-                    />}
-                    {<Controller
-                        control={control}
-                        name="confirmarSenha"
-                        rules={{ required: true }}
-                        render={({ field: { value, onChange } }) => (
-                            <TextInput
-                                style={errors.confirmarSenha ? styles.inputErrors : styles.input}
-                                secureTextEntry={true}
-                                value={value}
-                                onChangeText={onChange}
-
-                                placeholder="Confirmar Senha"
+                                placeholder="Estado"
                             />
                         )}
                     />}
@@ -107,14 +134,16 @@ export default function TelaCadastroDadosAcesso() {
                     <View style={{
                         display: 'flex',
                         justifyContent: 'flex-end',
-                        height: '58%',
+                        // height: '50%',
 
                     }}>
-                        <TouchableHighlight style={styles.button} onPress={handleSubmit(buttonEntrar)}>
+                        <TouchableHighlight style={styles.button} onPress={handleSubmit(buttonContinuar)}>
                             <View style={styles.button}>
-                                <Text style={{ color: 'white' }}>Entrar</Text>
+                                <Text style={{ color: 'white' }}>Continuar</Text>
                             </View>
                         </TouchableHighlight>
+
+
                     </View>
                 </View>
             </View>
@@ -157,6 +186,25 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         borderColor: "#ACBBC3",
     },
+    inputRua: {
+        height: 51,
+        width: 300,
+        marginTop: 12,
+        marginRight: 10,
+        borderWidth: 1,
+        padding: 10,
+        borderRadius: 16,
+        borderColor: "#ACBBC3",
+    },
+    inputNum: {
+        height: 51,
+        width: 50,
+        marginTop: 12,
+        borderWidth: 1,
+        padding: 10,
+        borderRadius: 16,
+        borderColor: "#ACBBC3",
+    },
     inputErrors: {
         height: 51,
         width: 360,
@@ -166,7 +214,25 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         borderColor: "red",
     },
-
+    inputErrorsRua: {
+        height: 51,
+        width: 300,
+        marginTop: 12,
+        marginRight: 10,
+        borderWidth: 1,
+        padding: 10,
+        borderRadius: 16,
+        borderColor: "red",
+    },
+    inputErrorsNum: {
+        height: 51,
+        width: 50,
+        marginTop: 12,
+        borderWidth: 1,
+        padding: 10,
+        borderRadius: 16,
+        borderColor: "red",
+    },
     button: {
         alignItems: 'center',
         justifyContent: 'center',
@@ -177,9 +243,6 @@ const styles = StyleSheet.create({
         height: 51,
 
         fontSize: '16px',
-    },
+    }
 
 });
-
-
-

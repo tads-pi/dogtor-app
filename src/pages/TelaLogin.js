@@ -99,7 +99,6 @@ export default function TelaLogin() {
                         onChangeText={onChangeText}
                         value={email}
                         placeholder="E-mail"
-
                     />
                     <TextInput
                         style={styles.input}
@@ -107,20 +106,17 @@ export default function TelaLogin() {
                         value={password}
                         secureTextEntry={true}
                         placeholder="Senha"
-
                     />
                     <View>
                         <View style={styles.esquciSenha}>
                             <Text style={{ color: '#ACBBC3' }} onPress={() => Linking.openURL('https://google.com')
                             } >Esqueci minha Senha</Text>
                         </View>
-
                         <TouchableHighlight style={styles.button} onPress={validador}>
                             <View style={styles.button}>
                                 <Text style={{ color: "white" }} >Entrar</Text>
                             </View>
                         </TouchableHighlight>
-
                     </View>
                 </View>
 
@@ -133,7 +129,7 @@ export default function TelaLogin() {
 
                         </Text>
                         <Text style={{ fontWeight: "bold", color: "#41C4E5" }}
-                            onPress={() => Linking.openURL('https://google.com')}>
+                            onPress={() => { navigate(routes.TELA_CADASTRO_INFO_PESSOAIS) }}>
 
                             Registrar-se
 
