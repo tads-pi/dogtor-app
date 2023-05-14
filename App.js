@@ -6,6 +6,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import routes from "./src/routes"
 import TelaLogin from "./src/pages/TelaLogin"
 import TelaMenu from "./src/pages/TelaMenu";
+import AppointmentProvider from './context/appoiment';
+import TelaConfirmacaoDados from './src/pages/TelaConfirmacaoDados';
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -32,6 +34,15 @@ export default function App() {
                   headerShown: false,
                 }}
               />
+
+              <AppointmentProvider>
+                <Stack.Screen
+                  name={routes.FLUXO_AGENDAMENTO_5} component={TelaConfirmacaoDados}
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+              </AppointmentProvider>
             </Stack.Navigator>
           </KeyboardAvoidingView>
         </AuthProvider>

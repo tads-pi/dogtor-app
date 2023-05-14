@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import {
   Text,
   View,
@@ -8,8 +8,12 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
+import { AppointmentContext } from "../context/appointment";
+import { PAYMENT_TYPE_PENDING } from "../../constants/appointment";
 
 export default function TelaConfirmacaoDados() {
+  const { setPaymentStatus } = useContext(AppointmentContext)
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView>
@@ -27,7 +31,7 @@ export default function TelaConfirmacaoDados() {
             Confirmação de dados
           </Text>
           <Text style={styles.descriptionColor}>
-            Confirme todas as informações e escolha o a forma de pagamento
+            Confirme todas as informações e escolha a forma de pagamento
           </Text>
         </View>
 
@@ -55,7 +59,7 @@ export default function TelaConfirmacaoDados() {
             <Text>Pet:</Text>
           </View>
         </View>
-        <TouchableOpacity style={styles.btnProcurarAtendimento}>
+        <TouchableOpacity style={styles.btnProcurarAtendimento} onPress={() => setPaymentStatus(PAYMENT_TYPE_PENDING)}>
           <Text style={styles.btnProcurarAtendimentoText}>
             Continuar para pagamento
           </Text>
@@ -103,10 +107,10 @@ const styles = StyleSheet.create({
     width: 328,
     padding: 10,
   },
-  consultaTextStyle: { 
-    fontWeight: "bold", 
-    fontSize: 14 
-},
+  consultaTextStyle: {
+    fontWeight: "bold",
+    fontSize: 14
+  },
   navBar: {
     flex: 1,
     flexDirection: "row",

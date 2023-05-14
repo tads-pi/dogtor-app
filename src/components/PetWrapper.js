@@ -3,7 +3,7 @@ import React from 'react'
 import moment from "moment"
 
 const PetWrapper = (props) => {
-    const birthYear = moment(props.pet.ano_de_nascimento, "YYYY")
+    const birthYear = moment(props.pet.birth_year, "YYYY")
     const age = moment().diff(birthYear, "years")
 
     return (
@@ -12,7 +12,7 @@ const PetWrapper = (props) => {
                 <View style={styles.header}>
                     <View style={styles.headerHero}>
                         <Text style={[styles.text, styles.title]}>{props.pet.name}</Text>
-                        <Text style={[styles.text, styles.subtitle]}> {props.pet.race}</Text>
+                        <Text style={[styles.text, styles.subtitle]}> {props.pet.bread}</Text>
                     </View>
                     <Text style={[styles.text, styles.age]}>{age} anos</Text>
                 </View>

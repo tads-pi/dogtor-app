@@ -40,20 +40,20 @@ export default function TelaLogin() {
                         id: "123",
                         name: "Thor",
                         race: "Bulldog Francês",
-                        peso: "5", // in kg
-                        altura: "50", // in cm
-                        data_de_nascimento: "01/01",
-                        ano_de_nascimento: "2020",
+                        breed: "5", // in kg
+                        size: "50", // in cm
+                        birth_date: "01/01",
+                        birth_year: "2020",
                         profile_picture: () => require("../assets/images/pets/thor_pp.png"),
                     },
                     {
                         id: "321",
                         name: "Fernando",
                         race: "Bulldog Francês",
-                        peso: "3", // in kg
-                        altura: "30", // in cm
-                        data_de_nascimento: "01/01",
-                        ano_de_nascimento: "2022",
+                        breed: "3", // in kg
+                        size: "30", // in cm
+                        birth_date: "01/01",
+                        birth_year: "2022",
                         profile_picture: () => require("../assets/images/pets/fernando_pp.png"),
                     }
                 ]
