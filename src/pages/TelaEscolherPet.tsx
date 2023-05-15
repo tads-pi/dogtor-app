@@ -18,7 +18,7 @@ export default function TelaEscolherPet() {
     const user = useSelector(selectUserData) as UserData
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={styles.safeAreaView}>
       <ScrollView>
         <View style={styles.blueBar}></View>
         <View style={styles.navBar}>
@@ -26,11 +26,11 @@ export default function TelaEscolherPet() {
           <TouchableOpacity><Image source={require('./assets/cancel.png')}/></TouchableOpacity>
         </View>
         <View style={styles.dogNoExiste}>
-          <Text style={[styles.subtitle, {marginTop: 20}]}>
+          <Text style={styles.subtitle}>
             Escolha o pet que irá para a consulta
           </Text>
           <Text style={styles.descriptionColor}>
-            Clique em um desses fofinhos para selecionar
+            Clique em uma das imagens abaixo para selecionar
           </Text>
         </View>
             <View style={styles.petExists}>
@@ -54,7 +54,10 @@ export default function TelaEscolherPet() {
 }
 
 const styles = StyleSheet.create({
-    petExists: {
+  safeAreaView: { 
+    flex: 1 
+  },  
+  petExists: {
         flex: 1,
         alignItems: 'flex-start',
         marginBottom: 32,
@@ -105,6 +108,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '700',
     marginLeft: 17,
+    marginTop: 20,
   },
   dogNoExiste: {
     flex: 1,
