@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import { AppointmentContext } from "../context/appointment";
+import { AppointmentContext } from "../../context/appoiment";
 import { PAYMENT_TYPE_PENDING } from "../../constants/appointment";
 
 export default function TelaConfirmacaoDados() {

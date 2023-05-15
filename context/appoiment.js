@@ -23,7 +23,7 @@ function AppointmentProvider({ children }) {
             size_in_cm: "", // in cm
             birth_date: "",
             birth_year: "",
-            profile_picture: () => require("../assets/images/pets/thor_pp.png"),
+            profile_picture: null,
         },
         paymentStatus: "",
     })

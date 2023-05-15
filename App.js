@@ -16,35 +16,35 @@ export default function App() {
     <NavigationContainer>
       <SafeAreaProvider>
         <AuthProvider>
-          <KeyboardAvoidingView
-            style={{ flex: 1 }}
-            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-            keyboardVerticalOffset={Platform.OS === 'ios' ? -64 : 0}
-          >
-            <Stack.Navigator>
-              <Stack.Screen
-                name={routes.TELA_LOGIN} component={TelaLogin}
-                options={{
-                  headerShown: false,
-                }}
-              />
-              <Stack.Screen
-                name={routes.TELA_MENU} component={TelaMenu}
-                options={{
-                  headerShown: false,
-                }}
-              />
+          <AppointmentProvider>
+            <KeyboardAvoidingView
+              style={{ flex: 1 }}
+              behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+              keyboardVerticalOffset={Platform.OS === 'ios' ? -64 : 0}
+            >
+              <Stack.Navigator>
+                <Stack.Screen
+                  name={routes.TELA_LOGIN} component={TelaLogin}
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+                <Stack.Screen
+                  name={routes.TELA_MENU} component={TelaMenu}
+                  options={{
+                    headerShown: false,
+                  }}
+                />
 
-              <AppointmentProvider>
                 <Stack.Screen
                   name={routes.FLUXO_AGENDAMENTO_5} component={TelaConfirmacaoDados}
                   options={{
                     headerShown: false,
                   }}
                 />
-              </AppointmentProvider>
-            </Stack.Navigator>
-          </KeyboardAvoidingView>
+              </Stack.Navigator>
+            </KeyboardAvoidingView>
+          </AppointmentProvider>
         </AuthProvider>
       </SafeAreaProvider>
     </NavigationContainer>
