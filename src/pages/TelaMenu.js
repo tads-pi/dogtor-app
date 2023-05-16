@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 import PetWrapper from '../components/PetWrapper';
+import routes from '../routes';
 
 export default function TelaMenu() {
     const navigate = useNavigation().navigate;
@@ -91,7 +92,7 @@ export default function TelaMenu() {
                         })()
                 }
 
-                <TouchableOpacity style={styles.btnProcurarAtendimento}>
+                <TouchableOpacity  onPress={() => {navigate(routes.FLUXO_AGENDAMENTO_1)}}  style ={styles.btnProcurarAtendimento}>
                     <Image source={require('../assets/images/Search.png')} />
                     <Image source={require('../assets/images/Line.png')} />
                     <Text style={styles.btnProcurarAtendimentoText}>Procurar Atendimento</Text>
