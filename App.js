@@ -8,6 +8,7 @@ import TelaLogin from "./src/pages/TelaLogin"
 import TelaMenu from "./src/pages/TelaMenu";
 import AppointmentProvider from './context/appoiment';
 import TelaConfirmacaoDados from './src/pages/TelaConfirmacaoDados';
+import TelaAgendamento from './src/pages/TelaAgendamento';
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -42,6 +43,14 @@ export default function App() {
                     headerShown: false,
                   }}
                 />
+                <Stack.Screen
+                  name={routes.FLUXO_AGENDAMENTO_1} component={TelaAgendamento}
+                  options={{
+                    headerShown: false,
+                  }}
+               />
+
+
               </Stack.Navigator>
             </KeyboardAvoidingView>
           </AppointmentProvider>
