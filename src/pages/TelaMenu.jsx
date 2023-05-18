@@ -15,7 +15,7 @@ import PetWrapper from '../components/PetWrapper';
 
 export default function TelaMenu() {
   const navigate = useNavigation().navigate;
-  const user = useSelector(selectUserData) as UserData
+  const user = useSelector(selectUserData) 
 
   return (
     <SafeAreaView style={{ flex: 1 }}>

@@ -16,7 +16,7 @@ import { useNavigation } from '@react-navigation/native'
 import routes from "../routes"
 import { setName } from '../store/slices/userDataSlice';
 
-const TelaLogin = () => {
+const TelaLogin = ({navigation}) => {
   const navigate = useNavigation().navigate
   const dispatch = useDispatch()
 
@@ -51,7 +51,10 @@ const TelaLogin = () => {
         userFound = true;
 
         dispatch(setName(data.name))
-        navigate(routes.TELA_MENU)
+        navigation.reset({
+          index: 0,
+          routes:[{name:"TelaMenu"}]
+      })
       }
     })
 

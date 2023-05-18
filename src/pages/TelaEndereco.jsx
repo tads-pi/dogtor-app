@@ -5,19 +5,22 @@ import {
     TextInput,
     View,
     TouchableHighlight,
+    Dimensions,
 } from 'react-native';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
-import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import routes from '../routes';
 import { useForm, Controller } from 'react-hook-form';
+import { TextInputMask } from 'react-native-masked-text';
 
+
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
 export default function TelaCadastroEndereco() {
 
 
     const navigate = useNavigation().navigate
-    const dispatch = useDispatch()
     const { control, handleSubmit, formState: { errors } } = useForm();
     let [fontsLoaded] = useFonts({
         'Barlow-Light': require("../assets/fonts/Barlow-Light.ttf"),
@@ -35,110 +38,104 @@ export default function TelaCadastroEndereco() {
             <View style={styles.div}>
                 <View style={styles.header}>
                     <Text style={styles.dogtorText}>DOGTOR</Text>
-                    <Text style={{ fontWeight: 'bold', fontSize: 24 }}>Seu endereço</Text>
-                    <Text style={{ fontSize: 16 }}>Para encontrarmos estabelecimentos próximos de você</Text>
+                    <Text style={styles.title}>Seu endereço</Text>
+                    <Text style={styles.subTitle}>Para encontrarmos estabelecimentos próximos de você</Text>
                 </View>
-
-                <View>
-                    {<Controller
-                        control={control}
-                        name="cep"
-                        rules={{ required: true }}
-                        render={({ field: { value, onChange } }) => (
-                            <TextInput
-                                style={errors.cep ? styles.inputErrors : styles.input}
-                                value={value}
-                                onChangeText={onChange}
-                                placeholder="CEP"
-                                keyboardType="numeric"
-                            />
-                        )}
-                    />}
-                    <View style={{ display: 'flex', flexDirection: "row" }}>
+                <View style={styles.body}>
+                    <View>
                         {<Controller
                             control={control}
-                            name="rua"
+                            name="cep"
                             rules={{ required: true }}
                             render={({ field: { value, onChange } }) => (
-                                <TextInput
-                                    style={errors.rua ? styles.inputErrorsRua : styles.inputRua}
+                                <TextInputMask
+                                    style={errors.cep ? styles.inputErrors : styles.input}
                                     value={value}
+                                    type={'zip-code'}
                                     onChangeText={onChange}
-                                    placeholder="Rua"
-                                />
-                            )}
-                        />}
-
-                        {<Controller
-                            control={control}
-                            name="num"
-                            rules={{ required: true }}
-                            render={({ field: { value, onChange } }) => (
-                                <TextInput
-                                    style={errors.num ? styles.inputErrorsNum : styles.inputNum}
-                                    value={value}
-                                    onChangeText={onChange}
-                                    placeholder="N"
+                                    placeholder="CEP"
                                     keyboardType="numeric"
                                 />
                             )}
                         />}
+                        <View style={{ display: 'flex', flexDirection: "row" }}>
+                            {<Controller
+                                control={control}
+                                name="rua"
+                                rules={{ required: true }}
+                                render={({ field: { value, onChange } }) => (
+                                    <TextInput
+                                        style={errors.rua ? styles.inputErrorsRua : styles.inputRua}
+                                        value={value}
+                                        onChangeText={onChange}
+                                        placeholder="Rua"
+                                    />
+                                )}
+                            />}
+
+                            {<Controller
+                                control={control}
+                                name="num"
+                                rules={{ required: true }}
+                                render={({ field: { value, onChange } }) => (
+                                    <TextInput
+                                        style={errors.num ? styles.inputErrorsNum : styles.inputNum}
+                                        value={value}
+                                        onChangeText={onChange}
+                                        placeholder="N"
+                                        keyboardType="numeric"
+                                    />
+                                )}
+                            />}
+                        </View>
+                        {<Controller
+                            control={control}
+                            name="complemento"
+                            rules={{ required: true }}
+                            render={({ field: { value, onChange } }) => (
+                                <TextInput
+                                    style={errors.complemento ? styles.inputErrors : styles.input}
+
+                                    value={value}
+                                    onChangeText={onChange}
+                                    placeholder="Complemento"
+                                />
+                            )}
+                        />}
+
+                        {<Controller
+                            control={control}
+                            name="cidade"
+                            rules={{ required: true }}
+                            render={({ field: { value, onChange } }) => (
+                                <TextInput
+                                    style={errors.cidade ? styles.inputErrors : styles.input}
+                                    value={value}
+                                    onChangeText={onChange}
+                                    placeholder="Cidade"
+                                />
+                            )}
+                        />}
+                        {<Controller
+                            control={control}
+                            name="estado"
+                            rules={{ required: true }}
+                            render={({ field: { value, onChange } }) => (
+                                <TextInput
+                                    style={errors.estado ? styles.inputErrors : styles.input}
+                                    value={value}
+                                    onChangeText={onChange}
+                                    placeholder="Estado"
+                                />
+                            )}
+                        />}
                     </View>
-                    {<Controller
-                        control={control}
-                        name="complemento"
-                        rules={{ required: true }}
-                        render={({ field: { value, onChange } }) => (
-                            <TextInput
-                                style={errors.complemento ? styles.inputErrors : styles.input}
-
-                                value={value}
-                                onChangeText={onChange}
-                                placeholder="Complemento"
-                            />
-                        )}
-                    />}
-
-                    {<Controller
-                        control={control}
-                        name="cidade"
-                        rules={{ required: true }}
-                        render={({ field: { value, onChange } }) => (
-                            <TextInput
-                                style={errors.cidade ? styles.inputErrors : styles.input}
-                                value={value}
-                                onChangeText={onChange}
-                                placeholder="Cidade"
-                            />
-                        )}
-                    />}
-                    {<Controller
-                        control={control}
-                        name="estado"
-                        rules={{ required: true }}
-                        render={({ field: { value, onChange } }) => (
-                            <TextInput
-                                style={errors.estado ? styles.inputErrors : styles.input}
-                                value={value}
-                                onChangeText={onChange}
-                                placeholder="Estado"
-                            />
-                        )}
-                    />}
-
-                    <View style={{
-                        display: 'flex',
-                        justifyContent: 'flex-end',
-                        height: '50%',
-
-                    }}>
+                    <View>
                         <TouchableHighlight style={styles.button} onPress={handleSubmit(buttonContinuar)}>
                             <View style={styles.button}>
                                 <Text style={{ color: 'white' }}>Continuar</Text>
                             </View>
                         </TouchableHighlight>
-
-
                     </View>
                 </View>
             </View>
@@ -148,7 +145,7 @@ export default function TelaCadastroEndereco() {
 
 const styles = StyleSheet.create({
     div: {
-        height: '100%',
+        height: screenHeight,
         display: 'flex',
         flexDirection: 'column',
         paddingTop: 24,
@@ -161,15 +158,24 @@ const styles = StyleSheet.create({
         fontStyle: 'normal',
         fontSize: 37,
         color: '#41C4E5',
+        marginTop: 24,
         marginBottom: 15,
 
     },
     header: {
-        width: '100%',
+
+        width: screenWidth,
         display: 'flex',
         flexDirection: 'column',
         textAlign: 'flex-start',
         justifyContent: 'flex-start',
+
+    },
+    body: {
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
 
     },
     input: {
@@ -237,9 +243,18 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 16,
         height: 51,
-
         fontSize: '16px',
+    },
+    title: {
+        fontWeight: 'bold',
+        fontSize: 24,
+        marginBottom: 8,
+    },
+    subTitle: {
+        fontSize: 16,
+        marginBottom: 14,
     }
+
 
 });
 

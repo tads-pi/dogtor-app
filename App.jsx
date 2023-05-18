@@ -2,15 +2,15 @@ import "react-native-gesture-handler"
 import { createStackNavigator } from "@react-navigation/stack";
 import { KeyboardAvoidingView, Platform } from "react-native";
 import { store } from './src/store/store';
-import { Provider } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import routes from "./src/routes"
 import TelaLogin from "./src/pages/TelaLogin"
 import TelaMenu from "./src/pages/TelaMenu";
-import TelaCadastroInfoPessoais from "./src/pages/TelaCadastroInfoPeossoais";
+import TelaCadastroInfoPessoais from "./src/pages/TelaCadastroInfomacoesPeossoais";
 import TelaCadastroEndereco from "./src/pages/TelaEndereco";
 import TelaCadastroDadosAcesso from "./src/pages/telaCadstro";
+import { Provider } from "react-redux";
 
 
 export default function App() {
