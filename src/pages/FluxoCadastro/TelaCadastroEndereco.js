@@ -20,9 +20,6 @@ import { buttonStyle, inputStyle } from './styles';
 
 // Step 02
 export default function TelaCadastroEndereco() {
-    // gambetinhas total
-    const [bottomPadding, setBottomPadding] = useState(0)
-
     const navigate = useNavigation().navigate
     const { registerAddress } = useContext(AuthContext)
     const { control, handleSubmit, formState: { errors } } = useForm();
@@ -164,14 +161,15 @@ export default function TelaCadastroEndereco() {
                     />}
                 </View>
                 <View style={styles.nextButtonContainer}>
+                    <TouchableHighlight style={styles.goBack} onPress={() => { navigate(routes.TELA_CADASTRO_INFO_PESSOAIS) }}>
+                        <View>
+                            <Text style={{ color: colors.DOGTOR_BLUE }}>Voltar</Text>
+                        </View>
+                    </TouchableHighlight>
+                    <View style={{ flex: 1 }} />
                     <TouchableHighlight style={styles.goNext} onPress={handleSubmit(buttonContinuar)}>
                         <View>
                             <Text style={{ color: 'white' }}>Continuar</Text>
-                        </View>
-                    </TouchableHighlight>
-                    <TouchableHighlight style={styles.goBack} onPress={handleSubmit(buttonContinuar)}>
-                        <View>
-                            <Text style={{ color: colors.DOGTOR_BLUE }}>Voltar</Text>
                         </View>
                     </TouchableHighlight>
                 </View>
@@ -218,11 +216,12 @@ const styles = StyleSheet.create({
 
     goNext: {
         ...buttonStyle,
+        flex: 5,
         backgroundColor: '#41C4E5',
     },
     goBack: {
         ...buttonStyle,
-        marginTop: 16,
+        flex: 5,
         backgroundColor: 'transparent',
         borderColor: '#41C4E5',
         borderWidth: 1,
@@ -240,6 +239,7 @@ const styles = StyleSheet.create({
     nextButtonContainer: {
         width: "100%",
         alignItems: "center",
+        flexDirection: "row"
     },
     streetNameAndNumber: {
         display: 'flex',
