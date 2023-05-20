@@ -9,6 +9,9 @@ import TelaMenu from "./src/pages/TelaMenu";
 import AppointmentProvider from './context/appoiment';
 import TelaConfirmacaoDados from './src/pages/TelaConfirmacaoDados';
 import TelaAgendamento from './src/pages/TelaAgendamento';
+import TelaCadastroInfoPessoais from './src/pages/TelaCadastroInfomacoesPeossoais';
+import TelaCadastroEndereco from './src/pages/TelaEndereco';
+import TelaCadastroDadosAcesso from './src/pages/telaCadstro';
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -38,6 +41,27 @@ export default function App() {
                 />
 
                 <Stack.Screen
+                  name={routes.TELA_CADASTRO_INFO_PESSOAIS} component={TelaCadastroInfoPessoais}
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+                <Stack.Screen
+                  name={routes.TELA_CADASTRO_ENDERECO} component={TelaCadastroEndereco}
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+                <Stack.Screen
+                  name={routes.TELA_CADASTRO_DADOS_ACESSO} component={TelaCadastroDadosAcesso}
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+
+                  
+
+                <Stack.Screen
                   name={routes.FLUXO_AGENDAMENTO_5} component={TelaConfirmacaoDados}
                   options={{
                     headerShown: false,
@@ -48,7 +72,7 @@ export default function App() {
                   options={{
                     headerShown: false,
                   }}
-               />
+                />
 
 
               </Stack.Navigator>

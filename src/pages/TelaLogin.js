@@ -16,7 +16,7 @@ import routes from "../routes"
 import AppLoading from './AppLoading';
 
 
-export default function TelaLogin() {
+export default function TelaLogin({ navigation }) {
     const navigate = useNavigation().navigate
     const { login } = useContext(AuthContext)
 
@@ -79,6 +79,7 @@ export default function TelaLogin() {
                     pets: data.pets
                 })
                 navigate(routes.TELA_MENU)
+                navigation.reset({ index: 0, routes: [{ name: routes.TELA_MENU }] })
             }
         })
 
@@ -133,7 +134,7 @@ export default function TelaLogin() {
 
                         </Text>
                         <Text style={{ fontWeight: "bold", color: "#41C4E5" }}
-                            onPress={() => Linking.openURL('https://google.com')}>
+                            onPress={() => {navigate(routes.TELA_CADASTRO_INFO_PESSOAIS)}}>
 
                             Registrar-se
 
