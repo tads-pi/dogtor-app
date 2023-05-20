@@ -13,7 +13,7 @@ import {
 import { useFonts } from 'expo-font';
 import { useNavigation } from '@react-navigation/native'
 import routes from "../routes"
-import AppLoading from './AppLoading';
+import AppLoading from '../components/AppLoading';
 
 
 export default function TelaLogin({ navigation }) {
