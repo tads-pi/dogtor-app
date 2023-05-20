@@ -1,7 +1,7 @@
 import AuthProvider from './context/auth';
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from '@react-navigation/native';
-import { KeyboardAvoidingView, Platform } from "react-native";
+import { View } from "react-native";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import routes from "./src/routes"
 import TelaLogin from "./src/pages/TelaLogin"
@@ -9,9 +9,9 @@ import TelaMenu from "./src/pages/TelaMenu";
 import AppointmentProvider from './context/appoiment';
 import TelaConfirmacaoDados from './src/pages/TelaConfirmacaoDados';
 import TelaAgendamento from './src/pages/TelaAgendamento';
-import TelaCadastroInfoPessoais from './src/pages/TelaCadastroInfomacoesPeossoais';
-import TelaCadastroEndereco from './src/pages/TelaEndereco';
-import TelaCadastroDadosAcesso from './src/pages/telaCadstro';
+import TelaCadastroInfoPessoais from './src/pages/FluxoCadastro/TelaCadastroInfomacoesPessoais';
+import TelaCadastroEndereco from './src/pages/FluxoCadastro/TelaCadastroEndereco';
+import TelaCadastroDadosAcesso from './src/pages/FluxoCadastro/TelaCadastroDadosDeAcesso';
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -21,11 +21,11 @@ export default function App() {
       <SafeAreaProvider>
         <AuthProvider>
           <AppointmentProvider>
-            <KeyboardAvoidingView
-              style={{ flex: 1 }}
-              behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-              keyboardVerticalOffset={Platform.OS === 'ios' ? -64 : 0}
-            >
+            <View style={{
+              flex: 1,
+              // borderColor: "red",
+              // borderWidth: 3
+            }}>
               <Stack.Navigator>
                 <Stack.Screen
                   name={routes.TELA_LOGIN} component={TelaLogin}
@@ -39,7 +39,6 @@ export default function App() {
                     headerShown: false,
                   }}
                 />
-
                 <Stack.Screen
                   name={routes.TELA_CADASTRO_INFO_PESSOAIS} component={TelaCadastroInfoPessoais}
                   options={{
@@ -58,9 +57,6 @@ export default function App() {
                     headerShown: false,
                   }}
                 />
-
-                  
-
                 <Stack.Screen
                   name={routes.FLUXO_AGENDAMENTO_5} component={TelaConfirmacaoDados}
                   options={{
@@ -73,10 +69,8 @@ export default function App() {
                     headerShown: false,
                   }}
                 />
-
-
               </Stack.Navigator>
-            </KeyboardAvoidingView>
+            </View>
           </AppointmentProvider>
         </AuthProvider>
       </SafeAreaProvider>
