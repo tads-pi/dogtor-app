@@ -151,14 +151,15 @@ export default function TelaCadastroDadosAcesso({ navigation }) {
                     <Text style={styles.errorMessage}>{errorMessage}</Text>
                 </View>
                 <View style={styles.nextButtonContainer}>
-                    <TouchableHighlight style={styles.goNext} onPress={handleSubmit(buttonEntrar)}>
-                        <View>
-                            <Text style={{ color: 'white' }}>Entrar</Text>
-                        </View>
-                    </TouchableHighlight>
                     <TouchableHighlight style={styles.goBack} onPress={() => { navigate(routes.TELA_CADASTRO_ENDERECO) }}>
                         <View>
                             <Text style={{ color: colors.DOGTOR_BLUE }}>Voltar</Text>
+                        </View>
+                    </TouchableHighlight>
+                    <View style={{ flex: 1 }} />
+                    <TouchableHighlight style={styles.goNext} onPress={handleSubmit(buttonEntrar)}>
+                        <View>
+                            <Text style={{ color: 'white' }}>Entrar</Text>
                         </View>
                     </TouchableHighlight>
                 </View>
@@ -193,14 +194,16 @@ const styles = StyleSheet.create({
     nextButtonContainer: {
         width: "100%",
         alignItems: "center",
+        flexDirection: "row",
     },
     goNext: {
         ...buttonStyle,
+        flex: 5,
         backgroundColor: '#41C4E5',
     },
     goBack: {
         ...buttonStyle,
-        marginTop: 16,
+        flex: 5,
         backgroundColor: 'transparent',
         borderColor: '#41C4E5',
         borderWidth: 1,
