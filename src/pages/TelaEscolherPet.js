@@ -19,8 +19,8 @@ export default function TelaEscolherPet() {
       <ScrollView>
         <View style={styles.blueBar}></View>
         <View style={styles.navBar}>
-          <TouchableOpacity><Image source={require('./assets/back.png')} /></TouchableOpacity>
-          <TouchableOpacity><Image source={require('./assets/cancel.png')} /></TouchableOpacity>
+          <TouchableOpacity><Image source={require('../assets/images/back.png')} /></TouchableOpacity>
+          <TouchableOpacity><Image source={require('../assets/images/cancel.png')} /></TouchableOpacity>
         </View>
         <View style={styles.dogNoExiste}>
           <Text style={styles.subtitle}>
@@ -52,45 +52,45 @@ export default function TelaEscolherPet() {
 }
 
 const styles = StyleSheet.create({
-  safeAreaView: { 
-    flex: 1 
-  },  
+  safeAreaView: {
+    flex: 1
+  },
   petExists: {
-        flex: 1,
-        alignItems: 'flex-start',
-        marginBottom: 32,
-        marginTop: 8,
-        marginLeft: 20,
-        flexDirection: "row",
-      },
-      petDoesNotExists: {
-        flex: 1,
-        alignItems: 'center',
-        textAlign: 'center',
-        margin: 40,
-      },
-      petDoesNotExistsImage: {
-        height: 275,
-        width: 285,
-      },
-      petDoesNotExistsTitle: {
-        marginTop: 20,
-        fontSize: 14,
-        fontWeight: "bold",
-        color: "000000",
-      },
-      petDoesNotExistsSubtitle: {
-        fontSize: 12,
-        color: "#ACBBC3",
-        maxWidth: "75%",
-        textAlign: "center",
-        margin: 5,
-      },
+    flex: 1,
+    alignItems: 'flex-start',
+    marginBottom: 32,
+    marginTop: 8,
+    marginLeft: 20,
+    flexDirection: "row",
+  },
+  petDoesNotExists: {
+    flex: 1,
+    alignItems: 'center',
+    textAlign: 'center',
+    margin: 40,
+  },
+  petDoesNotExistsImage: {
+    height: 275,
+    width: 285,
+  },
+  petDoesNotExistsTitle: {
+    marginTop: 20,
+    fontSize: 14,
+    fontWeight: "bold",
+    color: "000000",
+  },
+  petDoesNotExistsSubtitle: {
+    fontSize: 12,
+    color: "#ACBBC3",
+    maxWidth: "75%",
+    textAlign: "center",
+    margin: 5,
+  },
   blueBar: {
-  backgroundColor: '#41C4E5', 
-  width: 290, 
-  height: 14
-},
+    backgroundColor: '#41C4E5',
+    width: 290,
+    height: 14
+  },
   petExists: {
     flex: 1,
     alignItems: 'flex-start',
