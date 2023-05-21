@@ -1,14 +1,9 @@
-import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native'
+import { StyleSheet, Text, View, ImageBackground } from 'react-native'
 import React from 'react'
-import { Pet } from "../store/slices/userDataSlice"
 import moment from "moment"
 
-type Props = {
-    pet: Pet
-}
-
-const PetWrapper = (props: Props) => {
-    const birthYear = moment(props.pet.ano_de_nascimento, "YYYY")
+const PetWrapper = (props) => {
+    const birthYear = moment(props.pet.birth_year, "YYYY")
     const age = moment().diff(birthYear, "years")
 
     return (
@@ -17,7 +12,7 @@ const PetWrapper = (props: Props) => {
                 <View style={styles.header}>
                     <View style={styles.headerHero}>
                         <Text style={[styles.text, styles.title]}>{props.pet.name}</Text>
-                        <Text style={[styles.text, styles.subtitle]}> {props.pet.race}</Text>
+                        <Text style={[styles.text, styles.subtitle]}> {props.pet.bread}</Text>
                     </View>
                     <Text style={[styles.text, styles.age]}>{age} anos</Text>
                 </View>
