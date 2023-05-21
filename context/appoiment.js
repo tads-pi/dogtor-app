@@ -1,6 +1,5 @@
 import React, { createContext, useState } from 'react';
 import { ALLOWED_TYPES, ALLOWED_PAYMENT_STATUS } from "../constants/appointment"
-import moment from 'moment';
 
 export const AppointmentContext = createContext({});
 
@@ -8,9 +7,12 @@ function AppointmentProvider({ children }) {
     const [appointment, setAppointment] = useState({
         type: "",
         description: "",
+        map_lat: 0,
+        map_long: 0,
         clinic: {
             name: "",
-            address: "",
+            street: "",
+            number: "",
             phone: "",
         },
         date: "",
@@ -85,8 +87,65 @@ function AppointmentProvider({ children }) {
         }
     }
 
+    function getAvailableClinics() {
+        const clinics = [
+            {
+                name: "Veterinária Dogtor",
+                street: "Rua dos Bobos",
+                number: "01",
+                phone: "(11) 99999-9999",
+                image: () => require("../src/assets/images/clinics/vet_01.jpg")
+            },
+            {
+                name: "Vet Clinics",
+                street: "Cidade de Equestria",
+                number: "50",
+                phone: "(11) 91234-5678",
+                image: () => require("../src/assets/images/clinics/vet_02.jpg")
+            },
+            {
+                name: "Cachorrobô e Gato Mecânico",
+                street: "Radiator Springs",
+                number: "95",
+                phone: "(11) 98765-4321",
+                image: () => require("../src/assets/images/clinics/vet_03.jpg")
+            },
+            {
+                name: "Clínica Veterinária do Dr. Dolittle",
+                street: "Rua dos Vets",
+                number: "123",
+                phone: "(11) 91234-5678",
+                image: () => require("../src/assets/images/clinics/vet_04.jpg")
+            },
+            {
+                name: "Veterinários do Bairro",
+                street: "Rua do Bairro",
+                number: "1000",
+                phone: "(11) 91234-5678",
+                image: () => require("../src/assets/images/clinics/vet_05.jpg")
+            },
+        ]
+
+        return clinics
+    }
+
+    function getMapPivot() {
+        return {
+            lat: appointment.map_lat,
+            long: appointment.map_long,
+        }
+    }
+
+    function setMapPivot(lat, long) {
+        setAppointment({
+            ...appointment,
+            map_lat: lat,
+            map_long: long,
+        })
+    }
+
     return (
-        <AppointmentContext.Provider value={{ setType, setDescription, setClinic, setDate, setTime, setPet, setPaymentStatus }}>
+        <AppointmentContext.Provider value={{ appointment, setAppointment, setType, setDescription, setClinic, setDate, setTime, setPet, setPaymentStatus, getMapPivot, setMapPivot, getAvailableClinics }}>
             {children}
         </AppointmentContext.Provider>
     )

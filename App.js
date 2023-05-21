@@ -7,11 +7,11 @@ import routes from "./src/routes"
 import TelaLogin from "./src/pages/TelaLogin"
 import TelaMenu from "./src/pages/TelaMenu";
 import AppointmentProvider from './context/appoiment';
-import TelaConfirmacaoDados from './src/pages/TelaConfirmacaoDados';
 import TelaAgendamento from './src/pages/TelaAgendamento';
 import TelaCadastroInfoPessoais from './src/pages/FluxoCadastro/TelaCadastroInfomacoesPessoais';
 import TelaCadastroEndereco from './src/pages/FluxoCadastro/TelaCadastroEndereco';
 import TelaCadastroDadosAcesso from './src/pages/FluxoCadastro/TelaCadastroDadosDeAcesso';
+import SecondStep from './src/pages/Appointment/SecondStep/SecondStep';
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -58,17 +58,42 @@ export default function App() {
                   }}
                 />
                 <Stack.Screen
+                  name={routes.FLUXO_AGENDAMENTO_1} component={TelaAgendamento}
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+                <Stack.Screen
+                  name={routes.FLUXO_AGENDAMENTO_2} component={SecondStep}
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+                <Stack.Screen
+                  name={routes.FLUXO_AGENDAMENTO_4} component={null}
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+                <Stack.Screen
                   name={routes.FLUXO_AGENDAMENTO_5} component={TelaConfirmacaoDados}
                   options={{
                     headerShown: false,
                   }}
                 />
                 <Stack.Screen
-                  name={routes.FLUXO_AGENDAMENTO_1} component={TelaAgendamento}
+                  name={routes.FLUXO_AGENDAMENTO_6} component={null}
                   options={{
                     headerShown: false,
                   }}
                 />
+                <Stack.Screen
+                  name={routes.FLUXO_AGENDAMENTO_7} component={null}
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+
               </Stack.Navigator>
             </View>
           </AppointmentProvider>
