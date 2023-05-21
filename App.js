@@ -12,6 +12,7 @@ import TelaCadastroInfoPessoais from './src/pages/FluxoCadastro/TelaCadastroInfo
 import TelaCadastroEndereco from './src/pages/FluxoCadastro/TelaCadastroEndereco';
 import TelaCadastroDadosAcesso from './src/pages/FluxoCadastro/TelaCadastroDadosDeAcesso';
 import SecondStep from './src/pages/Appointment/SecondStep/SecondStep';
+import TelaConfirmacaoDados from './src/pages/TelaConfirmacaoDados';
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -69,19 +70,19 @@ export default function App() {
                     headerShown: false,
                   }}
                 />
-                <Stack.Screen
+                {/* <Stack.Screen
                   name={routes.FLUXO_AGENDAMENTO_4} component={null}
                   options={{
                     headerShown: false,
                   }}
-                />
+                /> */}
                 <Stack.Screen
                   name={routes.FLUXO_AGENDAMENTO_5} component={TelaConfirmacaoDados}
                   options={{
                     headerShown: false,
                   }}
                 />
-                <Stack.Screen
+                {/* <Stack.Screen
                   name={routes.FLUXO_AGENDAMENTO_6} component={null}
                   options={{
                     headerShown: false,
@@ -92,7 +93,7 @@ export default function App() {
                   options={{
                     headerShown: false,
                   }}
-                />
+                /> */}
 
               </Stack.Navigator>
             </View>
