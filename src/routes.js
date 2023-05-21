@@ -6,6 +6,7 @@ const routes = {
     TELA_CADASTRO_ENDERECO: "TelaCadastroEndereco",
     TELA_CADASTRO_DADOS_ACESSO: "TelaCadastroDadosAcesso",
 
+    FLUXO_AGENDAMENTO: "FluxoAgendamento",
     FLUXO_AGENDAMENTO_1: "FluxoAgendamento1",
     FLUXO_AGENDAMENTO_2: "FluxoAgendamento2",
     FLUXO_AGENDAMENTO_3: "FluxoAgendamento3",
