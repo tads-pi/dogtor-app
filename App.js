@@ -27,7 +27,7 @@ export default function App() {
               // borderWidth: 3
             }}>
               <Stack.Navigator>
-                <Stack.Screen
+                {/*<Stack.Screen
                   name={routes.TELA_LOGIN} component={TelaLogin}
                   options={{
                     headerShown: false,
@@ -62,14 +62,14 @@ export default function App() {
                   options={{
                     headerShown: false,
                   }}
-                />
+                /> */}
                 <Stack.Screen
                   name={routes.FLUXO_AGENDAMENTO_2} component={SecondStep}
                   options={{
                     headerShown: false,
                   }}
                 />
-                <Stack.Screen
+                {/* <Stack.Screen
                   name={routes.FLUXO_AGENDAMENTO_4} component={null}
                   options={{
                     headerShown: false,
@@ -92,8 +92,7 @@ export default function App() {
                   options={{
                     headerShown: false,
                   }}
-                />
-
+                />*/}
               </Stack.Navigator>
             </View>
           </AppointmentProvider>
