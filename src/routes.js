@@ -18,6 +18,9 @@ const routes = {
     DETALHES_PET: "DetalhesPet",
 
     TELA_NOTIFICACOES: "TelaNotificacoes",
+
+    FLUXO_CADASTRO_PET_1: "FluxoCadastroPet1",
+    FLUXO_CADASTRO_PET_2: "FluxoCadastroPet2",
 }
 
 export default routes

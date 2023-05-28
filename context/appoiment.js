@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import { ALLOWED_TYPES, ALLOWED_PAYMENT_STATUS } from "../constants/appointment"
+import { ALLOWED_TYPES, ALLOWED_PAYMENT_STATUS, FLOWS, DEFAULT_FLOW } from "../constants/appointment"
 
 export const AppointmentContext = createContext({});
 
@@ -9,6 +9,7 @@ function AppointmentProvider({ children }) {
         description: "",
         map_lat: 0,
         map_long: 0,
+        flow: DEFAULT_FLOW,
         clinic: {
             name: "",
             street: "",
@@ -144,8 +145,19 @@ function AppointmentProvider({ children }) {
         })
     }
 
+    function setFlow(flow) {
+        if (!FLOWS.includes(flow)) {
+            console.log("[ERROR] Flow not allowed")
+        }
+
+        setAppointment({
+            ...appointment,
+            flow,
+        })
+    }
+
     return (
-        <AppointmentContext.Provider value={{ appointment, setAppointment, setType, setDescription, setClinic, setDate, setTime, setPet, setPaymentStatus, getMapPivot, setMapPivot, getAvailableClinics }}>
+        <AppointmentContext.Provider value={{ appointment, setAppointment, setType, setDescription, setClinic, setDate, setTime, setPet, setPaymentStatus, getMapPivot, setMapPivot, getAvailableClinics, setFlow }}>
             {children}
         </AppointmentContext.Provider>
     )

@@ -12,9 +12,14 @@ import TelaCadastroInfoPessoais from './src/pages/FluxoCadastro/TelaCadastroInfo
 import TelaCadastroEndereco from './src/pages/FluxoCadastro/TelaCadastroEndereco';
 import TelaCadastroDadosAcesso from './src/pages/FluxoCadastro/TelaCadastroDadosDeAcesso';
 import SecondStep from './src/pages/Appointment/SecondStep/SecondStep';
-import TelaConfirmacaoDados from './src/pages/TelaConfirmacaoDados';
 import DetalhesPet from './src/pages/DetalhesPet';
 import Notifications from './src/pages/Notifications';
+import SixthStep from './src/pages/Appointment/SixthStep';
+import SeventhStep from './src/pages/Appointment/SeventhStep';
+import FifthStep from './src/pages/Appointment/FifthStep';
+import FourthStep from './src/pages/Appointment/FourthStep';
+import PetFirstStep from './src/pages/FluxoCadastroPet/FirstStep';
+import PetSecondStep from './src/pages/FluxoCadastroPet/SecondStep';
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -30,7 +35,7 @@ export default function App() {
               // borderWidth: 3
             }}>
               <Stack.Navigator>
-                <Stack.Screen
+                {/* <Stack.Screen
                   name={routes.TELA_LOGIN} component={TelaLogin}
                   options={{
                     headerShown: false,
@@ -72,30 +77,47 @@ export default function App() {
                     headerShown: false,
                   }}
                 />
-                {/* <Stack.Screen
-                  name={routes.FLUXO_AGENDAMENTO_4} component={null}
-                  options={{
-                    headerShown: false,
-                  }}
-                /> */}
+                */}
+
                 <Stack.Screen
-                  name={routes.FLUXO_AGENDAMENTO_5} component={TelaConfirmacaoDados}
+                  name={routes.FLUXO_AGENDAMENTO_4} component={FourthStep}
                   options={{
                     headerShown: false,
                   }}
                 />
-                {/* <Stack.Screen
-                  name={routes.FLUXO_AGENDAMENTO_6} component={null}
+
+                <Stack.Screen
+                  name={routes.FLUXO_AGENDAMENTO_5} component={FifthStep}
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+
+                <Stack.Screen
+                  name={routes.FLUXO_AGENDAMENTO_6} component={SixthStep}
                   options={{
                     headerShown: false,
                   }}
                 />
                 <Stack.Screen
-                  name={routes.FLUXO_AGENDAMENTO_7} component={null}
+                  name={routes.FLUXO_AGENDAMENTO_7} component={SeventhStep}
                   options={{
                     headerShown: false,
                   }}
-                /> */}
+                />
+
+                <Stack.Screen
+                  name={routes.FLUXO_CADASTRO_PET_1} component={PetFirstStep}
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+                <Stack.Screen
+                  name={routes.FLUXO_CADASTRO_PET_2} component={PetSecondStep}
+                  options={{
+                    headerShown: false,
+                  }}
+                />
 
                 <Stack.Screen
                   name={routes.DETALHES_PET} component={DetalhesPet}
