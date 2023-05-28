@@ -13,6 +13,8 @@ import TelaCadastroEndereco from './src/pages/FluxoCadastro/TelaCadastroEndereco
 import TelaCadastroDadosAcesso from './src/pages/FluxoCadastro/TelaCadastroDadosDeAcesso';
 import SecondStep from './src/pages/Appointment/SecondStep/SecondStep';
 import TelaConfirmacaoDados from './src/pages/TelaConfirmacaoDados';
+import DetalhesPet from './src/pages/DetalhesPet';
+import Notifications from './src/pages/Notifications';
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -95,6 +97,18 @@ export default function App() {
                   }}
                 /> */}
 
+                <Stack.Screen
+                  name={routes.DETALHES_PET} component={DetalhesPet}
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+                <Stack.Screen
+                  name={routes.TELA_NOTIFICACOES} component={Notifications}
+                  options={{
+                    headerShown: false,
+                  }}
+                />
               </Stack.Navigator>
             </View>
           </AppointmentProvider>
