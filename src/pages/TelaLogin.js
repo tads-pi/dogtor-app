@@ -15,7 +15,6 @@ import { useNavigation } from '@react-navigation/native'
 import routes from "../routes"
 import AppLoading from '../components/AppLoading';
 
-
 export default function TelaLogin({ navigation }) {
     const navigate = useNavigation().navigate
     const { login } = useContext(AuthContext)
@@ -40,21 +39,25 @@ export default function TelaLogin({ navigation }) {
                         id: "123",
                         name: "Thor",
                         race: "Bulldog Francês",
-                        breed: "5", // in kg
+                        breed: "dog",
+                        weight: "5", // in kg
                         size: "50", // in cm
                         birth_date: "01/01",
                         birth_year: "2020",
                         profile_picture: () => require("../assets/images/pets/thor_pp.png"),
+                        banner_picture: () => require("../assets/images/pets/thor_banner.png"),
                     },
                     {
                         id: "321",
                         name: "Fernando",
                         race: "Bulldog Francês",
-                        breed: "3", // in kg
+                        breed: "dog",
                         size: "30", // in cm
+                        weight: "3", // in kg
                         birth_date: "01/01",
                         birth_year: "2022",
                         profile_picture: () => require("../assets/images/pets/fernando_pp.png"),
+                        banner_picture: () => require("../assets/images/pets/fernando_banner.png"),
                     }
                 ]
             }
@@ -134,7 +137,7 @@ export default function TelaLogin({ navigation }) {
 
                         </Text>
                         <Text style={{ fontWeight: "bold", color: "#41C4E5" }}
-                            onPress={() => {navigate(routes.TELA_CADASTRO_INFO_PESSOAIS)}}>
+                            onPress={() => { navigate(routes.TELA_CADASTRO_INFO_PESSOAIS) }}>
 
                             Registrar-se
 

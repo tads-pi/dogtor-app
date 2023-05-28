@@ -14,6 +14,10 @@ const routes = {
     FLUXO_AGENDAMENTO_5: "FluxoAgendamento5",
     FLUXO_AGENDAMENTO_6: "FluxoAgendamento6",
     FLUXO_AGENDAMENTO_7: "FluxoAgendamento7",
+
+    DETALHES_PET: "DetalhesPet",
+
+    TELA_NOTIFICACOES: "TelaNotificacoes",
 }
 
 export default routes

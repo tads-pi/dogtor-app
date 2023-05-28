@@ -17,12 +17,23 @@ export default function TelaMenu() {
     const navigate = useNavigation().navigate;
     const { user } = useContext(AuthContext)
 
+    const handleNotificationClick = () => {
+        navigate(routes.TELA_NOTIFICACOES)
+    }
+
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <ScrollView>
-                <View>
-                    <Text style={styles.text}>Olá, {user.name}</Text>
-                    <Text style={styles.subtext}>Bom dia!</Text>
+                <View style={styles.header}>
+                    <View>
+                        <Text style={styles.text}>Olá, {user.name}</Text>
+                        <Text style={styles.subtext}>Bom dia!</Text>
+                    </View>
+                    <View>
+                        <TouchableOpacity onPress={handleNotificationClick}>
+                        <Image style={styles.notificationImage} source={require('../assets/images/notification.png')} />
+                        </TouchableOpacity>
+                    </View>
                 </View>
                 <View style={styles.containerImage}>
                     <Image style={styles.image} source={require('../assets/images/Hero.png')} />
@@ -92,7 +103,7 @@ export default function TelaMenu() {
                         })()
                 }
 
-                <TouchableOpacity  onPress={() => {navigate(routes.FLUXO_AGENDAMENTO_1)}}  style ={styles.btnProcurarAtendimento}>
+                <TouchableOpacity onPress={() => { navigate(routes.FLUXO_AGENDAMENTO_1) }} style={styles.btnProcurarAtendimento}>
                     <Image source={require('../assets/images/Search.png')} />
                     <Image source={require('../assets/images/Line.png')} />
                     <Text style={styles.btnProcurarAtendimentoText}>Procurar Atendimento</Text>
@@ -105,6 +116,14 @@ export default function TelaMenu() {
 const styles = StyleSheet.create({
     containerImage: {
         flex: 1,
+    },
+    header: {
+        justifyContent: "space-between",
+        flexDirection: "row",
+    },
+    notificationImage: {
+        margin: 16,
+        resizeMode: "cover"
     },
     image: {
         flex: 1,

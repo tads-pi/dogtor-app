@@ -1,23 +1,36 @@
-import { StyleSheet, Text, View, ImageBackground } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, ImageBackground, TouchableOpacity } from 'react-native'
+import React, { useContext } from 'react'
 import moment from "moment"
+import { useNavigation } from '@react-navigation/native'
+import routes from "../routes"
+import { AppointmentContext } from '../../context/appoiment'
 
 const PetWrapper = (props) => {
+    const navigate = useNavigation().navigate
     const birthYear = moment(props.pet.birth_year, "YYYY")
     const age = moment().diff(birthYear, "years")
 
+    const { setPet } = useContext(AppointmentContext)
+
+    const handleClick = () => {
+        setPet(props.pet)
+        navigate(routes.DETALHES_PET)
+    }
+
     return (
-        <View style={[styles.container, styles.image]}>
-            <ImageBackground source={props.pet.profile_picture()} imageStyle={styles.image}>
-                <View style={styles.header}>
-                    <View style={styles.headerHero}>
-                        <Text style={[styles.text, styles.title]}>{props.pet.name}</Text>
-                        <Text style={[styles.text, styles.subtitle]}> {props.pet.bread}</Text>
+        <TouchableOpacity onPress={handleClick}>
+            <View style={[styles.container, styles.image]}>
+                <ImageBackground source={props.pet.profile_picture()} imageStyle={styles.image}>
+                    <View style={styles.header}>
+                        <View style={styles.headerHero}>
+                            <Text style={[styles.text, styles.title]}>{props.pet.name}</Text>
+                            <Text style={[styles.text, styles.subtitle]}> {props.pet.bread}</Text>
+                        </View>
+                        <Text style={[styles.text, styles.age]}>{age} anos</Text>
                     </View>
-                    <Text style={[styles.text, styles.age]}>{age} anos</Text>
-                </View>
-            </ImageBackground>
-        </View>
+                </ImageBackground>
+            </View>
+        </TouchableOpacity>
     )
 }
 
