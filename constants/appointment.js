@@ -1,5 +1,3 @@
-export const ALLOWED_TYPES = ["Consulta", "Vacina", "Cirurgia", "Exame", "Banho", "Tosa", "Outro"]
-
 export const PAYMENT_TYPE_PENDING = "PENDENTE"
 export const PAYMENT_TYPE_PAID = "PAGO"
 export const PAYMENT_TYPE_CANCELED = "CANCELADO"
@@ -10,4 +8,20 @@ export const REGISTER_PET_FLOW = "register_pet"
 export const FLOWS = [
     DEFAULT_FLOW,
     REGISTER_PET_FLOW,
+]
+
+export const APPOINTMENT_BATH = "banho"
+export const APPOINTMENT_DENTIST = "dentista"
+export const APPOINTMENT_SURGERY = "cirurgia"
+export const APPOINTMENT_VACCINE = "vacina"
+export const APPOINTMENT_TOILET = "tosa"
+export const APPOINTMENT_OTHER = "outro"
+
+export const APPOINTMENT_TYPES = [
+    APPOINTMENT_VACCINE,
+    APPOINTMENT_SURGERY,
+    APPOINTMENT_BATH,
+    APPOINTMENT_TOILET,
+    APPOINTMENT_DENTIST,
+    APPOINTMENT_OTHER,
 ]

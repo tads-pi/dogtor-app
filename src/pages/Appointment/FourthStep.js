@@ -7,6 +7,7 @@ import {
     Image,
     TouchableOpacity,
     ScrollView,
+    TouchableWithoutFeedback,
 } from 'react-native';
 import { AuthContext } from '../../../context/auth'
 import PetWrapper from '../../components/PetWrapper'
@@ -18,7 +19,7 @@ import DogtorView from '../../components/DogtorView';
 
 export default function FourthStep() {
     const { user } = useContext(AuthContext)
-    const { setFlow } = useContext(AppointmentContext)
+    const { setFlow, setPet } = useContext(AppointmentContext)
     const navigate = useNavigation().navigate
 
     function goNext() {
@@ -36,8 +37,8 @@ export default function FourthStep() {
                 <ScrollView>
                     <View style={styles.blueBar}></View>
                     <View style={styles.navBar}>
-                        <TouchableOpacity><Image source={require('../../assets/images/back.png')} /></TouchableOpacity>
-                        <TouchableOpacity><Image source={require('../../assets/images/cancel.png')} /></TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigate(routes.FLUXO_AGENDAMENTO_2)}><Image source={require('../../assets/images/back.png')} /></TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigate(routes.TELA_MENU)}><Image source={require('../../assets/images/cancel.png')} /></TouchableOpacity>
                     </View>
                     <View style={styles.dogNoExiste}>
                         <Text style={styles.subtitle}>
@@ -56,7 +57,11 @@ export default function FourthStep() {
                                 user.pets.length > 0
                                     ?
                                     user?.pets?.map((pet) => (
-                                        <PetWrapper pet={pet} key={pet.id}></PetWrapper>
+                                        <TouchableWithoutFeedback key={pet.id} onPress={() => {
+                                            setPet(pet)
+                                        }}>
+                                            <PetWrapper pet={pet} key={pet.id} in_appointment_flow={true}></PetWrapper>
+                                        </TouchableWithoutFeedback>
                                     ))
                                     : <NoPetsButton />
                             }

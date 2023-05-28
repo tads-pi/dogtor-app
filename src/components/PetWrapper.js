@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity } from 'react-native'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import moment from "moment"
 import { useNavigation } from '@react-navigation/native'
 import routes from "../routes"
@@ -10,27 +10,39 @@ const PetWrapper = (props) => {
     const birthYear = moment(props.pet.birth_year, "YYYY")
     const age = moment().diff(birthYear, "years")
 
-    const { setPet } = useContext(AppointmentContext)
+    const { setPet, setPetView, appointment } = useContext(AppointmentContext)
+
+    const inAppointmentFlow = props?.in_appointment_flow || false
+    const isSelected = appointment.pet.id === props.pet.id
+    const opacityFade = inAppointmentFlow && isSelected
 
     const handleClick = () => {
-        setPet(props.pet)
-        navigate(routes.DETALHES_PET)
+        if (inAppointmentFlow) {
+            setPet(props.pet)
+        } else {
+            setPetView(props.pet)
+            navigate(routes.DETALHES_PET)
+        }
     }
 
     return (
-        <TouchableOpacity onPress={handleClick}>
-            <View style={[styles.container, styles.image]}>
-                <ImageBackground source={props.pet.profile_picture()} imageStyle={styles.image}>
-                    <View style={styles.header}>
-                        <View style={styles.headerHero}>
-                            <Text style={[styles.text, styles.title]}>{props.pet.name}</Text>
-                            <Text style={[styles.text, styles.subtitle]}> {props.pet.bread}</Text>
+        <View style={{
+            opacity: inAppointmentFlow ? opacityFade ? 1 : 0.5 : 1
+        }}>
+            <TouchableOpacity onPress={handleClick}>
+                <View style={[styles.container, styles.image]}>
+                    <ImageBackground source={props.pet.profile_picture()} imageStyle={styles.image}>
+                        <View style={styles.header}>
+                            <View style={styles.headerHero}>
+                                <Text style={[styles.text, styles.title]}>{props.pet.name}</Text>
+                                <Text style={[styles.text, styles.subtitle]}> {props.pet.bread}</Text>
+                            </View>
+                            <Text style={[styles.text, styles.age]}>{age} anos</Text>
                         </View>
-                        <Text style={[styles.text, styles.age]}>{age} anos</Text>
-                    </View>
-                </ImageBackground>
-            </View>
-        </TouchableOpacity>
+                    </ImageBackground>
+                </View>
+            </TouchableOpacity>
+        </View>
     )
 }
 

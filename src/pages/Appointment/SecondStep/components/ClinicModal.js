@@ -8,6 +8,9 @@ import {
 import { StyleSheet } from "react-native";
 import AppLoading from "../../../../components/AppLoading"
 import { getRandomNumber } from "../../../../utils/numbers";
+import { useNavigation } from "@react-navigation/native";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import routes from "../../../../routes";
 
 export default function ClinicModal(props) {
     const [clinic, setClinic] = useState({});
@@ -94,6 +97,8 @@ export default function ClinicModal(props) {
 }
 
 function Clinic(props) {
+    const navigate = useNavigation().navigate
+
     const [data, setData] = useState({})
     useEffect(() => {
         const _data = props?.data
@@ -107,10 +112,16 @@ function Clinic(props) {
         }
     }, [props?.data])
 
-    // todo hold data after user select null
+    const handleFinish = () => {
+        navigate(routes.FLUXO_AGENDAMENTO_4)
+    }
+
     return (
         <View style={styles.clinic_container}>
             <Text>{data.name}</Text>
+            <TouchableOpacity onPress={handleFinish}>
+                <Text>Confirmar</Text>
+            </TouchableOpacity>
         </View>
     )
 }

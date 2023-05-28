@@ -12,13 +12,25 @@ import {
 import { useNavigation } from '@react-navigation/native'
 import PetWrapper from '../components/PetWrapper';
 import routes from '../routes';
+import { APPOINTMENT_BATH, APPOINTMENT_DENTIST, APPOINTMENT_SURGERY, APPOINTMENT_VACCINE } from '../../constants/appointment';
+import { AppointmentContext } from '../../context/appoiment';
 
 export default function TelaMenu() {
     const navigate = useNavigation().navigate;
     const { user } = useContext(AuthContext)
+    const { setType } = useContext(AppointmentContext)
 
     const handleNotificationClick = () => {
         navigate(routes.TELA_NOTIFICACOES)
+    }
+
+    const handleAddPet = () => {
+        navigate(routes.FLUXO_CADASTRO_PET_1)
+    }
+
+    const handleAppointment = (appointmentType) => {
+        setType(appointmentType)
+        navigate(routes.FLUXO_AGENDAMENTO_1)
     }
 
     return (
@@ -31,7 +43,7 @@ export default function TelaMenu() {
                     </View>
                     <View>
                         <TouchableOpacity onPress={handleNotificationClick}>
-                        <Image style={styles.notificationImage} source={require('../assets/images/notification.png')} />
+                            <Image style={styles.notificationImage} source={require('../assets/images/notification.png')} />
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -40,25 +52,25 @@ export default function TelaMenu() {
                 </View>
                 <Text style={styles.subtitle_atendimentos}>Atendimentos</Text>
                 <View style={styles.containerButton}>
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={styles.button} onPress={() => handleAppointment(APPOINTMENT_BATH)}>
                         <View style={[styles.btn, styles.btnBlue]}>
                             <Image source={require('../assets/images/Banheira.png')} />
                         </View>
                         <Text style={styles.text_atendimento}>Banho</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={styles.button} onPress={() => handleAppointment(APPOINTMENT_DENTIST)}>
                         <View style={[styles.btn, styles.btnOrange]}>
                             <Image source={require('../assets/images/Dentista.png')} />
                         </View>
                         <Text style={styles.text_atendimento}>Dentista</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={styles.button} onPress={() => handleAppointment(APPOINTMENT_SURGERY)}>
                         <View style={[styles.btn, styles.btnPink]}>
                             <Image source={require('../assets/images/Cirurgia.png')} />
                         </View>
                         <Text style={styles.text_atendimento}>Cirurgia</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={styles.button} onPress={() => handleAppointment(APPOINTMENT_VACCINE)}>
                         <View style={[styles.btn, styles.btnDarkBlue]}>
                             <Image source={require('../assets/images/Vacina.png')} />
                         </View>
@@ -67,7 +79,7 @@ export default function TelaMenu() {
                 </View>
                 <View style={styles.containerAdd}>
                     <Text style={styles.subtitle}>Seus Pets</Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={handleAddPet}>
                         <Text style={styles.btnAdd}>Adicionar</Text>
                     </TouchableOpacity>
                 </View>

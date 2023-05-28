@@ -1,5 +1,5 @@
-import React, { createContext, useState } from 'react';
-import { ALLOWED_TYPES, ALLOWED_PAYMENT_STATUS, FLOWS, DEFAULT_FLOW } from "../constants/appointment"
+import React, { createContext, useEffect, useState } from 'react';
+import { ALLOWED_TYPES, ALLOWED_PAYMENT_STATUS, FLOWS, DEFAULT_FLOW, APPOINTMENT_TYPES } from "../constants/appointment"
 
 export const AppointmentContext = createContext({});
 
@@ -28,11 +28,21 @@ function AppointmentProvider({ children }) {
             birth_year: "",
             profile_picture: null,
         },
+        pet_view: {
+            id: "",
+            name: "",
+            breed: "",
+            weight_in_kg: "", // in kg
+            size_in_cm: "", // in cm
+            birth_date: "",
+            birth_year: "",
+            profile_picture: null,
+        },
         paymentStatus: "",
     })
 
     function setType(type) {
-        if (ALLOWED_TYPES.includes(type)) {
+        if (APPOINTMENT_TYPES.includes(type)) {
             setAppointment({
                 ...appointment,
                 type,
@@ -156,8 +166,19 @@ function AppointmentProvider({ children }) {
         })
     }
 
+    function setPetView(pet) {
+        setAppointment({
+            ...appointment,
+            pet_view: pet,
+        })
+    }
+
+    useEffect(() => {
+        console.log(JSON.stringify(appointment, null, 2));
+    }, [appointment])
+
     return (
-        <AppointmentContext.Provider value={{ appointment, setAppointment, setType, setDescription, setClinic, setDate, setTime, setPet, setPaymentStatus, getMapPivot, setMapPivot, getAvailableClinics, setFlow }}>
+        <AppointmentContext.Provider value={{ appointment, setAppointment, setType, setDescription, setClinic, setDate, setTime, setPet, setPetView, setPaymentStatus, getMapPivot, setMapPivot, getAvailableClinics, setFlow }}>
             {children}
         </AppointmentContext.Provider>
     )

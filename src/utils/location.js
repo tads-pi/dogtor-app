@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import * as Location from 'expo-location'
-import { AppointmentContext } from '../../../../../context/appoiment';
+import { AppointmentContext } from '../../context/appoiment';
 
 /**
  * Process User location asking for permission to get it and update context with gotten latitude and longitude

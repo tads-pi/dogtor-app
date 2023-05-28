@@ -7,7 +7,6 @@ import routes from "./src/routes"
 import TelaLogin from "./src/pages/TelaLogin"
 import TelaMenu from "./src/pages/TelaMenu";
 import AppointmentProvider from './context/appoiment';
-import TelaAgendamento from './src/pages/TelaAgendamento';
 import TelaCadastroInfoPessoais from './src/pages/FluxoCadastro/TelaCadastroInfomacoesPessoais';
 import TelaCadastroEndereco from './src/pages/FluxoCadastro/TelaCadastroEndereco';
 import TelaCadastroDadosAcesso from './src/pages/FluxoCadastro/TelaCadastroDadosDeAcesso';
@@ -20,6 +19,7 @@ import FifthStep from './src/pages/Appointment/FifthStep';
 import FourthStep from './src/pages/Appointment/FourthStep';
 import PetFirstStep from './src/pages/FluxoCadastroPet/FirstStep';
 import PetSecondStep from './src/pages/FluxoCadastroPet/SecondStep';
+import FirstStep from './src/pages/Appointment/FirstStep';
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -35,7 +35,7 @@ export default function App() {
               // borderWidth: 3
             }}>
               <Stack.Navigator>
-                {/* <Stack.Screen
+                <Stack.Screen
                   name={routes.TELA_LOGIN} component={TelaLogin}
                   options={{
                     headerShown: false,
@@ -66,7 +66,7 @@ export default function App() {
                   }}
                 />
                 <Stack.Screen
-                  name={routes.FLUXO_AGENDAMENTO_1} component={TelaAgendamento}
+                  name={routes.FLUXO_AGENDAMENTO_1} component={FirstStep}
                   options={{
                     headerShown: false,
                   }}
@@ -77,7 +77,6 @@ export default function App() {
                     headerShown: false,
                   }}
                 />
-                */}
 
                 <Stack.Screen
                   name={routes.FLUXO_AGENDAMENTO_4} component={FourthStep}

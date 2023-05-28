@@ -7,8 +7,8 @@ import { AppointmentContext } from "../../context/appoiment";
 
 export default function DetalhesPet() {
   const { appointment } = useContext(AppointmentContext)
-  const { pet } = appointment
-  const { name, banner_picture } = pet
+  const { pet_view } = appointment
+  const { name, banner_picture } = pet_view
 
   return (
     <DogtorView container_style={styles.container}>
