@@ -16,6 +16,9 @@ import routes from '../../routes';
 import { AppointmentContext } from '../../../context/appoiment';
 import { REGISTER_PET_FLOW } from '../../../constants/appointment';
 import DogtorView from '../../components/DogtorView';
+import AppointmentHeader from './Header';
+import * as colors from "../../constants/colors"
+import GoNext from '../../components/GoNext';
 
 export default function FourthStep() {
     const { user } = useContext(AuthContext)
@@ -25,41 +28,37 @@ export default function FourthStep() {
     const navigate = useNavigation().navigate
 
     function goNext() {
-        if (user.pets.length > 0) {
-            navigate(routes.FLUXO_AGENDAMENTO_5)
-        } else {
-            setFlow(REGISTER_PET_FLOW)
-            navigate(routes.FLUXO_CADASTRO_PET_1)
-        }
+        navigate(routes.FLUXO_AGENDAMENTO_5)
     }
 
-    const havePets = user.pets.length > 0
+    const havePets = (user?.pets || []).length > 0
     const noPetSelected = Object.keys(pet || {}).length <= 0
     return (
-        <DogtorView goNext={goNext} disableGoNext={havePets && noPetSelected}>
-            <SafeAreaView style={styles.safeAreaView}>
-                <ScrollView>
-                    <View style={styles.blueBar}></View>
-                    <View style={styles.navBar}>
-                        <TouchableOpacity onPress={() => navigate(routes.FLUXO_AGENDAMENTO_2)}><Image source={require('../../assets/images/back.png')} /></TouchableOpacity>
-                        <TouchableOpacity onPress={() => navigate(routes.TELA_MENU)}><Image source={require('../../assets/images/cancel.png')} /></TouchableOpacity>
-                    </View>
-                    <View style={styles.dogNoExiste}>
-                        <Text style={styles.subtitle}>
-                            Escolha o pet que irá para a consulta
-                        </Text>
-                        <Text style={styles.descriptionColor}>
-                            Clique em uma das imagens abaixo para selecionar
-                        </Text>
-                    </View>
-                    <View style={styles.petExists}>
-                        <ScrollView
-                            horizontal={true}
-                            showsHorizontalScrollIndicator={false}
-                        >
-                            {
-                                user.pets.length > 0
-                                    ?
+        <DogtorView goNext={goNext} disableGoNext={havePets && noPetSelected} hide_go_next={!havePets}>
+            <AppointmentHeader step={4} />
+            <View style={styles.navBar}>
+                <TouchableOpacity onPress={() => navigate(routes.FLUXO_AGENDAMENTO_2)}><Image source={require('../../assets/images/back.png')} /></TouchableOpacity>
+                <TouchableOpacity onPress={() => navigate(routes.TELA_MENU)}><Image source={require('../../assets/images/cancel.png')} /></TouchableOpacity>
+            </View>
+
+            <View style={styles.header}>
+                <Text style={styles.subtitle}>
+                    Escolha o pet que irá para a consulta
+                </Text>
+                <Text style={styles.descriptionColor}>
+                    Clique em uma das imagens abaixo para selecionar
+                </Text>
+            </View>
+
+            <ScrollView>
+                <View style={styles.petExists}>
+                    {
+                        (user?.pets || []).length > 0
+                            ? <ScrollView
+                                horizontal={true}
+                                showsHorizontalScrollIndicator={false}
+                            >
+                                {
                                     user?.pets?.map((pet) => (
                                         <TouchableWithoutFeedback key={pet.id} onPress={() => {
                                             setPet(pet)
@@ -67,121 +66,77 @@ export default function FourthStep() {
                                             <PetWrapper pet={pet} key={pet.id} in_appointment_flow={true}></PetWrapper>
                                         </TouchableWithoutFeedback>
                                     ))
-                                    : <NoPetsButton />
-                            }
-                        </ScrollView>
-                    </View>
+                                }
+                            </ScrollView>
 
-                    {
-                        user.pets.length > 0
-                            ? null
-                            : <TouchableOpacity style={styles.btnProcurarAtendimento} onPress={goNext}><Text style={styles.btnProcurarAtendimentoText}>Cadastrar Pet</Text></TouchableOpacity>
+                            : <NoPetsButton setFlow={setFlow} navigate={navigate} />
                     }
-
-                </ScrollView>
-            </SafeAreaView>
+                </View>
+            </ScrollView>
         </DogtorView>
     );
 }
 
 
-const NoPetsButton = () => {
+const NoPetsButton = (props) => {
+    const { setFlow, navigate } = props
+
+    function goNext() {
+        setFlow(REGISTER_PET_FLOW)
+        navigate(routes.FLUXO_CADASTRO_PET_1)
+    }
+
     return (
-        <View>
-            <View style={styles.petDoesNotExists}>
-                <Image style={styles.petDoesNotExistsImage} source={require('../../assets/images/DogNoExiste.png')} />
-                <Text style={styles.petDoesNotExistsTitle}>Ops, você ainda não tem nenhum pet cadastrado</Text>
-                <Text style={styles.petDoesNotExistsSubtitle}>Para continuar, você precisa cadastrar um pet</Text>
+        <View style={styles.no_pets}>
+            <Image style={styles.no_pets_image} source={require('../../assets/images/DogNoExiste.png')} />
+            <View style={styles.no_pets_text_wrapper}>
+                <Text style={styles.no_pets_title}>Ops, você ainda não tem nenhum pet cadastrado</Text>
+                <Text style={styles.no_pets_sub}>Para continuar, você precisa cadastrar um pet</Text>
             </View>
+            <GoNext title="Cadastrar pet" onPress={goNext} />
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    safeAreaView: {
-        flex: 1
+    header: {
+        flex: 1,
+        alignItems: 'center',
     },
     petExists: {
         flex: 1,
         alignItems: 'flex-start',
-        marginBottom: 32,
-        marginTop: 8,
-        marginLeft: 20,
         flexDirection: "row",
     },
-    petDoesNotExists: {
+    no_pets: {
         flex: 1,
         alignItems: 'center',
-        textAlign: 'center',
-        margin: 40,
     },
-    petDoesNotExistsImage: {
-        height: 275,
-        width: 285,
+    no_pets_image: {
+        width: "100%",
     },
-    petDoesNotExistsTitle: {
-        marginTop: 20,
+    no_pets_text_wrapper: {
+        margin: 16,
+    },
+    no_pets_title: {
         fontSize: 14,
         fontWeight: "bold",
-        color: "black",
-    },
-    petDoesNotExistsSubtitle: {
-        fontSize: 12,
-        color: "#ACBBC3",
-        maxWidth: "75%",
-        textAlign: "center",
-        margin: 5,
-    },
-    blueBar: {
-        backgroundColor: '#41C4E5',
-        width: 290,
-        height: 14
-    },
-    petExists: {
-        flex: 1,
-        alignItems: 'flex-start',
-        marginBottom: 32,
-        marginTop: 8,
-        marginLeft: 20,
-        flexDirection: "row",
-    },
-    petDoesNotExists: {
-        flex: 1,
-        alignItems: 'center',
         textAlign: 'center',
-        margin: 40,
     },
-    petDoesNotExistsImage: {
-        height: 275,
-        width: 285,
-    },
-    petDoesNotExistsTitle: {
-        marginTop: 20,
-        fontSize: 14,
-        fontWeight: "bold",
-        color: "black",
-    },
-    petDoesNotExistsSubtitle: {
+    no_pets_sub: {
         fontSize: 12,
-        color: "#ACBBC3",
+        color: colors.DOGTOR_GRAY,
         maxWidth: "75%",
+        alignSelf: "center",
         textAlign: "center",
-        margin: 5,
-    },
-    blueBar: {
-        backgroundColor:
-            '#41C4E5',
-        width: 290,
-        height: 14
     },
     navBar: {
-        flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        margin: 20,
+        margin: 16,
     },
     descriptionColor: {
-        marginTop: 8,
+        margin: 8,
         color: '#ACBBC3',
         textAlign: 'center',
     },
@@ -189,28 +144,6 @@ const styles = StyleSheet.create({
         color: 'black',
         fontSize: 16,
         fontWeight: '700',
-        marginLeft: 17,
         marginTop: 20,
-    },
-    dogNoExiste: {
-        flex: 1,
-        alignItems: 'center',
-        margin: 40,
-        marginBottom: 70,
-    },
-    btnProcurarAtendimento: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        alignItems: 'center',
-        alignSelf: 'center',
-        width: 328,
-        height: 66,
-        marginTop: 70,
-        borderRadius: 11,
-        backgroundColor: '#41C4E5',
-    },
-    btnProcurarAtendimentoText: {
-        color: '#FFFFFF',
     },
 });
