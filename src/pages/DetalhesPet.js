@@ -11,7 +11,7 @@ export default function DetalhesPet() {
   const { name, banner_picture } = pet_view
 
   return (
-    <DogtorView container_style={styles.container}>
+    <DogtorView container_style={styles.container} hide_go_next={true}>
       <View style={styles.banner}>
         <Image source={banner_picture()} style={styles.image} />
       </View>
