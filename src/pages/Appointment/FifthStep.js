@@ -15,7 +15,10 @@ import { useNavigation } from "@react-navigation/native";
 import routes from "../../routes";
 
 export default function FifthStep() {
-    const { setPaymentStatus } = useContext(AppointmentContext)
+    const { appointment, setPaymentStatus } = useContext(AppointmentContext)
+    const { clinic, date, time, type, pet } = appointment
+    const { name, street, number, phone, zip_code } = clinic
+
     const navigate = useNavigation().navigate
 
     function goNext() {
@@ -28,10 +31,10 @@ export default function FifthStep() {
             <ScrollView>
                 <AppointmentHeader step={5} />
                 <View style={styles.navBar}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigate(routes.FLUXO_AGENDAMENTO_2)}>
                         <Image source={require("../../assets/images/back.png")} />
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigate(routes.TELA_MENU)}>
                         <Image source={require("../../assets/images/cancel.png")} />
                     </TouchableOpacity>
                 </View>
@@ -49,11 +52,11 @@ export default function FifthStep() {
                         <Text style={{ fontWeight: "bold", fontSize: 14 }}>Endereço</Text>
                     </View>
                     <View style={styles.textConfirmation}>
-                        <Text>Rua</Text>
-                        <Text>Complemento</Text>
-                        <Text>CEP</Text>
-                        <Text>País</Text>
-                        <Text>Telefone</Text>
+                        <Text>Clínica: {name}</Text>
+                        <Text>Rua: {`${street} - ${number}`}</Text>
+                        <Text>CEP: {zip_code}</Text>
+                        <Text>País: {"Brasil"}</Text>
+                        <Text>Telefone: {phone}</Text>
                     </View>
                 </View>
                 <View style={styles.container2}>
@@ -63,9 +66,9 @@ export default function FifthStep() {
                         <Text style={styles.consultaTextStyle}>Consulta</Text>
                     </View>
                     <View style={styles.consultaConfirmation}>
-                        <Text>Data</Text>
-                        <Text>Sobre consulta: </Text>
-                        <Text>Pet:</Text>
+                        <Text>Data: {date}</Text>
+                        <Text>Atendimento: {type}</Text>
+                        <Text>Pet: {pet.name}</Text>
                     </View>
                 </View>
                 <TouchableOpacity style={styles.btnProcurarAtendimento} onPress={goNext}>

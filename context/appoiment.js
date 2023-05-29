@@ -15,6 +15,9 @@ function AppointmentProvider({ children }) {
             street: "",
             number: "",
             phone: "",
+            zip_code: "",
+            image: () => {},
+            available_dates: []
         },
         date: "",
         time: "",
@@ -62,7 +65,7 @@ function AppointmentProvider({ children }) {
     function setClinic(clinic) {
         setAppointment({
             ...appointment,
-            clinic,
+            clinic: clinic,
         })
     }
 
@@ -77,6 +80,15 @@ function AppointmentProvider({ children }) {
         setAppointment({
             ...appointment,
             time,
+        })
+    }
+
+    function setDateClinicAndTime(date, clinic, time) {
+        setAppointment({
+            ...appointment,
+            date,
+            time,
+            clinic: clinic,
         })
     }
 
@@ -99,45 +111,7 @@ function AppointmentProvider({ children }) {
     }
 
     function getAvailableClinics() {
-        const clinics = [
-            {
-                name: "Veterinária Dogtor",
-                street: "Rua dos Bobos",
-                number: "01",
-                phone: "(11) 99999-9999",
-                image: () => require("../src/assets/images/clinics/vet_01.jpg")
-            },
-            {
-                name: "Vet Clinics",
-                street: "Cidade de Equestria",
-                number: "50",
-                phone: "(11) 91234-5678",
-                image: () => require("../src/assets/images/clinics/vet_02.jpg")
-            },
-            {
-                name: "Cachorrobô e Gato Mecânico",
-                street: "Radiator Springs",
-                number: "95",
-                phone: "(11) 98765-4321",
-                image: () => require("../src/assets/images/clinics/vet_03.jpg")
-            },
-            {
-                name: "Clínica Veterinária do Dr. Dolittle",
-                street: "Rua dos Vets",
-                number: "123",
-                phone: "(11) 91234-5678",
-                image: () => require("../src/assets/images/clinics/vet_04.jpg")
-            },
-            {
-                name: "Veterinários do Bairro",
-                street: "Rua do Bairro",
-                number: "1000",
-                phone: "(11) 91234-5678",
-                image: () => require("../src/assets/images/clinics/vet_05.jpg")
-            },
-        ]
-
-        return clinics
+        return available_clinics
     }
 
     function getMapPivot() {
@@ -178,10 +152,103 @@ function AppointmentProvider({ children }) {
     }, [appointment])
 
     return (
-        <AppointmentContext.Provider value={{ appointment, setAppointment, setType, setDescription, setClinic, setDate, setTime, setPet, setPetView, setPaymentStatus, getMapPivot, setMapPivot, getAvailableClinics, setFlow }}>
+        <AppointmentContext.Provider value={{ appointment, setAppointment, setType, setDescription, setClinic, setDate, setTime, setPet, setPetView, setPaymentStatus, getMapPivot, setMapPivot, getAvailableClinics, setFlow, setDateClinicAndTime }}>
             {children}
         </AppointmentContext.Provider>
     )
 }
 
 export default AppointmentProvider
+
+const available_dates = [
+    {
+        id: 124,
+        date: "2023-05-29",
+        available_times: [
+            {
+                id: 141,
+                time: "08:00",
+            },
+            {
+                id: 212,
+                time: "09:00",
+            },
+        ],
+    },
+    {
+        id: 135,
+        date: "2023-05-29",
+        available_times: [
+            {
+                id: 1534,
+                time: "08:00",
+            },
+            {
+                id: 21,
+                time: "09:00",
+            },
+            {
+                id: 62,
+                time: "10:00",
+            },
+        ],
+    },
+    {
+        id: 235,
+        date: "2023-05-29",
+        available_times: [
+            {
+                id: 167,
+                time: "08:00",
+            }
+        ],
+    },
+]
+
+const available_clinics = [
+    {
+        name: "Veterinária Dogtor",
+        street: "Rua dos Bobos",
+        number: "01",
+        phone: "(11) 99999-9999",
+        zip_code: "01001-000",
+        image: () => require("../src/assets/images/clinics/vet_01.jpg"),
+        available_dates: available_dates
+    },
+    {
+        name: "Vet Clinics",
+        street: "Cidade de Equestria",
+        number: "50",
+        phone: "(11) 91234-5678",
+        zip_code: "01001-000",
+        image: () => require("../src/assets/images/clinics/vet_02.jpg"),
+        available_dates: available_dates
+    },
+    {
+        name: "Cachorrobô e Gato Mecânico",
+        street: "Radiator Springs",
+        number: "95",
+        phone: "(11) 98765-4321",
+        zip_code: "01001-000",
+        image: () => require("../src/assets/images/clinics/vet_03.jpg"),
+        available_dates: available_dates
+    },
+    {
+        name: "Clínica Veterinária do Dr. Dolittle",
+        street: "Rua dos Vets",
+        number: "123",
+        phone: "(11) 91234-5678",
+        zip_code: "01001-000",
+        image: () => require("../src/assets/images/clinics/vet_04.jpg"),
+        available_dates: available_dates
+    },
+    {
+        name: "Veterinários do Bairro",
+        street: "Rua do Bairro",
+        number: "1000",
+        phone: "(11) 91234-5678",
+        zip_code: "01001-000",
+        image: () => require("../src/assets/images/clinics/vet_05.jpg"),
+        available_dates: available_dates
+    },
+]

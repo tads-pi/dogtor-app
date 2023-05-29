@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef, useContext } from "react"
 import {
     Animated,
     View,
     Text,
-    Easing
+    Easing,
+    ScrollView,
+    TouchableHighlight
 } from "react-native";
 import { StyleSheet } from "react-native";
 import AppLoading from "../../../../components/AppLoading"
@@ -11,6 +13,10 @@ import { getRandomNumber } from "../../../../utils/numbers";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import routes from "../../../../routes";
+import * as colors from "../../../../constants/colors"
+import moment from "moment";
+import 'moment/locale/pt-br';
+import { AppointmentContext } from "../../../../../context/appoiment";
 
 export default function ClinicModal(props) {
     const [clinic, setClinic] = useState({});
@@ -90,13 +96,15 @@ export default function ClinicModal(props) {
             {
                 fakeLoading
                     ? <Clinic data={clinic} />
-                    : <AppLoading />
+                    : <View style={{ padding: 100, backgroundColor: colors.DOGTOR_WHITE }}><AppLoading /></View>
             }
         </Animated.View>
     )
 }
 
 function Clinic(props) {
+    const { setDateClinicAndTime } = useContext(AppointmentContext)
+
     const navigate = useNavigation().navigate
 
     const [data, setData] = useState({})
@@ -112,30 +120,216 @@ function Clinic(props) {
         }
     }, [props?.data])
 
-    const handleFinish = () => {
+    const { available_dates } = data
+    const [selectedDate, setSelectedDate] = useState()
+    const [availableTimes, setAvailableTimes] = useState([])
+    const [selectedTime, setSelectedTime] = useState()
+    const [isGoNextDisabled, setGoNextDisabled] = useState(true)
+
+    useEffect(() => {
+        const haveSelectedDate = Object.keys(selectedDate || {}).length > 0
+        const haveSelectedTime = Object.keys(selectedTime || {}).length > 0
+        if (haveSelectedDate && haveSelectedTime) {
+            setGoNextDisabled(false)
+        } else {
+            setGoNextDisabled(true)
+        }
+    }, [selectedDate, selectedTime])
+
+    const goNext = () => {
+        setDateClinicAndTime(selectedDate.date, data, selectedTime.time)
         navigate(routes.FLUXO_AGENDAMENTO_4)
     }
 
     return (
         <View style={styles.clinic_container}>
-            <Text>{data.name}</Text>
-            <TouchableOpacity onPress={handleFinish}>
-                <Text>Confirmar</Text>
-            </TouchableOpacity>
+            <View style={styles.clinic_wrapper}>
+                <Text style={styles.dateComponentTitle}>Datas disponíveis</Text>
+                <View>
+                    <View style={styles.dateWrapper}>
+                        <ScrollView
+                            horizontal={true}
+                        >
+                            {
+                                available_dates !== undefined && Object.keys(available_dates).length > 0
+                                    ?
+                                    available_dates.map((date) => {
+                                        const isSelected = selectedDate?.id === date.id
+
+                                        return (
+                                            <View key={date.id}>
+                                                <DateComponent id={date.id} date={date} isSelected={isSelected} callback={(d) => { setSelectedDate(d); setAvailableTimes(d?.available_times || []) }} />
+                                            </View>
+                                        )
+                                    })
+                                    : <Text>No dates found</Text>
+                            }
+                        </ScrollView>
+                    </View>
+
+                    <View style={styles.timeWrapper}>
+                        <ScrollView
+                            horizontal={true}
+                        >
+                            {
+                                availableTimes.length > 0
+                                    ?
+                                    availableTimes.map((time, index) => {
+                                        const isSelected = selectedTime?.id === time.id
+
+                                        return (
+                                            <View key={index}>
+                                                <TimeComponent time={time} isSelected={isSelected} callback={setSelectedTime} />
+                                            </View>
+                                        )
+                                    })
+                                    : <TimeComponent ghost={true} />
+                            }
+                        </ScrollView>
+                    </View>
+                </View>
+
+                <View style={styles.buttonWrapper}>
+                    <TouchableHighlight onPress={goNext} disabled={isGoNextDisabled}>
+                        <Text style={
+                            [styles.button, {
+                                backgroundColor: isGoNextDisabled ? colors.DOGTOR_GRAY : colors.DOGTOR_BLUE
+                            }]
+                        }>Confirmar</Text>
+                    </TouchableHighlight>
+                </View>
+            </View>
         </View>
+    )
+}
+
+function DateComponent(props) {
+    const { date, isSelected, callback } = props
+
+    function capitalize(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    const day = moment(date.date).format("DD")
+    const month = capitalize(moment(date.date).locale("pt-br").format("MMMM"))
+    const weekday = capitalize(moment(date.date).locale("pt-br").format("ddd"))
+
+    const dayColor = isSelected ? colors.DOGTOR_WHITE : "black"
+    const textColor = isSelected ? colors.DOGTOR_WHITE : colors.DOGTOR_GRAY
+
+    return (
+        <TouchableOpacity onPress={() => callback(date)}>
+            <View style={[
+                styles.dateComponent,
+                {
+                    backgroundColor: isSelected ? colors.DOGTOR_BLUE : colors.DOGTOR_WHITE,
+                }
+            ]}>
+                <Text style={[styles.dateSubText, { color: textColor }]}>{month}</Text>
+                <Text style={[styles.dateText, { color: dayColor }]}>{day}</Text>
+                <Text style={[styles.dateSubText, { color: textColor }]}>{weekday}</Text>
+            </View>
+        </TouchableOpacity>
+    )
+}
+
+function TimeComponent(props) {
+    const { time: _time, isSelected, ghost, callback } = props
+    const { time } = _time || "00:00"
+
+    return (
+        <TouchableOpacity onPress={() => callback(_time)}>
+            <View style={[
+                styles.timeComponent,
+                {
+                    backgroundColor: ghost ? "#0000" : isSelected ? colors.DOGTOR_BLUE : colors.DOGTOR_GRAY,
+                }
+            ]}>
+                {
+                    ghost
+                        ? <Text style={{ color: "white", fontWeight: "bold", fontSize: 12 }}>00:00</Text>
+                        : <Text style={{ color: "white", fontWeight: "bold", fontSize: 12 }}>{time}</Text>
+                }
+            </View>
+        </TouchableOpacity>
     )
 }
 
 const styles = StyleSheet.create({
     animation_container: {
         width: "100%",
-        height: "30%",
+        // height: "40%",
         bottom: 0,
         zIndex: 1,
         position: "absolute",
     },
     clinic_container: {
-        backgroundColor: "red",
+        backgroundColor: "white",
         flex: 1,
-    }
+        padding: 8,
+
+        // borderColor: "blue",
+        // borderWidth: 1,
+    },
+    clinic_wrapper: {
+        flex: 1,
+
+        flexDirection: "column",
+        justifyContent: "space-between",
+
+        // borderColor: "green",
+        // borderWidth: 1,
+    },
+    dateComponentTitle: {
+        fontSize: 14,
+        fontWeight: "bold",
+    },
+    dateWrapper: {
+        flexDirection: "row",
+    },
+    dateComponent: {
+        padding: 16,
+        margin: 8,
+        borderRadius: 8,
+        flexDirection: "column",
+        justifyContent: "space-between",
+        alignItems: "center",
+    },
+    dateText: {
+        fontSize: 26,
+    },
+    dateSubText: {
+        fontSize: 12,
+    },
+    timeWrapper: {
+        flexDirection: "row",
+    },
+    timeComponent: {
+        margin: 8,
+
+        paddingTop: 8,
+        paddingBottom: 8,
+        paddingLeft: 12,
+        paddingRight: 12,
+
+        borderRadius: 8,
+
+        alignItems: "center",
+    },
+    buttonWrapper: {
+        margin: 12,
+
+        borderRadius: 16,
+        overflow: "hidden",
+
+        // borderColor: "red",
+        // borderWidth: 1,
+    },
+    button: {
+        padding: 12,
+
+        color: "white",
+        textAlign: "center",
+        fontSize: 16,
+    },
 })
