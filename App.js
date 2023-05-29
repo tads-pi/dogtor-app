@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from '@react-navigation/native';
 import { View } from "react-native";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { RootSiblingParent } from 'react-native-root-siblings';
 import routes from "./src/routes"
 import TelaLogin from "./src/pages/TelaLogin"
 import TelaMenu from "./src/pages/TelaMenu";
@@ -27,113 +28,115 @@ export default function App() {
   return (
     <NavigationContainer>
       <SafeAreaProvider>
-        <AuthProvider>
-          <AppointmentProvider>
-            <View style={{
-              flex: 1,
-              // borderColor: "red",
-              // borderWidth: 3
-            }}>
-              <Stack.Navigator>
-                <Stack.Screen
-                  name={routes.TELA_LOGIN} component={TelaLogin}
-                  options={{
-                    headerShown: false,
-                  }}
-                />
-                <Stack.Screen
-                  name={routes.TELA_MENU} component={TelaMenu}
-                  options={{
-                    headerShown: false,
-                  }}
-                />
-                <Stack.Screen
-                  name={routes.TELA_CADASTRO_INFO_PESSOAIS} component={TelaCadastroInfoPessoais}
-                  options={{
-                    headerShown: false,
-                  }}
-                />
-                <Stack.Screen
-                  name={routes.TELA_CADASTRO_ENDERECO} component={TelaCadastroEndereco}
-                  options={{
-                    headerShown: false,
-                  }}
-                />
-                <Stack.Screen
-                  name={routes.TELA_CADASTRO_DADOS_ACESSO} component={TelaCadastroDadosAcesso}
-                  options={{
-                    headerShown: false,
-                  }}
-                />
-                <Stack.Screen
-                  name={routes.FLUXO_AGENDAMENTO_1} component={FirstStep}
-                  options={{
-                    headerShown: false,
-                  }}
-                />
-                <Stack.Screen
-                  name={routes.FLUXO_AGENDAMENTO_2} component={SecondStep}
-                  options={{
-                    headerShown: false,
-                  }}
-                />
+        <RootSiblingParent>
+          <AuthProvider>
+            <AppointmentProvider>
+              <View style={{
+                flex: 1,
+                // borderColor: "red",
+                // borderWidth: 3
+              }}>
+                <Stack.Navigator>
+                  <Stack.Screen
+                    name={routes.TELA_LOGIN} component={TelaLogin}
+                    options={{
+                      headerShown: false,
+                    }}
+                  />
+                  <Stack.Screen
+                    name={routes.TELA_MENU} component={TelaMenu}
+                    options={{
+                      headerShown: false,
+                    }}
+                  />
+                  <Stack.Screen
+                    name={routes.TELA_CADASTRO_INFO_PESSOAIS} component={TelaCadastroInfoPessoais}
+                    options={{
+                      headerShown: false,
+                    }}
+                  />
+                  <Stack.Screen
+                    name={routes.TELA_CADASTRO_ENDERECO} component={TelaCadastroEndereco}
+                    options={{
+                      headerShown: false,
+                    }}
+                  />
+                  <Stack.Screen
+                    name={routes.TELA_CADASTRO_DADOS_ACESSO} component={TelaCadastroDadosAcesso}
+                    options={{
+                      headerShown: false,
+                    }}
+                  />
+                  <Stack.Screen
+                    name={routes.FLUXO_AGENDAMENTO_1} component={FirstStep}
+                    options={{
+                      headerShown: false,
+                    }}
+                  />
+                  <Stack.Screen
+                    name={routes.FLUXO_AGENDAMENTO_2} component={SecondStep}
+                    options={{
+                      headerShown: false,
+                    }}
+                  />
 
-                <Stack.Screen
-                  name={routes.FLUXO_AGENDAMENTO_4} component={FourthStep}
-                  options={{
-                    headerShown: false,
-                  }}
-                />
+                  <Stack.Screen
+                    name={routes.FLUXO_AGENDAMENTO_4} component={FourthStep}
+                    options={{
+                      headerShown: false,
+                    }}
+                  />
 
-                <Stack.Screen
-                  name={routes.FLUXO_AGENDAMENTO_5} component={FifthStep}
-                  options={{
-                    headerShown: false,
-                  }}
-                />
+                  <Stack.Screen
+                    name={routes.FLUXO_AGENDAMENTO_5} component={FifthStep}
+                    options={{
+                      headerShown: false,
+                    }}
+                  />
 
-                <Stack.Screen
-                  name={routes.FLUXO_AGENDAMENTO_6} component={SixthStep}
-                  options={{
-                    headerShown: false,
-                  }}
-                />
-                <Stack.Screen
-                  name={routes.FLUXO_AGENDAMENTO_7} component={SeventhStep}
-                  options={{
-                    headerShown: false,
-                  }}
-                />
+                  <Stack.Screen
+                    name={routes.FLUXO_AGENDAMENTO_6} component={SixthStep}
+                    options={{
+                      headerShown: false,
+                    }}
+                  />
+                  <Stack.Screen
+                    name={routes.FLUXO_AGENDAMENTO_7} component={SeventhStep}
+                    options={{
+                      headerShown: false,
+                    }}
+                  />
 
-                <Stack.Screen
-                  name={routes.FLUXO_CADASTRO_PET_1} component={PetFirstStep}
-                  options={{
-                    headerShown: false,
-                  }}
-                />
-                <Stack.Screen
-                  name={routes.FLUXO_CADASTRO_PET_2} component={PetSecondStep}
-                  options={{
-                    headerShown: false,
-                  }}
-                />
+                  <Stack.Screen
+                    name={routes.FLUXO_CADASTRO_PET_1} component={PetFirstStep}
+                    options={{
+                      headerShown: false,
+                    }}
+                  />
+                  <Stack.Screen
+                    name={routes.FLUXO_CADASTRO_PET_2} component={PetSecondStep}
+                    options={{
+                      headerShown: false,
+                    }}
+                  />
 
-                <Stack.Screen
-                  name={routes.DETALHES_PET} component={DetalhesPet}
-                  options={{
-                    headerShown: false,
-                  }}
-                />
-                <Stack.Screen
-                  name={routes.TELA_NOTIFICACOES} component={Notifications}
-                  options={{
-                    headerShown: false,
-                  }}
-                />
-              </Stack.Navigator>
-            </View>
-          </AppointmentProvider>
-        </AuthProvider>
+                  <Stack.Screen
+                    name={routes.DETALHES_PET} component={DetalhesPet}
+                    options={{
+                      headerShown: false,
+                    }}
+                  />
+                  <Stack.Screen
+                    name={routes.TELA_NOTIFICACOES} component={Notifications}
+                    options={{
+                      headerShown: false,
+                    }}
+                  />
+                </Stack.Navigator>
+              </View>
+            </AppointmentProvider>
+          </AuthProvider>
+        </RootSiblingParent>
       </SafeAreaProvider>
     </NavigationContainer>
   );
