@@ -16,31 +16,13 @@ function AppointmentProvider({ children }) {
             number: "",
             phone: "",
             zip_code: "",
-            image: () => {},
+            image: () => { },
             available_dates: []
         },
         date: "",
         time: "",
-        pet: {
-            id: "",
-            name: "",
-            breed: "",
-            weight_in_kg: "", // in kg
-            size_in_cm: "", // in cm
-            birth_date: "",
-            birth_year: "",
-            profile_picture: null,
-        },
-        pet_view: {
-            id: "",
-            name: "",
-            breed: "",
-            weight_in_kg: "", // in kg
-            size_in_cm: "", // in cm
-            birth_date: "",
-            birth_year: "",
-            profile_picture: null,
-        },
+        pet: {},
+        pet_view: {},
         paymentStatus: "",
     })
 
@@ -147,9 +129,10 @@ function AppointmentProvider({ children }) {
         })
     }
 
-    useEffect(() => {
-        console.log(JSON.stringify(appointment, null, 2));
-    }, [appointment])
+    // DEBUG
+    // useEffect(() => {
+    //     console.log(JSON.stringify(appointment, null, 2));
+    // }, [appointment])
 
     return (
         <AppointmentContext.Provider value={{ appointment, setAppointment, setType, setDescription, setClinic, setDate, setTime, setPet, setPetView, setPaymentStatus, getMapPivot, setMapPivot, getAvailableClinics, setFlow, setDateClinicAndTime }}>

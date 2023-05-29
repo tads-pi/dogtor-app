@@ -1,25 +1,21 @@
 import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
-  blueBar: {
-    backgroundColor: '#41C4E5',
-    width: 400,
-    height: 14,
-    marginTop: -47,
-    marginLeft: -10,
+  wrapper: {
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    padding: 8,
   },
 
   navBar: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    margin: 20,
+    padding: 8,
   },
 
   boxTitle: {
     alignItems: "center",
     justifyContent: "center",
-    paddingTop: 40,
   },
 
   textTitle: {
@@ -33,27 +29,23 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
     paddingTop: 8,
-    maxWidth: 310,
-
+    maxWidth: "100%",
   },
-
   textTitle1: {
     color: "#ACBBC3",
     fontSize: 18,
     textAlign: "center",
-
   },
-
+  qrcodeWrapper: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
   qrcode: {
-    flex: 1,
-    marginLeft: 55,
-    margin: 30,
   },
-
   boxTitle2: {
     alignItems: "center",
     justifyContent: "center",
-    paddingTop: 270,
+    padding: 32,
   },
 
   textTitle2: {
@@ -63,25 +55,18 @@ const styles = StyleSheet.create({
 
   buttonCopy: {
     flexDirection: 'row',
-    borderRadius: 25,
-    alignItems: "center",
-    alignSelf: "center",
+    borderRadius: 8,
     width: "90%",
     backgroundColor: "#FFFFF",
     borderWidth: 1,
-    padding: 10,
-    maxWidth: 320,
-    maxHeight: 150,
-    marginBottom: 8,
-    marginTop: 9,
+    padding: 4,
+    margin: 16,
   },
 
   textButtonCopy: {
     color: "#000000",
     fontSize: 8,
     textAlign: "left",
-    marginLeft: 5,
-    maxWidth: 280,
   },
 
   buttonConfirm: {
@@ -91,7 +76,6 @@ const styles = StyleSheet.create({
     width: "90%",
     backgroundColor: "#41C4E5",
     padding: 20,
-    marginTop: 60,
   },
 
   textButtonConfirm: {

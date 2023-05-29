@@ -14,26 +14,25 @@ export default function SeventhStep() {
   }
 
   return (
-    <DogtorView>
+    <DogtorView goNext={goNext} goNextTitle={"Voltar ao Início"}>
       <AppointmentHeader step={7} />
-      <View style={styles.boxTitle}>
-        <Text style={styles.textTitle}>Agendamento enviado com sucesso!</Text>
-      </View>
+      <View style={{
+        flex: 1,
+        margin: 16,
+        justifyContent: "space-between",
+      }}>
+        <View style={styles.boxTitle}>
+          <Text style={styles.textTitle}>Agendamento enviado com sucesso!</Text>
+        </View>
 
-      <View>
-        <Image style={styles.image} source={require('../../../assets/images/confirmation_dog.png')} />
-      </View>
+        <View style={styles.imageWrapper}>
+          <Image style={styles.image} source={require('../../../assets/images/confirmation_dog.png')} />
+        </View>
 
-      <View style={styles.boxTitle1}>
-        <Text style={styles.textTitle1}>Seu pedido de agendamento foi enviado com sucesso para a clínica.</Text>
+        <View style={styles.boxTitle1}>
+          <Text style={styles.textTitle1}>Seu pedido de agendamento foi enviado com sucesso para a clínica!</Text>
+        </View>
       </View>
-
-      <TouchableOpacity
-        style={styles.buttonRetry}
-        onPress={goNext}
-      >
-        <Text style={styles.textButtonRetry}>Voltar ao Início</Text>
-      </TouchableOpacity>
     </DogtorView>
   );
 }

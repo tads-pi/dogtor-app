@@ -17,6 +17,7 @@ import * as colors from "../../../../constants/colors"
 import moment from "moment";
 import 'moment/locale/pt-br';
 import { AppointmentContext } from "../../../../../context/appoiment";
+import GoNext from "../../../../components/GoNext";
 
 export default function ClinicModal(props) {
     const [clinic, setClinic] = useState({});
@@ -189,15 +190,7 @@ function Clinic(props) {
                     </View>
                 </View>
 
-                <View style={styles.buttonWrapper}>
-                    <TouchableHighlight onPress={goNext} disabled={isGoNextDisabled}>
-                        <Text style={
-                            [styles.button, {
-                                backgroundColor: isGoNextDisabled ? colors.DOGTOR_GRAY : colors.DOGTOR_BLUE
-                            }]
-                        }>Confirmar</Text>
-                    </TouchableHighlight>
-                </View>
+               <GoNext onPress={goNext} disabled={isGoNextDisabled}/>
             </View>
         </View>
     )
@@ -315,21 +308,5 @@ const styles = StyleSheet.create({
         borderRadius: 8,
 
         alignItems: "center",
-    },
-    buttonWrapper: {
-        margin: 12,
-
-        borderRadius: 16,
-        overflow: "hidden",
-
-        // borderColor: "red",
-        // borderWidth: 1,
-    },
-    button: {
-        padding: 12,
-
-        color: "white",
-        textAlign: "center",
-        fontSize: 16,
     },
 })

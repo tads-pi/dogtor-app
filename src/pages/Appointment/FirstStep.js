@@ -23,7 +23,7 @@ export default function FirstStep() {
     }
 
     return (
-        <DogtorView container_style={styles.container}>
+        <DogtorView container_style={styles.container} goNext={goNext}>
             <ProcessUserLocation />
             <AppointmentHeader step={1} />
             {/* <View style={styles.container}> */}
@@ -68,13 +68,7 @@ export default function FirstStep() {
                     // onBlur={register("text", selected ? { required: true } : { required: false })}
                     />
                 </View>
-                <TouchableHighlight style={styles.button} onPress={goNext}>
-                    <View style={styles.button}>
-                        <Text style={{ color: 'white' }}>Confirmar</Text>
-                    </View>
-                </TouchableHighlight>
             </View>
-            {/* </View > */}
         </DogtorView>
     );
 };

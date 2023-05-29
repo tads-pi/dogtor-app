@@ -19,7 +19,9 @@ import DogtorView from '../../components/DogtorView';
 
 export default function FourthStep() {
     const { user } = useContext(AuthContext)
-    const { setFlow, setPet } = useContext(AppointmentContext)
+    const { setFlow, setPet, appointment } = useContext(AppointmentContext)
+    const { pet } = appointment
+
     const navigate = useNavigation().navigate
 
     function goNext() {
@@ -31,8 +33,10 @@ export default function FourthStep() {
         }
     }
 
+    const havePets = user.pets.length > 0
+    const noPetSelected = Object.keys(pet || {}).length <= 0
     return (
-        <DogtorView>
+        <DogtorView goNext={goNext} disableGoNext={havePets && noPetSelected}>
             <SafeAreaView style={styles.safeAreaView}>
                 <ScrollView>
                     <View style={styles.blueBar}></View>
@@ -67,13 +71,13 @@ export default function FourthStep() {
                             }
                         </ScrollView>
                     </View>
-                    <TouchableOpacity style={styles.btnProcurarAtendimento} onPress={goNext}>
-                        {
-                            user.pets.length > 0
-                                ? <Text style={styles.btnProcurarAtendimentoText}>Continuar</Text>
-                                : <Text style={styles.btnProcurarAtendimentoText}>Cadastrar Pet</Text>
-                        }
-                    </TouchableOpacity>
+
+                    {
+                        user.pets.length > 0
+                            ? null
+                            : <TouchableOpacity style={styles.btnProcurarAtendimento} onPress={goNext}><Text style={styles.btnProcurarAtendimentoText}>Cadastrar Pet</Text></TouchableOpacity>
+                    }
+
                 </ScrollView>
             </SafeAreaView>
         </DogtorView>
@@ -179,6 +183,7 @@ const styles = StyleSheet.create({
     descriptionColor: {
         marginTop: 8,
         color: '#ACBBC3',
+        textAlign: 'center',
     },
     subtitle: {
         color: 'black',

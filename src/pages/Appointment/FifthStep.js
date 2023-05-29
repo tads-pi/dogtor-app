@@ -13,6 +13,8 @@ import { PAYMENT_TYPE_PENDING } from "../../../constants/appointment";
 import AppointmentHeader from "./Header";
 import { useNavigation } from "@react-navigation/native";
 import routes from "../../routes";
+import DogtorView from "../../components/DogtorView";
+import * as colors from "../../constants/colors";
 
 export default function FifthStep() {
     const { appointment, setPaymentStatus } = useContext(AppointmentContext)
@@ -27,18 +29,19 @@ export default function FifthStep() {
     }
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <DogtorView goNext={goNext}>
+            <AppointmentHeader step={5} />
+            <View style={styles.navBar}>
+                <TouchableOpacity onPress={() => navigate(routes.FLUXO_AGENDAMENTO_2)}>
+                    <Image source={require("../../assets/images/back.png")} />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigate(routes.TELA_MENU)}>
+                    <Image source={require("../../assets/images/cancel.png")} />
+                </TouchableOpacity>
+            </View>
+
             <ScrollView>
-                <AppointmentHeader step={5} />
-                <View style={styles.navBar}>
-                    <TouchableOpacity onPress={() => navigate(routes.FLUXO_AGENDAMENTO_2)}>
-                        <Image source={require("../../assets/images/back.png")} />
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigate(routes.TELA_MENU)}>
-                        <Image source={require("../../assets/images/cancel.png")} />
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.dogNoExiste}>
+                <View style={styles.header}>
                     <Text style={[styles.subtitle, { marginTop: 20 }]}>
                         Confirmação de dados
                     </Text>
@@ -47,7 +50,7 @@ export default function FifthStep() {
                     </Text>
                 </View>
 
-                <View style={styles.container}>
+                <View style={styles.addressBlock}>
                     <View style={styles.enderecoStyle}>
                         <Text style={{ fontWeight: "bold", fontSize: 14 }}>Endereço</Text>
                     </View>
@@ -59,7 +62,8 @@ export default function FifthStep() {
                         <Text>Telefone: {phone}</Text>
                     </View>
                 </View>
-                <View style={styles.container2}>
+
+                <View style={styles.appointmentBlock}>
                     <View
                         style={styles.consultaStyle}
                     >
@@ -71,58 +75,56 @@ export default function FifthStep() {
                         <Text>Pet: {pet.name}</Text>
                     </View>
                 </View>
-                <TouchableOpacity style={styles.btnProcurarAtendimento} onPress={goNext}>
-                    <Text style={styles.btnProcurarAtendimentoText}>
-                        Continuar para pagamento
-                    </Text>
-                </TouchableOpacity>
             </ScrollView>
-        </SafeAreaView>
+        </DogtorView>
     );
 }
 
+const block = {
+    borderWidth: 1,
+    borderRadius: 8,
+    margin: 16,
+}
+
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        width: 328,
-        height: 150,
+
+    header: {
+        flexDirection: "column",
+        alignItems: "center",
+        margin: 16,
+    },
+    addressBlock: {
+        ...block,
+        borderColor: colors.DOGTOR_GRAY,
+    },
+    appointmentBlock: {
+        ...block,
         borderWidth: 1,
         borderRadius: 8,
         borderColor: "#ACB5CA",
-        margin: 32,
     },
-    container2: {
-        flex: 1,
-        width: 328,
-        height: 110,
-        borderWidth: 1,
-        borderRadius: 8,
-        borderColor: "#ACB5CA",
-        margin: 32,
-        marginTop: -10,
-        marginBottom: 130,
-    },
+
     enderecoStyle: {
         borderBottomWidth: 1,
         borderColor: "#ACB5CA",
-        width: 328,
-        padding: 10,
+        // width: 328,
+        padding: 16,
     },
     consultaStyle: {
         borderBottomWidth: 1,
         borderColor: "#ACB5CA",
-        width: 328,
-        padding: 10,
+        // width: 328,
+        padding: 16,
     },
     consultaTextStyle: {
         fontWeight: "bold",
         fontSize: 14
     },
     navBar: {
-        flex: 1,
+        // flex: 1,
         flexDirection: "row",
         justifyContent: "space-between",
-        margin: 20,
+        margin: 16,
     },
     descriptionColor: {
         marginTop: 8,
@@ -133,7 +135,7 @@ const styles = StyleSheet.create({
         color: "#000000",
         fontSize: 16,
         fontWeight: "700",
-        marginLeft: 17,
+        // marginLeft: 17,
     },
     textConfirmation: {
         fontWeight: 700,
@@ -146,10 +148,10 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     dogNoExiste: {
-        flex: 1,
-        alignItems: "center",
+        // flex: 1,
+        // alignItems: "center",
 
-        margin: 40,
+        // margin: 40,
     },
     btnProcurarAtendimento: {
         flex: 1,
@@ -157,10 +159,10 @@ const styles = StyleSheet.create({
         justifyContent: "space-evenly",
         alignItems: "center",
         alignSelf: "center",
-        width: 328,
-        height: 66,
-        marginBottom: 16,
-        borderRadius: 11,
+        // width: 328,
+        // height: 66,
+        // marginBottom: 16,
+        borderRadius: 12,
         backgroundColor: "#41C4E5",
     },
     btnProcurarAtendimentoText: {

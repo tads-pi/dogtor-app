@@ -6,34 +6,46 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
     justifyContent: "flex-start",
-    marginTop: 20,
+
+    // borderColor: "pink",
+    // borderWidth: 1
   },
 
   textTitle: {
     color: "black",
     fontSize: 20,
-    fontWeight: "bold"
+    fontWeight: "bold",
+
+    // borderColor: "red",
+    // borderWidth: 1
+  },
+
+  imageWrapper: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+
+    // borderColor: "red",
+    // borderWidth: 1
   },
 
   image: {
-    width: 400,
-    height: 450,
-    marginTop: 20,
-    marginLeft: 10,
-
+    resizeMode: "contain",
+    width: "100%",
   },
 
   boxTitle1: {
     alignItems: "center",
     justifyContent: "center",
     textAlignVertical: "center",
-    marginBottom: 15,
-    marginTop: 30,
+
+    // borderColor: "blue",
+    // borderWidth: 1
   },
 
   textTitle1: {
     color: "#ACBBC3",
-    fontSize: 17, margin: 20,
+    fontSize: 17,
     textAlign: "center",
   },
 
@@ -44,10 +56,9 @@ const styles = StyleSheet.create({
     width: "90%",
     backgroundColor: "#41C4E5",
     padding: 20,
-    marginTop: 10,
 
-
-
+    // borderColor: "orange",
+    // borderWidth: 1
   },
 
   textButtonRetry: {
@@ -55,7 +66,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   },
-
 });
 
 export default styles
