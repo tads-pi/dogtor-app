@@ -28,7 +28,7 @@ export default function DogtorView(props) {
                 hide_go_next
                     ? null
                     : <View style={styles.footer}>
-                        <GoNext onPress={goNext} title={goNextTitle} disabled={disableGoNext}/>
+                        <GoNext onPress={goNext} title={goNextTitle} disabled={disableGoNext} />
                     </View>
             }
 

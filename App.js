@@ -37,7 +37,7 @@ export default function App() {
                 // borderWidth: 3
               }}>
                 <Stack.Navigator>
-                  <Stack.Screen
+                  {/* <Stack.Screen
                     name={routes.TELA_LOGIN} component={TelaLogin}
                     options={{
                       headerShown: false,
@@ -105,7 +105,7 @@ export default function App() {
                     options={{
                       headerShown: false,
                     }}
-                  />
+                  /> */}
 
                   <Stack.Screen
                     name={routes.FLUXO_CADASTRO_PET_1} component={PetFirstStep}
