@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     padding: 8,
+    marginTop: 32,
   },
 
   navBar: {

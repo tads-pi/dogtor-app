@@ -21,6 +21,7 @@ import FourthStep from './src/pages/Appointment/FourthStep';
 import PetFirstStep from './src/pages/FluxoCadastroPet/FirstStep';
 import PetSecondStep from './src/pages/FluxoCadastroPet/SecondStep';
 import FirstStep from './src/pages/Appointment/FirstStep';
+import PetThirdStep from './src/pages/FluxoCadastroPet/ThridStep';
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -37,7 +38,7 @@ export default function App() {
                 // borderWidth: 3
               }}>
                 <Stack.Navigator>
-                  {/* <Stack.Screen
+                  <Stack.Screen
                     name={routes.TELA_LOGIN} component={TelaLogin}
                     options={{
                       headerShown: false,
@@ -105,7 +106,7 @@ export default function App() {
                     options={{
                       headerShown: false,
                     }}
-                  /> */}
+                  />
 
                   <Stack.Screen
                     name={routes.FLUXO_CADASTRO_PET_1} component={PetFirstStep}
@@ -120,6 +121,12 @@ export default function App() {
                     }}
                   />
 
+                  <Stack.Screen
+                    name={routes.FLUXO_CADASTRO_PET_3} component={PetThirdStep}
+                    options={{
+                      headerShown: false,
+                    }}
+                  />
                   <Stack.Screen
                     name={routes.DETALHES_PET} component={DetalhesPet}
                     options={{

@@ -18,7 +18,7 @@ import * as colors from "../../constants/colors";
 
 export default function FifthStep() {
     const { appointment, setPaymentStatus } = useContext(AppointmentContext)
-    const { clinic, date, time, type, pet } = appointment
+    const { clinic, date, type, pet } = appointment
     const { name, street, number, phone, zip_code } = clinic
 
     const navigate = useNavigation().navigate
@@ -29,16 +29,8 @@ export default function FifthStep() {
     }
 
     return (
-        <DogtorView goNext={goNext}>
-            <AppointmentHeader step={5} />
-            <View style={styles.navBar}>
-                <TouchableOpacity onPress={() => navigate(routes.FLUXO_AGENDAMENTO_2)}>
-                    <Image source={require("../../assets/images/back.png")} />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigate(routes.TELA_MENU)}>
-                    <Image source={require("../../assets/images/cancel.png")} />
-                </TouchableOpacity>
-            </View>
+        <DogtorView goNext={goNext} absolute_navigators={true}>
+            <AppointmentHeader step={4} />
 
             <ScrollView>
                 <View style={styles.header}>
@@ -92,6 +84,7 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         alignItems: "center",
         margin: 16,
+        marginTop: 16,
     },
     addressBlock: {
         ...block,

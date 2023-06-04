@@ -14,11 +14,12 @@ export default function SeventhStep() {
   }
 
   return (
-    <DogtorView goNext={goNext} goNextTitle={"Voltar ao Início"}>
-      <AppointmentHeader step={7} />
+    <DogtorView goNext={goNext} goNextTitle={"Voltar ao Início"} should_show_navigators={true}>
+      <AppointmentHeader step={6} />
       <View style={{
         flex: 1,
         margin: 16,
+        marginTop: 32,
         justifyContent: "space-between",
       }}>
         <View style={styles.boxTitle}>

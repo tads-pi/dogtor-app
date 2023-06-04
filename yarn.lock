@@ -2393,6 +2393,11 @@ big-integer@1.6.x:
   resolved "https://registry.npmjs.org/big-integer/-/big-integer-1.6.51.tgz"
   integrity sha512-GPEid2Y9QU1Exl1rpO9B2IPJGHPSupF5GnVIP0blYvNOMer2bTvSWs1jGOUg04hTmu67nmLsQ9TBo1puaotBHg==
 
+bignumber.js@^9.0.1:
+  version "9.1.1"
+  resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-9.1.1.tgz#c4df7dc496bd849d4c9464344c1aa74228b4dac6"
+  integrity sha512-pHm4LsMJ6lzgNGVfZHjMoO8sdoRhOzOH4MLmY65Jg70bpxCKu5iOHNJyfF6OyvYw7t8Fpf35RuzUyqnQsj8Vig==
+
 bl@^4.1.0:
   version "4.1.0"
   resolved "https://registry.npmjs.org/bl/-/bl-4.1.0.tgz"
@@ -3343,6 +3348,11 @@ expo-modules-core@1.2.7:
   dependencies:
     compare-versions "^3.4.0"
     invariant "^2.2.4"
+
+expo-radio-button@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/expo-radio-button/-/expo-radio-button-1.0.8.tgz#5f5c411ae0a2da633ae4b56d87a59dfa23a47bae"
+  integrity sha512-sE+aCtq5/lL1Y24oVYMyGug0IPt0R3dXS6rSK2S+A+EFm6HYBj0ZKGA35ywSekS+/8lE9UwKS+ORwQlWsfXoUQ==
 
 expo-splash-screen@~0.17.0:
   version "0.17.5"
@@ -5741,6 +5751,13 @@ react-native-maps@^1.7.1:
   dependencies:
     "@types/geojson" "^7946.0.10"
 
+react-native-mask-text@^0.14.1:
+  version "0.14.1"
+  resolved "https://registry.yarnpkg.com/react-native-mask-text/-/react-native-mask-text-0.14.1.tgz#cc01dd62e02c821284d6680d697431c69a042fd1"
+  integrity sha512-tKjeqJcpPTlRHdBNrof4L5bNDT1b4ykLnFEilWlDb/Dq58YuenUiZkmYyoLOhnkWfRmVsbjNczIQN8JtOVPNjA==
+  dependencies:
+    bignumber.js "^9.0.1"
+
 react-native-masked-text@^1.13.0:
   version "1.13.0"
   resolved "https://registry.npmjs.org/react-native-masked-text/-/react-native-masked-text-1.13.0.tgz"
@@ -6958,6 +6975,11 @@ uuid@^8.0.0, uuid@^8.3.2:
   version "8.3.2"
   resolved "https://registry.npmjs.org/uuid/-/uuid-8.3.2.tgz"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
+
+uuid@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-9.0.0.tgz#592f550650024a38ceb0c562f2f6aa435761efb5"
+  integrity sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==
 
 valid-url@~1.0.9:
   version "1.0.9"

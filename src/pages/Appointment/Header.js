@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native/"
 
 const PROGRESS_BAR_COLOR = "#41C4E5"
-const TOTAL_STEPS = 7
+const TOTAL_STEPS = 6
 
 export default function AppointmentHeader(props) {
     const [progress, setProgress] = useState(0)

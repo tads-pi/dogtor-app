@@ -20,7 +20,7 @@ export default function DetalhesPet() {
           <Text style={styles.paragraph}>
             {name}
           </Text>
-          <SchedulingPet />
+          <SchedulingPet pet={pet_view} />
         </Card>
       </View>
     </DogtorView>
@@ -29,7 +29,6 @@ export default function DetalhesPet() {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 16,
     backgroundColor: "blue",
   },
   paragraph: {

@@ -32,12 +32,8 @@ export default function SixthStep({ navigation }) {
   }
 
   return (
-    <DogtorView goNext={goNext}>
-      <AppointmentHeader step={6} />
-      <View style={styles.navBar}>
-        <TouchableOpacity><Image source={require('../../../assets/images/back.png')} /></TouchableOpacity>
-        <TouchableOpacity><Image source={require('../../../assets/images/cancel.png')} /></TouchableOpacity>
-      </View>
+    <DogtorView goNext={goNext} absolute_navigators={true}>
+      <AppointmentHeader step={5} />
 
       <ScrollView>
         <View style={styles.wrapper}>

@@ -23,14 +23,10 @@ export default function FirstStep() {
     }
 
     return (
-        <DogtorView container_style={styles.container} goNext={goNext}>
+        <DogtorView container_style={styles.container} goNext={goNext} absolute_navigators={true}>
             <ProcessUserLocation />
             <AppointmentHeader step={1} />
-            {/* <View style={styles.container}> */}
-            <View style={styles.navBar}>
-                <TouchableOpacity onPress={() => { navigate(routes.TELA_MENU) }}><Image source={require('../../assets/images/voltar.png')} /></TouchableOpacity>
-                <TouchableOpacity onPress={() => { navigate(routes.TELA_MENU) }}><Image source={require('../../assets/images/cancel.png')} /></TouchableOpacity>
-            </View>
+
             <Text style={styles.infoDog}>
                 Escolha o tipo de atendimento
             </Text>

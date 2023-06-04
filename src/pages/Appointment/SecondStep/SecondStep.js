@@ -66,7 +66,7 @@ export default function SecondStep() {
     }, [markers])
 
     return (
-        <DogtorView container_style={styles.container} hide_go_next={true}>
+        <DogtorView container_style={styles.container} hide_go_next={true} absolute_navigators={true}>
             {
                 map_long == 0 && fakeLoading
                     ? <AppLoading />
@@ -88,25 +88,12 @@ export default function SecondStep() {
 }
 
 const MapViewWrapper = (props) => {
-    const navigate = useNavigation().navigate
     const { mapPivot, markers, handleSelectedClinic } = props
 
     return (
         <View style={{
             flex: 1,
         }}>
-            <View style={{
-                position: "absolute",
-                width: "100%",
-                height: 50,
-                zIndex: 2,
-                flexDirection: "row",
-                justifyContent: "space-between",
-                padding: 16,
-            }}>
-                <TouchableOpacity onPress={() => { navigate(routes.FLUXO_AGENDAMENTO_1) }}><Image source={require('../../../assets/images/voltar.png')} /></TouchableOpacity>
-                <TouchableOpacity onPress={() => { navigate(routes.TELA_MENU) }}><Image source={require('../../../assets/images/cancel.png')} /></TouchableOpacity>
-            </View>
             <Map
                 pivot={mapPivot}
                 markers={markers}

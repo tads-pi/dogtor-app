@@ -1,9 +1,12 @@
-import { View, StyleSheet } from "react-native"
+import { View, StyleSheet, TouchableOpacity, Image } from "react-native"
 import DogtorTitle from "./DogtorTitle"
 import GoNext from "./GoNext"
+import { useNavigation } from "@react-navigation/native"
+import routes from "../routes"
 
 export default function DogtorView(props) {
-    const { goNext, goNextTitle, disableGoNext, hide_go_next, should_show_title, container_style, children } = props
+    const { goNext, goNextTitle, disableGoNext, hide_go_next, should_show_title, should_show_navigators, absolute_navigators, container_style, children } = props
+    const navigation = useNavigation()
 
     return (
         <View style={styles._container}>
@@ -15,6 +18,26 @@ export default function DogtorView(props) {
                     </View>
 
                     : null
+            }
+            {
+                should_show_navigators
+                    ? null
+                    : <View style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        marginTop: 32,
+                        padding: 16,
+                        width: "100%",
+                        position: absolute_navigators ? "absolute" : "",
+                        zIndex: 999,
+
+                        // DEBUG ONLY
+                        // borderColor: "red",
+                        // borderWidth: 1
+                    }}>
+                        <TouchableOpacity onPress={() => { navigation.goBack() }}><Image source={require('../assets/images/voltar.png')} /></TouchableOpacity>
+                        <TouchableOpacity onPress={() => { navigation.navigate(routes.TELA_MENU) }}><Image source={require('../assets/images/cancel.png')} /></TouchableOpacity>
+                    </View>
             }
 
             <View style={
