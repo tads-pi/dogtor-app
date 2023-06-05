@@ -8,7 +8,7 @@ import { AppointmentContext } from "../../context/appoiment";
 export default function DetalhesPet() {
   const { appointment } = useContext(AppointmentContext)
   const { pet_view } = appointment
-  const { name, banner_picture } = pet_view
+  const { name, breed, race, banner_picture } = pet_view
 
   return (
     <DogtorView container_style={styles.container} hide_go_next={true}>
@@ -19,6 +19,9 @@ export default function DetalhesPet() {
         <Card style={styles.card}>
           <Text style={styles.paragraph}>
             {name}
+          </Text>
+          <Text style={styles.lowerParagraph}>
+            {`${breed} ${race}`}
           </Text>
           <SchedulingPet pet={pet_view} />
         </Card>
@@ -34,6 +37,10 @@ const styles = StyleSheet.create({
   paragraph: {
     fontSize: 18,
     fontWeight: "bold",
+    textAlign: "center",
+  },
+  lowerParagraph: {
+    fontSize: 12,
     textAlign: "center",
   },
   card: {

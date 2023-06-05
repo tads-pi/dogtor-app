@@ -62,18 +62,18 @@ export default function DogtorView(props) {
 const styles = StyleSheet.create({
     _container: {
         flex: 1,
-        marginTop: 32,
+        // marginTop: 32,
 
         // DEBUG ONLY
-        // borderColor: "yellow",
-        // borderWidth: 2,
+        // borderColor: "red",
+        // borderWidth: 1,
     },
     _dogtor_title: {
 
     },
     common_container: {
         flex: 1,
-        margin: 16,
+        // margin: 16,
     },
     footer: {
         paddingBottom: 16

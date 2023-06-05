@@ -1,19 +1,31 @@
-import { Image, Text, View, StyleSheet, Dimensions } from "react-native";
-
-const screenWidth = Dimensions.get('window').width;
+import React from "react";
+import { Image, Text, View, StyleSheet, Dimensions, Platform } from "react-native";
+import * as colors from "../../../../constants/colors";
+import ImageHandler from "../../../../components/ImageHandler";
 
 export default function DogtorMapCallout(props) {
     const name = props.name;
     const address = `${props.street}, ${props.number}`;
-    const getImage = props.image;
 
     return (
         <View style={styles.container}>
-            <Image style={styles.image} source={getImage()} />
+            <View style={styles.imageWrapper}>
+                <ImageHandler
+                    file={props.image}
+                />
+            </View>
             <View style={styles.information}>
                 <Text style={styles.title}>{name}</Text>
                 <View style={styles.address}>
-                    <Image style={styles.icon} source={require("../../../../assets/images/empty_pin.png")} />
+                    {
+                        Platform.OS === "android"
+                            ? <Text style={{
+                                color: colors.DOGTOR_BLUE,
+                                paddingRight: 5,
+                            }}>o</Text>
+                            : <Image style={styles.icon} source={require("../../../../assets/images/empty_pin.png")} />
+                    }
+
                     <Text style={styles.subTitle}>{address}</Text>
                 </View>
             </View>
@@ -33,6 +45,10 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         paddingTop: 10,
+    },
+    imageWrapper: {
+        width: 300,
+        height: 125,
     },
     image: {
         width: 300,

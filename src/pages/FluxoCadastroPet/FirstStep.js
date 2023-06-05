@@ -13,7 +13,6 @@ import routes from '../../routes';
 import { AuthContext } from '../../../context/auth';
 import { MaskedTextInput } from "react-native-mask-text";
 import moment from 'moment';
-import { AppointmentContext } from '../../../context/appoiment';
 import { breeds } from './animals';
 
 export default function PetFirst() {
@@ -47,7 +46,7 @@ export default function PetFirst() {
     }
 
     return (
-        <DogtorView component_style={styles.container} goNext={goNext}>
+        <DogtorView goNext={goNext} absolute_navigators={true}>
             <View style={styles.header}>
                 <Text style={styles.headerTitle}>Informações do Pet</Text>
             </View>
@@ -102,6 +101,7 @@ export default function PetFirst() {
 
                         style={styles.inputInWrapper}
                         keyboardType="numeric"
+                        returnKeyType='done'
                         onChangeText={(rawValue) => {
                             addPetInfo({
                                 size: rawValue,
@@ -144,9 +144,9 @@ const input = {
 }
 
 const styles = StyleSheet.create({
-    container: {},
     header: {
         alignItems: "center",
+        marginTop: 48,
     },
     headerTitle: {
         fontSize: 16,

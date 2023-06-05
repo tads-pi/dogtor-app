@@ -5,7 +5,6 @@ import { AppointmentContext } from '../../context/appoiment';
 import moment from 'moment';
 
 export default function SchedulingPet(props) {
-  console.log("SchedulingPet props", props);
   const { pet } = props
   const { name, birth_year, size, weight } = pet
 
