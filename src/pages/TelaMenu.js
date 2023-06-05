@@ -93,9 +93,12 @@ export default function TelaMenu() {
                                 showsHorizontalScrollIndicator={false}
                             >
                                 {
-                                    user.pets.map((pet) => (
-                                        <PetWrapper pet={pet} key={pet.id}></PetWrapper>
-                                    ))
+                                    user.pets.map((pet) => {
+                                        console.log("petwrapper: ", pet);
+                                        return (
+                                            <PetWrapper pet={pet} key={pet.id}></PetWrapper>
+                                        )
+                                    })
                                 }
                             </ScrollView>
                         </View>

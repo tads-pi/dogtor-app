@@ -1,5 +1,5 @@
 import { Marker, Callout } from "react-native-maps"
-import { StyleSheet } from "react-native"
+import { StyleSheet, Image, Text, View } from "react-native"
 import { getRandomNumber } from "../../../../utils/numbers"
 import DogtorMapCallout from "../components/DogtorMapCallout"
 import * as colors from "../../../../constants/colors"

@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { ALLOWED_TYPES, ALLOWED_PAYMENT_STATUS, FLOWS, DEFAULT_FLOW, APPOINTMENT_TYPES } from "../constants/appointment"
+import * as Location from 'expo-location'
 
 export const AppointmentContext = createContext({});
 
@@ -129,13 +130,25 @@ function AppointmentProvider({ children }) {
         })
     }
 
+    async function getUserLocation() {
+        const { status } = await Location.requestForegroundPermissionsAsync();
+        if (status != 'granted') {
+            console.error("location permission denied");
+        }
+
+        let location = await Location.getCurrentPositionAsync({});
+        const { latitude, longitude } = location.coords;
+
+        return { latitude, longitude }
+    }
+
     // DEBUG
-    // useEffect(() => {
-    //     console.log(JSON.stringify(appointment, null, 2));
-    // }, [appointment])
+    useEffect(() => {
+        console.log(JSON.stringify(appointment, null, 2));
+    }, [appointment])
 
     return (
-        <AppointmentContext.Provider value={{ appointment, setAppointment, setType, setDescription, setClinic, setDate, setTime, setPet, setPetView, setPaymentStatus, getMapPivot, setMapPivot, getAvailableClinics, setFlow, setDateClinicAndTime }}>
+        <AppointmentContext.Provider value={{ appointment, setAppointment, setType, setDescription, setClinic, setDate, setTime, setPet, setPetView, setPaymentStatus, getMapPivot, setMapPivot, getAvailableClinics, setFlow, setDateClinicAndTime, getUserLocation }}>
             {children}
         </AppointmentContext.Provider>
     )
@@ -195,7 +208,7 @@ const available_clinics = [
         number: "01",
         phone: "(11) 99999-9999",
         zip_code: "01001-000",
-        image: () => require("../src/assets/images/clinics/vet_01.jpg"),
+        image: "vet_01",
         available_dates: available_dates
     },
     {
@@ -204,7 +217,7 @@ const available_clinics = [
         number: "50",
         phone: "(11) 91234-5678",
         zip_code: "01001-000",
-        image: () => require("../src/assets/images/clinics/vet_02.jpg"),
+        image: "vet_02",
         available_dates: available_dates
     },
     {
@@ -213,7 +226,7 @@ const available_clinics = [
         number: "95",
         phone: "(11) 98765-4321",
         zip_code: "01001-000",
-        image: () => require("../src/assets/images/clinics/vet_03.jpg"),
+        image: "vet_03",
         available_dates: available_dates
     },
     {
@@ -222,7 +235,7 @@ const available_clinics = [
         number: "123",
         phone: "(11) 91234-5678",
         zip_code: "01001-000",
-        image: () => require("../src/assets/images/clinics/vet_04.jpg"),
+        image: "vet_04",
         available_dates: available_dates
     },
     {
@@ -231,7 +244,7 @@ const available_clinics = [
         number: "1000",
         phone: "(11) 91234-5678",
         zip_code: "01001-000",
-        image: () => require("../src/assets/images/clinics/vet_05.jpg"),
+        image: "vet_05",
         available_dates: available_dates
     },
 ]

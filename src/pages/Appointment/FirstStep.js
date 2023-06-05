@@ -2,155 +2,152 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Picker } from '@react-native-picker/picker';
 import { useForm } from 'react-hook-form';
 import { useNavigation } from '@react-navigation/native'
-import { Text, View, TextInput, TouchableHighlight, Image, KeyboardAvoidingView, Alert, ScrollView, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import { Text, View, TextInput, TouchableHighlight, Image, KeyboardAvoidingView, Alert, ScrollView, StyleSheet, Dimensions, TouchableOpacity, Keyboard } from 'react-native';
 import routes from '../../routes';
 import { AppointmentContext } from '../../../context/appoiment';
 import DogtorView from '../../components/DogtorView';
 import AppointmentHeader from './Header';
-import ProcessUserLocation from "../../utils/location"
+import { SelectList } from 'react-native-dropdown-select-list';
+import { APPOINTMENT_TYPES } from '../../../constants/appointment';
+import * as colors from "../../constants/colors"
 
 export default function FirstStep() {
-    const [selected, setSelected] = useState(false);
-    const { register, setValue, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigation().navigate
 
-    const { appointment } = useContext(AppointmentContext)
-    const { type } = appointment
-    const [selectedValue, setSelectedValue] = useState(type);
+    const { getUserLocation, setMapPivot, getMapPivot, appointment, setType, setDescription } = useContext(AppointmentContext)
+    const { description, type } = appointment
 
     function goNext() {
         navigate(routes.FLUXO_AGENDAMENTO_2)
     }
 
+    useEffect(() => {
+        let retries = 5;
+
+        const { lat, long } = getMapPivot()
+        while (retries >= 0 && (lat === 0 || long === 0)) {
+            console.log("[first-step] waiting for mapPivot");
+
+            getUserLocation().then(({ latitude, longitude }) => {
+                console.log("[first-step] userLocation: ", { latitude, longitude });
+                setMapPivot(latitude, longitude)
+            })
+
+            retries--;
+        }
+    })
+
+    const shouldDisableNext = description === "" || type === ""
+    console.log("description: ", description);
+    console.log("type: ", type);
     return (
-        <DogtorView container_style={styles.container} goNext={goNext}>
-            <ProcessUserLocation />
+        <DogtorView container_style={styles.container} goNext={goNext} absolute_navigators={true} disableGoNext={shouldDisableNext}>
             <AppointmentHeader step={1} />
-            {/* <View style={styles.container}> */}
-            <View style={styles.navBar}>
-                <TouchableOpacity onPress={() => { navigate(routes.TELA_MENU) }}><Image source={require('../../assets/images/voltar.png')} /></TouchableOpacity>
-                <TouchableOpacity onPress={() => { navigate(routes.TELA_MENU) }}><Image source={require('../../assets/images/cancel.png')} /></TouchableOpacity>
+
+            <View style={styles.header}>
+                <Text style={styles.headerTitle}>
+                    Escolha o tipo de atendimento
+                </Text>
             </View>
-            <Text style={styles.infoDog}>
-                Escolha o tipo de atendimento
-            </Text>
-            <View style={styles.body} >
+
+            <View style={styles.body}>
                 <View>
-                    <View style={styles.pickerContainer}>
-                        <Picker
-                            style={styles.picker}
-                            selectedValue={selectedValue}
-                            dropdownIconColor={"white"}
-                            name="select"
-                            onValueChange={(itemValue, itemIndex) => {
-                                setSelectedValue(itemValue)
-                                setValue("select", itemValue)
-                                if (itemValue === "Cirurgia" || itemValue === "Vacina") {
-                                    setSelected(true)
-                                } else {
-                                    setSelected(false)
+                    <View style={styles.inputWrapper}>
+                        <TextInput
+                            placeholder='Descreva brevemente o seu problema'
+                            placeholderTextColor={colors.DOGTOR_GRAY}
+                            name="text"
+                            style={styles.input}
+
+                            multiline={true}
+
+                            defaultValue={description}
+
+                            onKeyPress={(e) => {
+                                if (e.nativeEvent.key === "Enter") {
+                                    Keyboard.dismiss()
                                 }
                             }}
-                        >
-                            <Picker.Item label="Banho" value="Banho" />
-                            <Picker.Item label="Cirurgia" value="Cirurgia" />
-                            <Picker.Item label="Dentista" value="Dentista" />
-                            <Picker.Item label="Vacina" value="Vacina" />
-                        </Picker>
+
+                            onChangeText={(text) => setDescription(text)}
+                        />
+                    </View>
+
+                    <View style={styles.pickerContainer}>
+                        <SelectList
+                            data={APPOINTMENT_TYPES}
+                            save="value"
+                            placeholder="Selecione o tipo de atendimento"
+                            searchPlaceholder='Pesquisar...'
+
+                            defaultOption={type}
+
+                            style={styles.picker}
+                            boxStyles={styles.pickerBoxStyles}
+                            dropdownStyles={styles.pickerDropdownStyle}
+                            searchicon={<></>}
+
+                            setSelected={(value) => {
+                                setType(value)
+                            }}
+                        />
 
                     </View>
-                    <TextInput
-                        name="text"
-                        style={errors.text ? styles.inputErrors : styles.input}
-                        placeholder='Descreva brevemente o seu problema'
-                        placeholderTextColor="#ACBBC3"
-                        onChangeText={(text) => setValue("text", text)}
-                    // onBlur={register("text", selected ? { required: true } : { required: false })}
-                    />
                 </View>
             </View>
         </DogtorView>
     );
 };
 
+const input = {
+    flex: 1,
+    fontSize: 16,
+
+    borderWidth: 1,
+    borderRadius: 12,
+
+    padding: 16,
+
+    backgroundColor: colors.DOGTOR_WHITE,
+}
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        margin: 16,
+        marginTop: 16,
     },
-    navBar: {
-        display: 'flex',
-        width: '100%',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginTop: 15
+    header: {
+        marginTop: 32,
+        alignItems: 'center',
     },
-    infoDog: {
-        textAlign: 'center',
-        color: '#282C26',
+    headerTitle: {
         fontSize: 16,
         fontWeight: 'bold',
-        marginTop: 30,
-        marginBottom: 15,
     },
     body: {
         flex: 1,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
+        margin: 16,
     },
     pickerContainer: {
-        borderWidth: 1,
-        borderColor: '#ACBBC3',
-        borderRadius: 10,
-        overflow: 'hidden',
         width: '100%',
-        marginBottom: 10,
-        marginTop: 20,
+        marginTop: 32,
     },
-    picker: {
-        borderColor: '#ACBBC3',
-        height: 56,
-        color: '#ACBBC3',
-        fontSize: 16,
+    inputWrapper: {
+        minHeight: "35%",
     },
     input: {
-        borderWidth: 1,
-        height: 200,
-        width: 392,
-        paddingBottom: 150,
-        padding: 10,
-        borderRadius: 10,
-        borderColor: '#ACBBC3',
-        color: '#ACBBC3',
-        fontSize: 16,
+        ...input,
+        borderColor: colors.DOGTOR_GRAY,
     },
-    inputErrors: {
-        borderWidth: 1,
-        height: 200,
-        width: 392,
-        paddingBottom: 150,
-        padding: 10,
-        borderRadius: 10,
-        borderColor: 'red',
-        color: '#ACBBC3',
-        fontSize: 16,
+    picker: {
+        flex: 1,
     },
-    button: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#41C4E5',
-        width: 388,
-        padding: 10,
-        borderRadius: 16,
-        height: 51,
-        fontSize: '16px',
+    pickerBoxStyles: {
+        borderColor: colors.DOGTOR_GRAY,
+        backgroundColor: colors.DOGTOR_WHITE,
     },
-    confirmar: {
-        alignSelf: 'center',
-        borderColor: 'black',
-        fontSize: 16,
-        color: 'white',
-        width: 100
+    pickerDropdownStyle: {
+        borderColor: colors.DOGTOR_GRAY,
+        backgroundColor: colors.DOGTOR_WHITE
     },
 })

@@ -15,11 +15,11 @@ import DogtorView from "../../../components/DogtorView"
 import { useNavigation } from "@react-navigation/native"
 import routes from "../../../routes"
 import AppLoading from "../../../components/AppLoading"
+import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry"
 
 export default function SecondStep() {
     // Declaring variables
-    const { appointment, getMapPivot, getAvailableClinics } = useContext(AppointmentContext)
-    const { map_long } = appointment
+    const { getUserLocation, appointment, getMapPivot, getAvailableClinics } = useContext(AppointmentContext)
 
     const [selectedClinic, setSelectedClinic] = useState({})
     const [eventQueue, setEventQueue] = useState([])
@@ -29,7 +29,16 @@ export default function SecondStep() {
 
     // Update Map Component origin region
     useEffect(() => {
-        setMapPivot(getMapPivot())
+        const { lat, long } = getMapPivot()
+        if (lat === 0 && long === 0) {
+            console.log("[second-step] waiting for mapPivot");
+
+            getUserLocation().then(({ latitude, longitude }) => {
+                setMapPivot({ lat: latitude, long: longitude })
+            })
+        } else {
+            setMapPivot(getMapPivot())
+        }
     }, [appointment])
 
     // Fill Map Component with Clinics Markers
@@ -66,47 +75,32 @@ export default function SecondStep() {
     }, [markers])
 
     return (
-        <DogtorView container_style={styles.container} hide_go_next={true}>
-            {
-                map_long == 0 && fakeLoading
-                    ? <AppLoading />
-                    : <>
-                        <AppointmentHeader step={2} />
-                        <ClinicModal
-                            clinic={selectedClinic}
-                        />
-                        <View style={styles.map}>
-                            {
-                                markers
-                                && <MapViewWrapper mapPivot={mapPivot} markers={markers} handleSelectedClinic={handleSelectedClinic} />
-                            }
-                        </View>
-                    </>
-            }
-        </DogtorView>
+        <DogtorView container_style={styles.container} hide_go_next={true} absolute_navigators={true}>
+            <AppointmentHeader step={2} />
+            <ClinicModal
+                clinic={selectedClinic}
+            />
+            <View style={styles.map}>
+                {
+                    markers
+                    && <MapViewWrapper mapPivot={mapPivot} markers={markers} handleSelectedClinic={handleSelectedClinic} />
+                }
+            </View>
+        </DogtorView >
     )
 }
 
 const MapViewWrapper = (props) => {
-    const navigate = useNavigation().navigate
     const { mapPivot, markers, handleSelectedClinic } = props
+
+    useEffect(() => {
+        console.log("mapPivot: ", mapPivot);
+    }, [mapPivot])
 
     return (
         <View style={{
             flex: 1,
         }}>
-            <View style={{
-                position: "absolute",
-                width: "100%",
-                height: 50,
-                zIndex: 2,
-                flexDirection: "row",
-                justifyContent: "space-between",
-                padding: 16,
-            }}>
-                <TouchableOpacity onPress={() => { navigate(routes.FLUXO_AGENDAMENTO_1) }}><Image source={require('../../../assets/images/voltar.png')} /></TouchableOpacity>
-                <TouchableOpacity onPress={() => { navigate(routes.TELA_MENU) }}><Image source={require('../../../assets/images/cancel.png')} /></TouchableOpacity>
-            </View>
             <Map
                 pivot={mapPivot}
                 markers={markers}

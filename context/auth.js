@@ -1,5 +1,7 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { encode } from 'base-64'
+import { set } from 'react-hook-form';
 
 export const AuthContext = createContext({});
 
@@ -21,6 +23,10 @@ function AuthProvider({ children }) {
             zipCode: "",
         },
     })
+
+    useEffect(() => {
+        console.log("user: ", user);
+    }, [user])
 
     const registerPersonalInfo = (name, birthDate, cpf,) => {
         setUser({
@@ -55,6 +61,41 @@ function AuthProvider({ children }) {
         })
     }
 
+    const [inRegisterPet, setRegisterPet] = useState({})
+    useEffect(()=> {
+        console.log("inRegisterPet: ", inRegisterPet);
+    }, [inRegisterPet])
+
+    function addPetInfo(pet) {
+        
+        let newPet = inRegisterPet
+
+        if (Object.keys(newPet).length === 0) {
+            newPet = {
+                id: Math.floor(Math.random() * 1000),
+            }
+        }
+
+        setRegisterPet({
+            ...newPet,
+            ...pet,
+        })
+    }
+
+    function addPet(profile_picture, banner_picture) {
+        inRegisterPet.profile_picture = profile_picture
+        inRegisterPet.banner_picture = banner_picture
+
+        const userPets = user.pets
+        userPets.push(inRegisterPet)
+
+        console.log("userPets: ", userPets);
+        setUser({
+            ...user,
+            pets: userPets
+        })
+    }
+
     function login(user) {
         if (user.email !== "") {
             setUser({
@@ -73,7 +114,7 @@ function AuthProvider({ children }) {
     }
 
     return (
-        <AuthContext.Provider value={{ user, login, logout, registerPersonalInfo, registerAddress, registerAccessData }}>
+        <AuthContext.Provider value={{ user, login, logout, registerPersonalInfo, registerAddress, registerAccessData, inRegisterPet, addPetInfo, addPet }}>
             {children}
         </AuthContext.Provider>
     )

@@ -190,7 +190,7 @@ function Clinic(props) {
                     </View>
                 </View>
 
-               <GoNext onPress={goNext} disabled={isGoNextDisabled}/>
+                <GoNext onPress={goNext} disabled={isGoNextDisabled} />
             </View>
         </View>
     )

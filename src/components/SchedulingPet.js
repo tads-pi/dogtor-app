@@ -4,9 +4,8 @@ import { Card } from 'react-native-paper';
 import { AppointmentContext } from '../../context/appoiment';
 import moment from 'moment';
 
-export default function SchedulingPet() {
-  const { appointment } = React.useContext(AppointmentContext)
-  const { pet } = appointment
+export default function SchedulingPet(props) {
+  const { pet } = props
   const { name, birth_year, size, weight } = pet
 
   const birthYear = moment(birth_year, "YYYY")

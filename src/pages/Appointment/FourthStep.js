@@ -3,9 +3,7 @@ import {
     Text,
     View,
     StyleSheet,
-    SafeAreaView,
     Image,
-    TouchableOpacity,
     ScrollView,
     TouchableWithoutFeedback,
 } from 'react-native';
@@ -34,12 +32,8 @@ export default function FourthStep() {
     const havePets = (user?.pets || []).length > 0
     const noPetSelected = Object.keys(pet || {}).length <= 0
     return (
-        <DogtorView goNext={goNext} disableGoNext={havePets && noPetSelected} hide_go_next={!havePets}>
-            <AppointmentHeader step={4} />
-            <View style={styles.navBar}>
-                <TouchableOpacity onPress={() => navigate(routes.FLUXO_AGENDAMENTO_2)}><Image source={require('../../assets/images/back.png')} /></TouchableOpacity>
-                <TouchableOpacity onPress={() => navigate(routes.TELA_MENU)}><Image source={require('../../assets/images/cancel.png')} /></TouchableOpacity>
-            </View>
+        <DogtorView goNext={goNext} disableGoNext={havePets && noPetSelected} hide_go_next={!havePets} absolute_navigators={true}>
+            <AppointmentHeader step={3} />
 
             <View style={styles.header}>
                 <Text style={styles.subtitle}>
@@ -102,6 +96,7 @@ const styles = StyleSheet.create({
     header: {
         flex: 1,
         alignItems: 'center',
+        marginTop: 32,
     },
     petExists: {
         flex: 1,

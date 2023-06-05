@@ -21,6 +21,7 @@ const routes = {
 
     FLUXO_CADASTRO_PET_1: "FluxoCadastroPet1",
     FLUXO_CADASTRO_PET_2: "FluxoCadastroPet2",
+    FLUXO_CADASTRO_PET_3: "FluxoCadastroPet3",
 }
 
 export default routes
