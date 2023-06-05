@@ -1,12 +1,13 @@
-import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
+import React from "react";
+import { AppointmentContext } from "../../../context/appoiment";
+import { AuthContext } from "../../../context/auth";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import DogtorView from "../../components/DogtorView";
 import * as colors from "../../constants/colors";
+import { useContext } from "react";
 import { useNavigation } from "@react-navigation/native";
 import routes from "../../routes";
-import { useContext } from "react";
-import { AuthContext } from "../../../context/auth";
-import { AppointmentContext } from "../../../context/appoiment"
-import { DEFAULT_FLOW } from "../../../constants/appointment"
+import { DEFAULT_FLOW } from "../../../constants/appointment";
 
 export default function PetThirdStep() {
     const { appointment } = useContext(AppointmentContext)

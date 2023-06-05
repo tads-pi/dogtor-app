@@ -1,3 +1,4 @@
+import React from 'react';
 import AuthProvider from './context/auth';
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from '@react-navigation/native';
@@ -5,7 +6,6 @@ import { Platform, SafeAreaView, StatusBar, View } from "react-native";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { RootSiblingParent } from 'react-native-root-siblings';
 import routes from "./src/routes"
-import * as colors from "./src/constants/colors";
 import TelaLogin from "./src/pages/TelaLogin"
 import TelaMenu from "./src/pages/TelaMenu";
 import AppointmentProvider from './context/appoiment';
@@ -45,7 +45,7 @@ export default function App() {
                   // borderWidth: 3
                 }}>
                   <Stack.Navigator>
-                    {/* <Stack.Screen
+                    <Stack.Screen
                       name={routes.TELA_LOGIN} component={TelaLogin}
                       options={{
                         headerShown: false,
@@ -80,7 +80,8 @@ export default function App() {
                       options={{
                         headerShown: false,
                       }}
-                    /> */}
+                    />
+
                     <Stack.Screen
                       name={routes.FLUXO_AGENDAMENTO_2} component={SecondStep}
                       options={{

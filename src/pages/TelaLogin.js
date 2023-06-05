@@ -1,19 +1,10 @@
 import React, { useContext, useState } from 'react'
-import { AuthContext } from '../../context/auth'
-import {
-    Text,
-    SafeAreaView,
-    StyleSheet,
-    TextInput,
-    View,
-    TouchableHighlight,
-    Alert,
-    Linking
-} from 'react-native';
-import { useFonts } from 'expo-font';
-import { useNavigation } from '@react-navigation/native'
-import routes from "../routes"
+import { Alert, Linking, SafeAreaView, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
+import { AuthContext } from '../../context/auth';
 import AppLoading from '../components/AppLoading';
+import { useFonts } from 'expo-font';
+import { useNavigation } from '@react-navigation/native';
+import routes from "../routes";
 
 export default function TelaLogin({ navigation }) {
     const navigate = useNavigation().navigate
@@ -34,32 +25,7 @@ export default function TelaLogin({ navigation }) {
             data: {
                 password: "1",
                 name: "Debug",
-                pets: [
-                    // {
-                    //     id: "123",
-                    //     name: "Thor",
-                    //     race: "Bulldog Francês",
-                    //     breed: "dog",
-                    //     weight: "5", // in kg
-                    //     size: "50", // in cm
-                    //     birth_date: "01/01",
-                    //     birth_year: "2020",
-                    //     profile_picture: () => require("../assets/images/pets/thor_pp.png"),
-                    //     banner_picture: () => require("../assets/images/pets/thor_banner.png"),
-                    // },
-                    // {
-                    //     id: "321",
-                    //     name: "Fernando",
-                    //     race: "Bulldog Francês",
-                    //     breed: "dog",
-                    //     size: "30", // in cm
-                    //     weight: "3", // in kg
-                    //     birth_date: "01/01",
-                    //     birth_year: "2022",
-                    //     profile_picture: () => require("../assets/images/pets/fernando_pp.png"),
-                    //     banner_picture: () => require("../assets/images/pets/fernando_banner.png"),
-                    // }
-                ]
+                pets: []
             }
         },
         {

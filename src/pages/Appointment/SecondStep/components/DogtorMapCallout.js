@@ -1,7 +1,8 @@
 import React from "react";
-import { Image, Text, View, StyleSheet, Dimensions, Platform } from "react-native";
-import * as colors from "../../../../constants/colors";
 import ImageHandler from "../../../../components/ImageHandler";
+import { Image, Text, View, StyleSheet, Platform } from "react-native";
+
+import * as colors from "../../../../constants/colors";
 
 export default function DogtorMapCallout(props) {
     const name = props.name;

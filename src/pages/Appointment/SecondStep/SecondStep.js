@@ -1,21 +1,14 @@
 import React, { useContext, useEffect, useState } from "react"
+import { AppointmentContext } from "../../../../context/appoiment";
+import AppointmentHeader from "../Header";
+import { buildMarkers } from "./utils/markers";
+import ClinicModal from "./components/ClinicModal";
+import DogtorView from "../../../components/DogtorView";
+import Map from "../../../components/Map";
 import {
-    Text,
     StyleSheet,
-    TouchableOpacity,
-    Image,
     View
-} from "react-native"
-import { AppointmentContext } from "../../../../context/appoiment"
-import Map from "../../../components/Map"
-import AppointmentHeader from "../Header"
-import { buildMarkers } from "./utils/markers"
-import ClinicModal from "./components/ClinicModal"
-import DogtorView from "../../../components/DogtorView"
-import { useNavigation } from "@react-navigation/native"
-import routes from "../../../routes"
-import AppLoading from "../../../components/AppLoading"
-import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry"
+} from "react-native";
 
 export default function SecondStep() {
     // Declaring variables

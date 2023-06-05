@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
-import { Text, View, StyleSheet, Image } from 'react-native';
 import { Card } from 'react-native-paper';
-import { AppointmentContext } from '../../context/appoiment';
+import { Text, View, StyleSheet } from 'react-native';
 import moment from 'moment';
 
 export default function SchedulingPet(props) {

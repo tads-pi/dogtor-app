@@ -1,8 +1,9 @@
-import { View, StyleSheet, TouchableOpacity, Image } from "react-native"
-import DogtorTitle from "./DogtorTitle"
-import GoNext from "./GoNext"
-import { useNavigation } from "@react-navigation/native"
-import routes from "../routes"
+import React from "react"
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import DogtorTitle from "./DogtorTitle";
+import GoNext from "./GoNext";
+import { useNavigation } from "@react-navigation/native";
+import routes from "../routes";
 
 export default function DogtorView(props) {
     const { goNext, goNextTitle, disableGoNext, hide_go_next, should_show_title, should_show_navigators, absolute_navigators, container_style, children } = props

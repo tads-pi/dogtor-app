@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react"
-import routes from "../../routes"
-import DogtorView from "../../components/DogtorView"
-import { ScrollView, StyleSheet, View, Text } from "react-native"
-import { races as r } from "./animals"
-import { AuthContext } from "../../../context/auth"
-import * as colors from "../../constants/colors"
-import RadioButtonGroup, { RadioButtonItem } from "expo-radio-button";
-import { useNavigation } from "@react-navigation/native"
+import { AuthContext } from "../../../context/auth";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
+import DogtorView from "../../components/DogtorView";
+import { races as r } from "./animals";
+import { useNavigation } from "@react-navigation/native";
+import { RadioButtonItem, RadioButtonGroup } from "expo-radio-button";
+import * as colors from "../../constants/colors";
+import routes from "../../routes";
 
 export default function PetSecondStep() {
     const navigate = useNavigation().navigate

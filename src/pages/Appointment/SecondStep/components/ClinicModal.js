@@ -1,23 +1,15 @@
 import React, { useState, useEffect, useRef, useContext } from "react"
-import {
-    Animated,
-    View,
-    Text,
-    Easing,
-    ScrollView,
-    TouchableHighlight
-} from "react-native";
+import { Animated, Easing, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { StyleSheet } from "react-native";
-import AppLoading from "../../../../components/AppLoading"
+import AppLoading from "../../../../components/AppLoading";
+import { AppointmentContext } from "../../../../../context/appoiment";
 import { getRandomNumber } from "../../../../utils/numbers";
 import { useNavigation } from "@react-navigation/native";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import routes from "../../../../routes";
-import * as colors from "../../../../constants/colors"
-import moment from "moment";
 import 'moment/locale/pt-br';
-import { AppointmentContext } from "../../../../../context/appoiment";
-import GoNext from "../../../../components/GoNext";
+import moment from "moment";
+import { GoNext } from "../../../../components/GoNext";
+import * as colors from "../../../../constants/colors";
+import routes from "../../../../routes";
 
 export default function ClinicModal(props) {
     const [clinic, setClinic] = useState({});

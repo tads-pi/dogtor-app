@@ -1,7 +1,7 @@
 import * as React from "react";
-import { Text, View, StyleSheet, Image } from "react-native";
 import { Card } from "react-native-paper";
 import DogtorView from "../components/DogtorView";
+import { Text, View, StyleSheet, Image } from "react-native";
 
 export default function Notifications() {
   return (

@@ -1,21 +1,14 @@
 import React, { useContext } from 'react';
-import {
-  Text,
-  StyleSheet,
-  TextInput,
-  View,
-  TouchableHighlight,
-  Keyboard,
-} from 'react-native';
-import DogtorView from '../../components/DogtorView';
-import { useNavigation } from '@react-navigation/native';
-import { useForm, Controller } from 'react-hook-form';
-import { TextInputMask } from 'react-native-masked-text';
 import { AuthContext } from '../../../context/auth';
 import { isValidBirthDate, isValidDocument, isValidName } from '../../utils/validators';
+import { buttonStyle, inputErrorStyle, inputStyle, subTitleStyle, titleStyle } from './styles';
+import { useForm, Controller } from 'react-hook-form';
+import { Text, StyleSheet, TextInput, TouchableHighlight, View, Keyboard } from 'react-native';
+import DogtorView from '../../components/DogtorView';
+import { useNavigation } from '@react-navigation/native';
+import { TextInputMask } from 'react-native-masked-text';
 import * as constants from '../../constants/fluxoCadastro';
 import routes from '../../routes';
-import { buttonStyle, inputErrorStyle, inputStyle, subTitleStyle, titleStyle } from './styles';
 
 // Step 01
 export default function TelaCadastroInfoPessoais({ navigation }) {

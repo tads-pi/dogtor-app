@@ -1,20 +1,12 @@
 import React, { useContext } from "react";
-import {
-    Text,
-    View,
-    StyleSheet,
-    SafeAreaView,
-    Image,
-    TouchableOpacity,
-    ScrollView,
-} from "react-native";
 import { AppointmentContext } from "../../../context/appoiment";
-import { PAYMENT_TYPE_PENDING } from "../../../constants/appointment";
 import AppointmentHeader from "./Header";
-import { useNavigation } from "@react-navigation/native";
-import routes from "../../routes";
+import { PAYMENT_TYPE_PENDING } from "../../../constants/appointment";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import DogtorView from "../../components/DogtorView";
 import * as colors from "../../constants/colors";
+import routes from "../../routes";
+import { useNavigation } from "@react-navigation/native";
 
 export default function FifthStep() {
     const { appointment, setPaymentStatus } = useContext(AppointmentContext)

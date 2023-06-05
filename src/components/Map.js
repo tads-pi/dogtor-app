@@ -1,8 +1,8 @@
 import React from "react"
-import MapView, { Callout, Marker, PROVIDER_GOOGLE } from "react-native-maps"
-import { StyleSheet, View, Image, Text } from "react-native"
+import { Image, StyleSheet, Text, View } from "react-native";
+import MapView, { Callout, Marker, PROVIDER_GOOGLE } from "react-native-maps";
+import * as colors from "../constants/colors";
 import { mapStyle } from "../constants/fluxoAgendamento";
-import * as colors from "../constants/colors"
 
 const USER_PIN_TITLE = "Você está aqui"
 

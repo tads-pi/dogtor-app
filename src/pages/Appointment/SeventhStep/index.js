@@ -1,10 +1,10 @@
 import React from "react"
-import { View, Text, Image, TouchableOpacity } from "react-native"
-import styles from "./style"
-import { useNavigation } from "@react-navigation/native";
-import routes from "../../../routes";
+import { Image, Text, View } from "react-native";
 import DogtorView from "../../../components/DogtorView";
 import AppointmentHeader from "../Header";
+import { useNavigation } from "@react-navigation/native";
+import routes from "../../../routes";
+import styles from "./style";
 
 export default function SeventhStep() {
   const navigate = useNavigation().navigate

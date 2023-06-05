@@ -1,19 +1,11 @@
 import React, { useContext } from 'react'
-import { AuthContext } from '../../context/auth'
-import {
-    Text,
-    View,
-    StyleSheet,
-    SafeAreaView,
-    Image,
-    TouchableOpacity,
-    ScrollView,
-} from 'react-native';
-import { useNavigation } from '@react-navigation/native'
-import PetWrapper from '../components/PetWrapper';
-import routes from '../routes';
 import { APPOINTMENT_BATH, APPOINTMENT_DENTIST, APPOINTMENT_SURGERY, APPOINTMENT_VACCINE } from '../../constants/appointment';
 import { AppointmentContext } from '../../context/appoiment';
+import { AuthContext } from '../../context/auth';
+import { Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import PetWrapper from '../components/PetWrapper';
+import routes from '../routes';
 
 export default function TelaMenu() {
     const navigate = useNavigation().navigate;

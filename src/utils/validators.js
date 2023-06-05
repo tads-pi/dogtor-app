@@ -34,8 +34,6 @@ export function isValidPhone(phone) {
 }
 
 export function isValidZipCode(zipCode) {
-    console.log(zipCode);
-
     const zipCodeRegex = /^[0-9]{5}-[0-9]{3}$/;
     return zipCodeRegex.test(zipCode);
 }

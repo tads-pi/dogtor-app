@@ -1,19 +1,13 @@
 import React, { useContext, useState } from 'react';
-import {
-    Text,
-    View,
-    TextInput,
-    StyleSheet,
-} from 'react-native';
-import DogtorView from '../../components/DogtorView';
-import { SelectList } from 'react-native-dropdown-select-list'
-import * as colors from "../../constants/colors"
-import { useNavigation } from '@react-navigation/native';
-import routes from '../../routes';
 import { AuthContext } from '../../../context/auth';
 import { MaskedTextInput } from "react-native-mask-text";
-import moment from 'moment';
+import { SelectList } from 'react-native-dropdown-select-list';
+import DogtorView from '../../components/DogtorView';
 import { breeds } from './animals';
+import * as colors from "../../constants/colors";
+import moment from 'moment';
+import { useNavigation } from '@react-navigation/native';
+import routes from '../../routes';
 
 export default function PetFirst() {
     const { addPetInfo } = useContext(AuthContext)

@@ -1,7 +1,7 @@
 import React from 'react';
 import AppLoading from './AppLoading';
-import { useFonts } from 'expo-font';
 import { Text, View, StyleSheet } from 'react-native';
+import { useFonts } from 'expo-font';
 
 export default function DogtorTitle(props) {
     let [fontsLoaded] = useFonts({

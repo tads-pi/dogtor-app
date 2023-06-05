@@ -1,22 +1,15 @@
 import React, { useState } from 'react'
-import {
-    Text,
-    SafeAreaView,
-    StyleSheet,
-    TextInput,
-    View,
-    TouchableHighlight,
-} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { useForm, Controller } from 'react-hook-form';
-import { TextInputMask } from 'react-native-masked-text';
 import { useContext } from 'react';
+import { useForm, Controller } from 'react-hook-form';
 import { AuthContext } from '../../../context/auth';
-import { isValidEmail, isValidPhone } from "../../utils/validators"
+import { isValidEmail, isValidPhone } from "../../utils/validators";
 import { buttonStyle, inputErrorStyle, inputStyle, subTitleStyle, titleStyle } from './styles';
-import routes from '../../routes';
+import { Text, StyleSheet, TextInput, TouchableHighlight, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { TextInputMask } from 'react-native-masked-text';
 import DogtorView from '../../components/DogtorView';
-import * as colors from "../../constants/colors"
+import * as colors from "../../constants/colors";
+import routes from '../../routes';
 
 // Step 03
 export default function TelaCadastroDadosAcesso({ navigation }) {

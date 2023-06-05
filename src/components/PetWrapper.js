@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View, ImageBackground, TouchableOpacity } from 'react-native'
-import React, { useContext, useEffect } from 'react'
-import moment from "moment"
-import { useNavigation } from '@react-navigation/native'
-import routes from "../routes"
-import { AppointmentContext } from '../../context/appoiment'
+import React, { useContext } from 'react'
+import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { AppointmentContext } from '../../context/appoiment';
+import moment from "moment";
+import { useNavigation } from '@react-navigation/native';
+import routes from "../routes";
 
 const PetWrapper = (props) => {
     const navigate = useNavigation().navigate

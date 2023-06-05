@@ -1,6 +1,5 @@
 import React from "react"
 import { View, Image, StyleSheet, Text, Platform } from "react-native"
-import AppLoading from "./AppLoading"
 
 export default function ImageHandler(props) {
     const { container_style, file } = props

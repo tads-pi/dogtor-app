@@ -1,22 +1,15 @@
 import React, { useContext } from 'react';
-import {
-    Text,
-    View,
-    StyleSheet,
-    Image,
-    ScrollView,
-    TouchableWithoutFeedback,
-} from 'react-native';
-import { AuthContext } from '../../../context/auth'
-import PetWrapper from '../../components/PetWrapper'
-import { useNavigation } from '@react-navigation/native';
-import routes from '../../routes';
 import { AppointmentContext } from '../../../context/appoiment';
-import { REGISTER_PET_FLOW } from '../../../constants/appointment';
-import DogtorView from '../../components/DogtorView';
+import { AuthContext } from '../../../context/auth';
 import AppointmentHeader from './Header';
-import * as colors from "../../constants/colors"
+import DogtorView from '../../components/DogtorView';
 import GoNext from '../../components/GoNext';
+import { Image, ScrollView, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
+import { REGISTER_PET_FLOW } from '../../../constants/appointment';
+import * as colors from "../../constants/colors";
+import PetWrapper from '../../components/PetWrapper';
+import routes from '../../routes';
+import { useNavigation } from '@react-navigation/native';
 
 export default function FourthStep() {
     const { user } = useContext(AuthContext)

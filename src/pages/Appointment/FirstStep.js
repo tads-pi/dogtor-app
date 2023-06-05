@@ -1,15 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Picker } from '@react-native-picker/picker';
-import { useForm } from 'react-hook-form';
-import { useNavigation } from '@react-navigation/native'
-import { Text, View, TextInput, TouchableHighlight, Image, KeyboardAvoidingView, Alert, ScrollView, StyleSheet, Dimensions, TouchableOpacity, Keyboard } from 'react-native';
-import routes from '../../routes';
-import { AppointmentContext } from '../../../context/appoiment';
-import DogtorView from '../../components/DogtorView';
-import AppointmentHeader from './Header';
-import { SelectList } from 'react-native-dropdown-select-list';
+import React, { useContext, useEffect } from 'react';
 import { APPOINTMENT_TYPES } from '../../../constants/appointment';
-import * as colors from "../../constants/colors"
+import { AppointmentContext } from '../../../context/appoiment';
+import { Keyboard, StyleSheet, Text, TextInput, View } from 'react-native';
+import { SelectList } from 'react-native-dropdown-select-list';
+import { useNavigation } from '@react-navigation/native';
+
+import * as colors from "../../constants/colors";
+import routes from '../../routes';
+import AppointmentHeader from './Header';
+import DogtorView from '../../components/DogtorView';
 
 export default function FirstStep() {
     const navigate = useNavigation().navigate
@@ -26,8 +25,6 @@ export default function FirstStep() {
 
         const { lat, long } = getMapPivot()
         while (retries >= 0 && (lat === 0 || long === 0)) {
-            console.log("[first-step] waiting for mapPivot");
-
             getUserLocation().then(({ latitude, longitude }) => {
                 console.log("[first-step] userLocation: ", { latitude, longitude });
                 setMapPivot(latitude, longitude)
@@ -38,8 +35,6 @@ export default function FirstStep() {
     })
 
     const shouldDisableNext = description === "" || type === ""
-    console.log("description: ", description);
-    console.log("type: ", type);
     return (
         <DogtorView container_style={styles.container} goNext={goNext} absolute_navigators={true} disableGoNext={shouldDisableNext}>
             <AppointmentHeader step={1} />
