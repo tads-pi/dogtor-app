@@ -74,7 +74,10 @@ export default function FirstStep() {
                             placeholder="Selecione o tipo de atendimento"
                             searchPlaceholder='Pesquisar...'
 
-                            defaultOption={type}
+                            defaultOption={type !== "" ? {
+                                key: type,
+                                value: type,
+                            } : ""}
 
                             style={styles.picker}
                             boxStyles={styles.pickerBoxStyles}
