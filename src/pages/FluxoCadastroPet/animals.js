@@ -107,12 +107,13 @@ export const races = {
         { "key": "2", "value": "Labrador Retriever" },
         { "key": "3", "value": "Golden Retriever" },
         { "key": "4", "value": "Bulldog Francês" },
-        { "key": "5", "value": "Bulldog Inglês" },
+        { "key": "5", "value": "Salsicha" },
         { "key": "6", "value": "Poodle" },
         { "key": "7", "value": "Pastor Alemão" },
         { "key": "8", "value": "Yorkshire Terrier" },
         { "key": "9", "value": "Shih Tzu" },
-        { "key": "10", "value": "Chihuahua" }
+        { "key": "10", "value": "Rottweiler" },
+        { "key": "11", "value": "Yorkshire Terrier" }
     ],
     "Gato": [
         { "key": "1", "value": "SRD (Sem Raça Definida)" },
