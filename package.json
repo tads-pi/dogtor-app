@@ -17,6 +17,7 @@
     "expo-clipboard": "^4.1.2",
     "expo-location": "^15.1.1",
     "expo-radio-button": "^1.0.8",
+    "expo-updates": "~0.16.4",
     "moment": "^2.29.4",
     "npx": "^10.2.2",
     "openai": "^3.2.1",
