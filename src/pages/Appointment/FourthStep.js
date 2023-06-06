@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { AppointmentContext } from '../../../context/appoiment';
 import { AuthContext } from '../../../context/auth';
 import AppointmentHeader from './Header';
@@ -22,6 +22,13 @@ export default function FourthStep() {
         navigate(routes.FLUXO_AGENDAMENTO_5)
     }
 
+    useEffect(() => {
+        if ((user?.pets || []).length == 1) {
+            setPet(user.pets[0])
+            goNext()
+        }
+    }, [])
+
     const havePets = (user?.pets || []).length > 0
     const noPetSelected = Object.keys(pet || {}).length <= 0
     return (
@@ -37,29 +44,28 @@ export default function FourthStep() {
                 </Text>
             </View>
 
-            <ScrollView>
-                <View style={styles.petExists}>
-                    {
-                        (user?.pets || []).length > 0
-                            ? <ScrollView
-                                horizontal={true}
-                                showsHorizontalScrollIndicator={false}
-                            >
-                                {
-                                    user?.pets?.map((pet) => (
-                                        <TouchableWithoutFeedback key={pet.id} onPress={() => {
-                                            setPet(pet)
-                                        }}>
-                                            <PetWrapper pet={pet} key={pet.id} in_appointment_flow={true}></PetWrapper>
-                                        </TouchableWithoutFeedback>
-                                    ))
-                                }
-                            </ScrollView>
+            <View style={styles.petExists}>
+                {
+                    (user?.pets || []).length > 0
+                        ? <ScrollView
+                            style={styles.pets_scroll_view}
+                            horizontal={true}
+                            showsHorizontalScrollIndicator={false}
+                        >
+                            {
+                                user?.pets?.map((pet) => (
+                                    <TouchableWithoutFeedback key={pet.id} onPress={() => {
+                                        setPet(pet)
+                                    }}>
+                                        <PetWrapper pet={pet} key={pet.id} in_appointment_flow={true}></PetWrapper>
+                                    </TouchableWithoutFeedback>
+                                ))
+                            }
+                        </ScrollView>
 
-                            : <NoPetsButton setFlow={setFlow} navigate={navigate} />
-                    }
-                </View>
-            </ScrollView>
+                        : <NoPetsButton setFlow={setFlow} navigate={navigate} />
+                }
+            </View>
         </DogtorView>
     );
 }
@@ -87,14 +93,22 @@ const NoPetsButton = (props) => {
 
 const styles = StyleSheet.create({
     header: {
-        flex: 1,
         alignItems: 'center',
         marginTop: 32,
     },
     petExists: {
         flex: 1,
-        alignItems: 'flex-start',
+        alignItems: 'center',
+        justifyContent: 'center',
         flexDirection: "row",
+
+        // borderColor: "red",
+        // borderWidth: 1,
+    },
+    pets_scroll_view: {
+        paddingLeft: 16,
+        // borderColor: "blue",
+        // borderWidth: 1,
     },
     no_pets: {
         flex: 1,
