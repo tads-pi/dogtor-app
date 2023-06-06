@@ -2,19 +2,21 @@ import React, { useContext } from "react";
 import { AppointmentContext } from "../../context/appoiment";
 import { Card } from "react-native-paper";
 import DogtorView from "../components/DogtorView";
-import Image from "react-native";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import SchedulingPet from "../components/SchedulingPet";
+import AppLoading from "../components/AppLoading";
 
 export default function DetalhesPet() {
   const { appointment } = useContext(AppointmentContext)
   const { pet_view } = appointment
   const { name, breed, race, banner_picture } = pet_view
 
+  console.log("pet_view", pet_view);
+
   return (
     <DogtorView container_style={styles.container} hide_go_next={true}>
       <View style={styles.banner}>
-        <Image source={banner_picture()} style={styles.image} />
+        <Image source={banner_picture()} style={styles.image}/>
       </View>
       <View>
         <Card style={styles.card}>
@@ -52,6 +54,7 @@ const styles = StyleSheet.create({
   },
   banner: {},
   image: {
+    height: 256,
     resizeMode: "cover",
     width: "100%",
   }

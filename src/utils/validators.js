@@ -37,3 +37,7 @@ export function isValidZipCode(zipCode) {
     const zipCodeRegex = /^[0-9]{5}-[0-9]{3}$/;
     return zipCodeRegex.test(zipCode);
 }
+
+export function notEmpty(items = []) {
+    return items.every((item) => item !== null && item !== undefined && item !== "");
+}

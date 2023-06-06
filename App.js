@@ -23,6 +23,7 @@ import PetFirstStep from './src/pages/FluxoCadastroPet/FirstStep';
 import PetSecondStep from './src/pages/FluxoCadastroPet/SecondStep';
 import FirstStep from './src/pages/Appointment/FirstStep';
 import PetThirdStep from './src/pages/FluxoCadastroPet/ThridStep';
+import "react-native-url-polyfill/auto"
 
 export default function App() {
   const Stack = createStackNavigator();

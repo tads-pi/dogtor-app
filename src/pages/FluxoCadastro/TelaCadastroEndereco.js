@@ -42,7 +42,6 @@ export default function TelaCadastroEndereco() {
                         rules={{
                             required: true,
                             validate: (zipCode) => {
-                                console.log("zipcode: ", zipCode);
                                 return isValidZipCode(zipCode)
                             },
                         }}
@@ -145,10 +144,6 @@ export default function TelaCadastroEndereco() {
                                 placeholder="Estado"
                                 returnKeyType="done"
                                 onKeyPress={handleKeyDown}
-
-                                onFocus={() => {
-                                    console.log("onFocus")
-                                }}
                             />
                         )}
                     />}

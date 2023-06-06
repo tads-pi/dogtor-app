@@ -7,7 +7,6 @@ export default function AppLoading(props) {
     // todo make it look better
     return (
         <View style={[inner_style, styles.container]}>
-            <Text>Carregando</Text>
             <ActivityIndicator />
         </View>
     )
@@ -16,7 +15,6 @@ export default function AppLoading(props) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.DOGTOR_WHITE,
         justifyContent: "center",
         alignItems: "center"
     }

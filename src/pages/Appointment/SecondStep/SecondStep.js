@@ -24,8 +24,6 @@ export default function SecondStep() {
     useEffect(() => {
         const { lat, long } = getMapPivot()
         if (lat === 0 && long === 0) {
-            console.log("[second-step] waiting for mapPivot");
-
             getUserLocation().then(({ latitude, longitude }) => {
                 setMapPivot({ lat: latitude, long: longitude })
             })
@@ -85,11 +83,7 @@ export default function SecondStep() {
 
 const MapViewWrapper = (props) => {
     const { mapPivot, markers, handleSelectedClinic } = props
-
-    useEffect(() => {
-        console.log("mapPivot: ", mapPivot);
-    }, [mapPivot])
-
+    
     return (
         <View style={{
             flex: 1,

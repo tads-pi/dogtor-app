@@ -10,6 +10,8 @@ import routes from "../../routes";
 
 export default function PetSecondStep() {
     const navigate = useNavigation().navigate
+    const [checked, setChecked] = useState();
+
     const { inRegisterPet, addPetInfo } = useContext(AuthContext)
     const { breed } = inRegisterPet
 
@@ -25,9 +27,9 @@ export default function PetSecondStep() {
         })
     }
 
-    const [checked, setChecked] = useState();
+    const shouldDisableGoNext = !checked
     return (
-        <DogtorView goNext={goNext}>
+        <DogtorView goNext={goNext} disableGoNext={shouldDisableGoNext}>
             <View style={styles.header}>
                 <Text style={styles.headerTitle}>Qual a raça de seu pet?</Text>
             </View>

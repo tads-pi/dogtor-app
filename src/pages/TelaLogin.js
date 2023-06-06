@@ -25,7 +25,20 @@ export default function TelaLogin({ navigation }) {
             data: {
                 password: "1",
                 name: "Debug",
-                pets: []
+                pets: [
+                    {
+                        id: "123",
+                        name: "Thor",
+                        race: "Bulldog Francês",
+                        breed: "dog",
+                        weight: "5", // in kg
+                        size: "50", // in cm
+                        birth_date: "01/01",
+                        birth_year: "2020",
+                        profile_picture: () => require("../assets/images/pets/thor_pp.png"),
+                        banner_picture: () => require("../assets/images/pets/thor_banner.png"),
+                    },
+                ]
             }
         },
         {

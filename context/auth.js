@@ -24,9 +24,10 @@ function AuthProvider({ children }) {
         },
     })
 
-    useEffect(() => {
-        console.log("user: ", user);
-    }, [user])
+    // DEBUG
+    // useEffect(() => {
+    //     console.log("user: ", user);
+    // }, [user])
 
     const registerPersonalInfo = (name, birthDate, cpf,) => {
         setUser({
@@ -62,6 +63,8 @@ function AuthProvider({ children }) {
     }
 
     const [inRegisterPet, setRegisterPet] = useState({})
+
+    // DEBUG
     useEffect(()=> {
         console.log("inRegisterPet: ", inRegisterPet);
     }, [inRegisterPet])
@@ -89,7 +92,6 @@ function AuthProvider({ children }) {
         const userPets = user.pets
         userPets.push(inRegisterPet)
 
-        console.log("userPets: ", userPets);
         setUser({
             ...user,
             pets: userPets

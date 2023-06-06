@@ -26,7 +26,6 @@ export default function FirstStep() {
         const { lat, long } = getMapPivot()
         while (retries >= 0 && (lat === 0 || long === 0)) {
             getUserLocation().then(({ latitude, longitude }) => {
-                console.log("[first-step] userLocation: ", { latitude, longitude });
                 setMapPivot(latitude, longitude)
             })
 

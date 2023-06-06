@@ -26,11 +26,12 @@ export default function DogtorView(props) {
                     : <View style={{
                         flexDirection: "row",
                         justifyContent: "space-between",
-                        marginTop: 32,
                         padding: 16,
                         width: "100%",
                         position: absolute_navigators ? "absolute" : "",
                         zIndex: 999,
+
+                        marginTop: absolute_navigators ? 32 : 0,
 
                         // DEBUG ONLY
                         // borderColor: "red",

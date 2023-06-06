@@ -138,7 +138,7 @@ export const races = {
         { "key": "9", "value": "Barbo" },
         { "key": "10", "value": "Piranha" }
     ],
-    "Pássaros": [
+    "Pássaro": [
         { "key": "1", "value": "Canário" },
         { "key": "2", "value": "Calopsita" },
         { "key": "3", "value": "Periquito Australiano" },

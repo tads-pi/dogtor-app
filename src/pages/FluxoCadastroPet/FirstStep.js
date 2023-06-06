@@ -8,9 +8,12 @@ import * as colors from "../../constants/colors";
 import moment from 'moment';
 import { useNavigation } from '@react-navigation/native';
 import routes from '../../routes';
+import { StyleSheet, View, Text, TextInput } from 'react-native';
+import { notEmpty } from '../../utils/validators';
 
 export default function PetFirst() {
-    const { addPetInfo } = useContext(AuthContext)
+    const { inRegisterPet, addPetInfo } = useContext(AuthContext)
+    const { name, birth_year, size, weight, breed } = inRegisterPet
     const navigate = useNavigation().navigate
 
     const goNext = () => {
@@ -39,8 +42,9 @@ export default function PetFirst() {
         })
     }
 
+    const shouldDisableGoNext = !notEmpty([name, size, weight, breed, birth_year])
     return (
-        <DogtorView goNext={goNext} absolute_navigators={true}>
+        <DogtorView goNext={goNext} disableGoNext={shouldDisableGoNext}>
             <View style={styles.header}>
                 <Text style={styles.headerTitle}>Informações do Pet</Text>
             </View>
@@ -59,9 +63,7 @@ export default function PetFirst() {
                     }}
                 />
 
-                <View
-                    style={styles.input}
-                >
+                <View style={styles.input}>
                     <MaskedTextInput
                         placeholder="Idade ou Data de nascimento"
 
@@ -71,9 +73,11 @@ export default function PetFirst() {
                         onChangeText={handleAge}
                     />
                 </View>
+
                 <View style={styles.commentWrapper}>
                     <Text style={styles.commentStyle}>exemplo: 31/12/2023</Text>
                 </View>
+
                 <View style={styles.wrapper}>
                     <TextInput
                         placeholder="Peso (kg)"
@@ -140,7 +144,7 @@ const input = {
 const styles = StyleSheet.create({
     header: {
         alignItems: "center",
-        marginTop: 48,
+        // marginTop: 48,
     },
     headerTitle: {
         fontSize: 16,

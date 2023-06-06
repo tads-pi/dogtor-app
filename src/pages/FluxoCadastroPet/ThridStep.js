@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AppointmentContext } from "../../../context/appoiment";
 import { AuthContext } from "../../../context/auth";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -8,18 +8,36 @@ import { useContext } from "react";
 import { useNavigation } from "@react-navigation/native";
 import routes from "../../routes";
 import { DEFAULT_FLOW } from "../../../constants/appointment";
+import AppLoading from "../../components/AppLoading";
+import { generateImage } from "../../utils/openai";
+import { SHOULD_USE_AI } from '@env';
 
 export default function PetThirdStep() {
+    const defaultImageComponent = <Image style={styles.image} source={require("../../assets/images/adicionar.png")} />
+    const [image, setImage] = useState(defaultImageComponent)
+
+    const [imageUrl, setImageUrl] = useState("")
+
     const { appointment } = useContext(AppointmentContext)
+    const { inRegisterPet } = useContext(AuthContext)
     const { flow } = appointment
+    const { name, race, breed } = inRegisterPet
 
     const { addPet } = useContext(AuthContext)
     const navigate = useNavigation().navigate
 
     function goNext() {
         addPet(
-            () => require("../../assets/images/pets/thor_pp.png"),
-            () => require("../../assets/images/pets/thor_banner.png"),
+            () => {
+                return {
+                    uri: imageUrl
+                }
+            },
+            () => {
+                return {
+                    uri: imageUrl
+                }
+            },
         )
 
         if (flow == DEFAULT_FLOW) {
@@ -29,8 +47,9 @@ export default function PetThirdStep() {
         }
     }
 
+    const shouldDisableGoNext = image?.props?.source === defaultImageComponent.props.source || imageUrl === ""
     return (
-        <DogtorView goNext={goNext} goNextTitle="Adicionar">
+        <DogtorView goNext={goNext} goNextTitle="Adicionar" hide_go_next={shouldDisableGoNext}>
             <View style={styles.header}>
                 <Text style={styles.title}>
                     Foto do Pet
@@ -44,10 +63,24 @@ export default function PetThirdStep() {
             <TouchableOpacity
                 style={styles.imageWrapper}
                 onPress={() => {
-                    //TODO show camera
+                    setImage(<AppLoading />)
+                    setTimeout(async () => {
+                        console.log("SHOULD_USE_AI: ", SHOULD_USE_AI);
+                        if (SHOULD_USE_AI === "false") {
+                            setImage(<Image style={styles.userPhotoImage} source={require("../../assets/images/pets/thor_pp.png")} />)
+                            setImageUrl("https://s3.sa-east-1.amazonaws.com/kauacalixtolab.xyz/dogtor_images/thor_pp.png")
+                            return
+                        } else {
+                            const url = await generateImage(`a beautiful ${breed} ${race} named ${name} in an colorful photo studio`)
+                            setImage(<Image style={styles.userPhotoImage} source={{ uri: url }} />)
+                            setImageUrl(url)
+
+                            console.log("generated image url: ", url);
+                        }
+                    }, 100);
                 }}
             >
-                <Image style={styles.image} source={require("../../assets/images/adicionar.png")} />
+                {image}
             </TouchableOpacity>
 
         </DogtorView>
@@ -79,5 +112,10 @@ const styles = StyleSheet.create({
     image: {
         resizeMode: "contain",
     },
+    userPhotoImage: {
+        resizeMode: "contain",
+        width: 300,
+        height: 300,
+    }
 })
 

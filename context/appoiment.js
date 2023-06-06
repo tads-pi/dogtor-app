@@ -34,7 +34,7 @@ function AppointmentProvider({ children }) {
                 type,
             })
         } else {
-            console.log("[ERROR] Appointment type not allowed")
+            console.error("[ERROR] Appointment type not allowed")
         }
     }
 
@@ -89,7 +89,7 @@ function AppointmentProvider({ children }) {
                 paymentStatus,
             })
         } else {
-            console.log("[ERROR] Payment status not allowed")
+            console.error("[ERROR] Payment status not allowed")
         }
     }
 
@@ -114,7 +114,7 @@ function AppointmentProvider({ children }) {
 
     function setFlow(flow) {
         if (!FLOWS.includes(flow)) {
-            console.log("[ERROR] Flow not allowed")
+            console.error("[ERROR] Flow not allowed")
         }
 
         setAppointment({
@@ -143,9 +143,9 @@ function AppointmentProvider({ children }) {
     }
 
     // DEBUG
-    useEffect(() => {
-        console.log(JSON.stringify(appointment, null, 2));
-    }, [appointment])
+    // useEffect(() => {
+    //     console.log(JSON.stringify(appointment, null, 2));
+    // }, [appointment])
 
     return (
         <AppointmentContext.Provider value={{ appointment, setAppointment, setType, setDescription, setClinic, setDate, setTime, setPet, setPetView, setPaymentStatus, getMapPivot, setMapPivot, getAvailableClinics, setFlow, setDateClinicAndTime, getUserLocation }}>

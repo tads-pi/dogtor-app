@@ -86,7 +86,6 @@ export default function TelaMenu() {
                             >
                                 {
                                     user.pets.map((pet) => {
-                                        console.log("petwrapper: ", pet);
                                         return (
                                             <PetWrapper pet={pet} key={pet.id}></PetWrapper>
                                         )
