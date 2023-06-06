@@ -65,17 +65,20 @@ export default function PetThirdStep() {
                 onPress={() => {
                     setImage(<AppLoading />)
                     setTimeout(async () => {
-                        console.log("SHOULD_USE_AI: ", SHOULD_USE_AI);
-                        if (SHOULD_USE_AI === "false") {
+                        try {
+                            console.warn("SHOULD_USE_AI: ", SHOULD_USE_AI);
+                            if (SHOULD_USE_AI === "true") {
+                                const url = await generateImage(`a beautiful ${breed} ${race} named ${name} in an colorful photo studio`)
+                                setImage(<Image style={styles.userPhotoImage} source={{ uri: url }} />)
+                                setImageUrl(url)
+                                console.log("generated image url: ", url);
+                            } else {
+                                setImage(<Image style={styles.userPhotoImage} source={require("../../assets/images/pets/thor_pp.png")} />)
+                                setImageUrl("https://s3.sa-east-1.amazonaws.com/kauacalixtolab.xyz/dogtor_images/thor_pp.png")
+                            }
+                        } catch (error) {
                             setImage(<Image style={styles.userPhotoImage} source={require("../../assets/images/pets/thor_pp.png")} />)
                             setImageUrl("https://s3.sa-east-1.amazonaws.com/kauacalixtolab.xyz/dogtor_images/thor_pp.png")
-                            return
-                        } else {
-                            const url = await generateImage(`a beautiful ${breed} ${race} named ${name} in an colorful photo studio`)
-                            setImage(<Image style={styles.userPhotoImage} source={{ uri: url }} />)
-                            setImageUrl(url)
-
-                            console.log("generated image url: ", url);
                         }
                     }, 100);
                 }}
