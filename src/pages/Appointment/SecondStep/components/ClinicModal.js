@@ -7,9 +7,9 @@ import { getRandomNumber } from "../../../../utils/numbers";
 import { useNavigation } from "@react-navigation/native";
 import 'moment/locale/pt-br';
 import moment from "moment";
-import { GoNext } from "../../../../components/GoNext";
 import * as colors from "../../../../constants/colors";
 import routes from "../../../../routes";
+import GoNext from "../../../../components/GoNext";
 
 export default function ClinicModal(props) {
     const [clinic, setClinic] = useState({});
