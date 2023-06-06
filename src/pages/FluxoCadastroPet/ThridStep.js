@@ -15,6 +15,7 @@ import { SHOULD_USE_AI } from '@env';
 export default function PetThirdStep() {
     const defaultImageComponent = <Image style={styles.image} source={require("../../assets/images/adicionar.png")} />
     const [image, setImage] = useState(defaultImageComponent)
+    const [alreadyUsedAI, setUsedAI] = useState(false)
 
     const [imageUrl, setImageUrl] = useState("")
 
@@ -63,15 +64,20 @@ export default function PetThirdStep() {
             <TouchableOpacity
                 style={styles.imageWrapper}
                 onPress={() => {
+                    if (alreadyUsedAI) {
+                        return
+                    }
+
                     setImage(<AppLoading />)
                     setTimeout(async () => {
                         try {
-                            console.warn("SHOULD_USE_AI: ", SHOULD_USE_AI);
+                            console.log("SHOULD_USE_AI: ", SHOULD_USE_AI);
                             if (SHOULD_USE_AI === "true") {
                                 const url = await generateImage(`a beautiful ${breed} ${race} named ${name} in an colorful photo studio`)
                                 setImage(<Image style={styles.userPhotoImage} source={{ uri: url }} />)
                                 setImageUrl(url)
                                 console.log("generated image url: ", url);
+                                setUsedAI(true)
                             } else {
                                 setImage(<Image style={styles.userPhotoImage} source={require("../../assets/images/pets/thor_pp.png")} />)
                                 setImageUrl("https://s3.sa-east-1.amazonaws.com/kauacalixtolab.xyz/dogtor_images/thor_pp.png")
