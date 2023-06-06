@@ -11,8 +11,6 @@ export default function DetalhesPet() {
   const { pet_view } = appointment
   const { name, breed, race, banner_picture } = pet_view
 
-  console.log("pet_view", pet_view);
-
   return (
     <DogtorView container_style={styles.container} hide_go_next={true}>
       <View style={styles.banner}>

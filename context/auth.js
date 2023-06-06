@@ -65,9 +65,9 @@ function AuthProvider({ children }) {
     const [inRegisterPet, setRegisterPet] = useState({})
 
     // DEBUG
-    useEffect(()=> {
-        console.log("inRegisterPet: ", inRegisterPet);
-    }, [inRegisterPet])
+    // useEffect(()=> {
+    //     console.log("inRegisterPet: ", inRegisterPet);
+    // }, [inRegisterPet])
 
     function addPetInfo(pet) {
         

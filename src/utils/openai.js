@@ -13,8 +13,7 @@ export async function generateImage(prompt = "") {
             size: "256x256",
         });
         const url = response.data.data[0].url
-        console.log("url: ", url);
-
+        
         return url
     } catch (error) {
         console.error(error);

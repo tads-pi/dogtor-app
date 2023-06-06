@@ -7,8 +7,6 @@ export default function SchedulingPet(props) {
   const { pet } = props
   const { name, birth_year, size, weight } = pet
 
-  console.log("pet", pet);
-
   const birthYear = moment(birth_year, "YYYY")
   let age = moment().diff(birthYear, "years")
 
