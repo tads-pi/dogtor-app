@@ -5,7 +5,7 @@ import { Text, View, StyleSheet, Image } from "react-native";
 
 export default function Notifications() {
   return (
-    <DogtorView container_style={styles.container}>
+    <DogtorView container_style={styles.container} hide_go_next={true}>
       <View style={styles.header}>
         <Text style={styles.paragraph}>
           Agendamentos deste mês
