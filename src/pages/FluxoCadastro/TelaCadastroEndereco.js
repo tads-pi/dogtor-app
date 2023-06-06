@@ -29,7 +29,7 @@ export default function TelaCadastroEndereco() {
     }
 
     return (
-        <DogtorView should_show_title={true}>
+        <DogtorView should_show_title={true} hide_go_next={true} in_register={true}>
             <View style={styles.header}>
                 <Text style={styles.title}>Seu endereço</Text>
                 <Text style={styles.subTitle}>Para encontrarmos estabelecimentos próximos de você</Text>

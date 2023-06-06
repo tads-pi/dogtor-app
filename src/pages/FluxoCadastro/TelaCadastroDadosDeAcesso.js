@@ -48,7 +48,7 @@ export default function TelaCadastroDadosAcesso({ navigation }) {
     }
 
     return (
-        <DogtorView should_show_title={true}>
+        <DogtorView should_show_title={true} hide_go_next={true} in_register={true}>
             <View style={styles.header}>
                 <Text style={styles.title}>Dados de Acesso</Text>
                 <Text style={styles.subTitle}>Esses dados serão necessários para entrar no aplicativo mais tarde!</Text>

@@ -33,7 +33,7 @@ export default function TelaCadastroInfoPessoais({ navigation }) {
   }
 
   return (
-    <DogtorView should_show_title={true}>
+    <DogtorView should_show_title={true} hide_go_next={true} in_register={true}>
       <View style={styles.header}>
         <Text style={styles.title}>Informações pessoais</Text>
         <Text style={styles.subTitle}>Primeiro de tudo, vamos nos conhecer.{'\n'}Nos diga, quem é você?</Text>
@@ -124,6 +124,9 @@ export default function TelaCadastroInfoPessoais({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+
+  }, 
   header: {
     flexDirection: 'column',
     textAlign: 'flex-start',

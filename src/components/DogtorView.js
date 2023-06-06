@@ -6,7 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import routes from "../routes";
 
 export default function DogtorView(props) {
-    const { goNext, goNextTitle, disableGoNext, hide_go_next, should_show_title, should_show_navigators, absolute_navigators, container_style, children } = props
+    const { goNext, goNextTitle, disableGoNext, hide_go_next, should_show_title, should_show_navigators, absolute_navigators, container_style, children, in_register } = props
     const navigation = useNavigation()
 
     return (
@@ -38,7 +38,7 @@ export default function DogtorView(props) {
                         // borderWidth: 1
                     }}>
                         <TouchableOpacity onPress={() => { navigation.goBack() }}><Image source={require('../assets/images/voltar.png')} /></TouchableOpacity>
-                        <TouchableOpacity onPress={() => { navigation.navigate(routes.TELA_MENU) }}><Image source={require('../assets/images/cancel.png')} /></TouchableOpacity>
+                        <TouchableOpacity onPress={() => { in_register ? navigation.navigate(routes.TELA_LOGIN) : navigation.navigate(routes.TELA_MENU) }}><Image source={require('../assets/images/cancel.png')} /></TouchableOpacity>
                     </View>
             }
 
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     },
     common_container: {
         flex: 1,
-        // margin: 16,
+        margin: 16,
     },
     footer: {
         paddingBottom: 16
